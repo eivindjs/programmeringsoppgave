@@ -12,6 +12,7 @@ namespace programmeringsoppgaven
 {
     public partial class Form1 : Form
     {
+        //HEIA EIVIND!!
         public Form1()
         {
             InitializeComponent();
