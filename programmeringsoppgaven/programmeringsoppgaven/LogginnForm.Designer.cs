@@ -1,6 +1,6 @@
 ﻿namespace programmeringsoppgaven
 {
-    partial class Form1
+    partial class LogginnForm
     {
         /// <summary>
         /// Required designer variable.

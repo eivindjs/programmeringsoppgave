@@ -10,10 +10,9 @@ using System.Windows.Forms;
 
 namespace programmeringsoppgaven
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        //HEIA EIVIND!!
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
