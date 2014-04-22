@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace projectcsharp
 {
-    public partial class MainForm : Form
+    public partial class GameForm : Form
     {
-        public MainForm()
+        public GameForm()
         {
             InitializeComponent();
         }
