@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -46,7 +47,10 @@ namespace projectcsharp
 
                 if (passwordIn == userPW)
                 {
-                  //send til start spill
+                    var threadNewGame= new Thread(ThreadNewGame);
+                    threadNewGame.Start();
+                    this.Close();
+
                 }
                 else
                 {
@@ -59,6 +63,29 @@ namespace projectcsharp
                 MessageBox.Show("Feil brukernavn og/eller passord.");
             }
 
+         
         }
+
+        private void ThreadRegister()
+        {
+            RegisterNewUser registerNewUser = new RegisterNewUser();
+            Application.Run(registerNewUser);
+        }
+
+        private void ThreadNewGame()
+        {
+            GameForm gameform = new GameForm();
+            Application.Run(gameform);
+        }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            var threadRegisterNew = new Thread(ThreadRegister);
+            threadRegisterNew.Start();
+            //lukker registrering om LoginFrom lukkes
+            threadRegisterNew.IsBackground = true;
+            
+        }
+     
     }
 }

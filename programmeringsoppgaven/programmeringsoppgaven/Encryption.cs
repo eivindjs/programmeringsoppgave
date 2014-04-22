@@ -6,14 +6,20 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
+/**
+ *  Her blir passord til nye brukere kryptert.
+ *  Ved login sjekkes passord mot database via denne klassen.
+ * 
+ **/ 
 namespace projectcsharp
 {
     public static class Encryption
-    {
-        static readonly string PasswordHash = "P@Sw0rdH@$h1ngIsAw3som3";
-        static readonly string SaltKey = "$@LT&!+1.K3Y";
-        static readonly string VIKey = "@1B2c3D4eWhY?5F6g7H8";
+    { //nøkler som er nødvendig for å hashe
+        static readonly string PasswordHash = "P@@Sw0rdH@$h1ng";
+        static readonly string SaltKey = "$@LT&K3Y";
+        static readonly string VIKey = "@1B2c3D4e5F6g7H8";
 
+        //"dekrypterer"
         public static bool Decrypt(string userpass, string databasepass)
         {
             string decryption = Encrypt(userpass);

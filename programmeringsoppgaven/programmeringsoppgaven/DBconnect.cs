@@ -4,7 +4,10 @@ using System.Linq;
 using System.Web;
 using MySql.Data.MySqlClient;
 using System.Data;
-
+/**
+ * Her skjer alle oppkoblinger mot DB.
+ * 
+ **/
 namespace projectcsharp
 {
     public class DBConnect
@@ -35,18 +38,20 @@ namespace projectcsharp
             connection = new MySqlConnection(connectionString);
         }
 
+        //Åpner tilkoblig mot database
         private bool OpenConnection()
         {
             connection.Open();
             return true;
         }
-
+        //Lukker tilkobling mot database
         private bool CloseConnection()
         {
             connection.Close();
             return true;
         }
 
+        //for SELECT
         public DataTable getAll(string query)
         {
             if (this.OpenConnection() == true)
@@ -59,6 +64,7 @@ namespace projectcsharp
             return dataTable;
         }
 
+        //For INSERT, DELETE og UPDATE
         public void InsertDeleteUpdate(string query)
         {
             if (this.OpenConnection() == true)

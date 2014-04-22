@@ -67,6 +67,9 @@
     <Compile Include="RegisterNewUser.Designer.cs">
       <DependentUpon>RegisterNewUser.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GameForm.resx">
+      <DependentUpon>GameForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LogInForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
