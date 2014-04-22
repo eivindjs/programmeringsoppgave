@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "programmeringsoppgaven", "programmeringsoppgaven\programmeringsoppgaven.csproj", "{EBF37A0D-596D-48DC-B14A-EBC3864434F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "projectcsharp", "programmeringsoppgaven\projectcsharp.csproj", "{EBF37A0D-596D-48DC-B14A-EBC3864434F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

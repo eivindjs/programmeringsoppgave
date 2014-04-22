@@ -1,4 +1,4 @@
-﻿namespace programmeringsoppgaven
+﻿namespace projectcsharp
 {
     partial class MainForm
     {

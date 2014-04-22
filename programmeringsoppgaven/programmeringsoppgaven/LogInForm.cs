@@ -8,13 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace programmeringsoppgaven
+namespace projectcsharp
 {
-    public partial class LogginnForm : Form
+    public partial class LogInForm : Form
     {
         //HEIA EIVIND!!
         //HEIA TORD!!
-        public LogginnForm()
+        public LogInForm()
         {
             InitializeComponent();
         }

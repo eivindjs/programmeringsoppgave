@@ -1,6 +1,6 @@
-﻿namespace programmeringsoppgaven
+﻿namespace projectcsharp
 {
-    partial class LogginnForm
+    partial class LogInForm
     {
         /// <summary>
         /// Required designer variable.
