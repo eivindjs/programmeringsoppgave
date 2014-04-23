@@ -29,25 +29,28 @@
         private void InitializeComponent()
         {
             this.buttonPanel = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.mainPanel = new System.Windows.Forms.Panel();
             this.lblLevel1 = new System.Windows.Forms.Label();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.buttonPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonPanel
             // 
             this.buttonPanel.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.buttonPanel.Controls.Add(this.btnStart);
             this.buttonPanel.Location = new System.Drawing.Point(13, 40);
             this.buttonPanel.Name = "buttonPanel";
             this.buttonPanel.Size = new System.Drawing.Size(592, 31);
             this.buttonPanel.TabIndex = 0;
             // 
-            // panel2
+            // mainPanel
             // 
-            this.panel2.BackColor = System.Drawing.Color.CadetBlue;
-            this.panel2.Location = new System.Drawing.Point(13, 77);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(592, 339);
-            this.panel2.TabIndex = 1;
+            this.mainPanel.BackColor = System.Drawing.Color.CadetBlue;
+            this.mainPanel.Location = new System.Drawing.Point(13, 77);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(592, 339);
+            this.mainPanel.TabIndex = 1;
             // 
             // lblLevel1
             // 
@@ -61,16 +64,27 @@
             this.lblLevel1.TabIndex = 2;
             this.lblLevel1.Text = "Level 1";
             // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(3, 4);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(115, 23);
+            this.btnStart.TabIndex = 0;
+            this.btnStart.Text = "Start";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 428);
+            this.ClientSize = new System.Drawing.Size(624, 433);
             this.Controls.Add(this.lblLevel1);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.buttonPanel);
             this.Name = "GameForm";
             this.Text = "MainForm";
+            this.buttonPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -79,7 +93,8 @@
         #endregion
 
         private System.Windows.Forms.Panel buttonPanel;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Label lblLevel1;
+        private System.Windows.Forms.Button btnStart;
     }
 }

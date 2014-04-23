@@ -16,6 +16,7 @@ namespace projectcsharp
         //HEIA EIVIND!!
         //HEIA TORD!!
         //Herlig at du såg det Eivind aka The Rock!
+        //Æ følge me Tord aka The Handsome!
 
         private DBConnect db = new DBConnect();
         private DataTable dt = new DataTable();
@@ -74,8 +75,8 @@ namespace projectcsharp
 
         private void ThreadNewGame()
         {
-            GameForm gameform = new GameForm();
-            Application.Run(gameform);
+            MainForm mainform = new MainForm();
+            Application.Run(mainform);
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
