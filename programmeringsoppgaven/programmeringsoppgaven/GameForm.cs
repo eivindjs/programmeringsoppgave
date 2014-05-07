@@ -29,7 +29,7 @@ namespace projectcsharp
             y = random.Next(0, mainPanel.Height);
             h = 40;
             w = 35;
-
+           
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -43,8 +43,7 @@ namespace projectcsharp
             Rectangle rekt2 = new Rectangle((int)x, (int)y, (int)w, (int)h);
             Rectangle rekt3 = new Rectangle((int)x, (int)y, (int)w, (int)h);
 
-        }
-    
+        }    
 
     }
 }
