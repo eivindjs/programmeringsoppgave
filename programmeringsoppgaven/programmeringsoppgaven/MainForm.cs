@@ -32,6 +32,22 @@ namespace projectcsharp
         //Kort og enkelt ka det går ut på? ka du tror Tord?
         private void btnAbout_Click(object sender, EventArgs e)
         {
+            var threadAbout = new Thread(ThreadAbout);
+            threadAbout.Start();
+        }
+        private void ThreadAbout()
+        {
+            About about = new About();
+            Application.Run(about);
+        }
+
+        private void btnScore_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
 
         }
       

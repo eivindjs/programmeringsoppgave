@@ -52,6 +52,7 @@
             this.btnScore.TabIndex = 1;
             this.btnScore.Text = "Highscore";
             this.btnScore.UseVisualStyleBackColor = true;
+            this.btnScore.Click += new System.EventHandler(this.btnScore_Click);
             // 
             // btnAbout
             // 
@@ -71,6 +72,7 @@
             this.btnSettings.TabIndex = 3;
             this.btnSettings.Text = "Settings";
             this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // MainForm
             // 
