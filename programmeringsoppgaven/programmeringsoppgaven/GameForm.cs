@@ -3,47 +3,49 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace projectcsharp
 {
     //Dette blir level 1. Tenker hver level har egen form for å gjøre det enklest mulig. 
-    //Bør kanskje ha en egen panel form? som arve fra Panel?
+    //Har lagt til en mypanel klasse som arver fra panel 
     public partial class GameForm : Form
     {
-        private Random random;
-        private float x;
-        private float y;
-        private float h;
-        private float w;
-
+        private bool keepGoing = true;
 
         public GameForm()
         {
             InitializeComponent();
-            random = new Random();
-            x = random.Next(0, mainPanel.Width);
-            y = random.Next(0, mainPanel.Height);
-            h = 40;
-            w = 35;
-           
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+
+        private void buttonStart_Click(object sender, EventArgs e)
         {
+            keepGoing = true;
+            startBalls();
+            myPanel.AddBall();
+            myPanel.Invalidate();
         }
-
-        protected override void OnPaint(PaintEventArgs e)
+        private void startBalls()
         {
+            ThreadStart ts = new ThreadStart(Run);
+            Thread thread = new Thread(ts);
+            thread.IsBackground = true;
+            thread.Start();
+        }
+        public void Run()
+        {
+            while (keepGoing)
+            {
+                myPanel.Invalidate();
+                Thread.Sleep(10);
+            }
 
-            Rectangle rekt1 = new Rectangle((int)x, (int)y, (int)w, (int)h);
-            Rectangle rekt2 = new Rectangle((int)x, (int)y, (int)w, (int)h);
-            Rectangle rekt3 = new Rectangle((int)x, (int)y, (int)w, (int)h);
-
-        }    
-
+        }
     }
 }
