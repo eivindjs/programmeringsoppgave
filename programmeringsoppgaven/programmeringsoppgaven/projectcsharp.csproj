@@ -58,6 +58,7 @@
     <Compile Include="Encryption.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="KeyboardInfo.cs" />
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

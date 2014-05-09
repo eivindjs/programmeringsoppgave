@@ -16,8 +16,7 @@ namespace projectcsharp
     //Har lagt til en mypanel klasse som arver fra panel 
     public partial class GameForm : Form
     {
-        private bool keepGoing = true;
-
+       
         public GameForm()
         {
             InitializeComponent();
@@ -26,26 +25,9 @@ namespace projectcsharp
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            keepGoing = true;
-            startBalls();
-            myPanel.AddBall();
+          
             myPanel.Invalidate();
         }
-        private void startBalls()
-        {
-            ThreadStart ts = new ThreadStart(Run);
-            Thread thread = new Thread(ts);
-            thread.IsBackground = true;
-            thread.Start();
-        }
-        public void Run()
-        {
-            while (keepGoing)
-            {
-                myPanel.Invalidate();
-                Thread.Sleep(10);
-            }
-
-        }
+      
     }
 }

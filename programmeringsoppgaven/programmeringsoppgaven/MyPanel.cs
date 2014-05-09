@@ -1,4 +1,5 @@
 ﻿using projectcharp;
+using projectcsharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,14 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using projectcsharp;
 
 namespace projectcsharp
 {
     public partial class MyPanel : Panel
     {
-        private List<Ball> listBall = new List<Ball>();
-
+        private Ball ball;
+        private Timer timer;
         public MyPanel()
         {
             this.SetStyle(ControlStyles.DoubleBuffer |
@@ -23,22 +23,64 @@ namespace projectcsharp
              ControlStyles.AllPaintingInWmPaint,
              true);
             this.UpdateStyles();
+
+            this.ball = new Ball
+            {
+                X = 10f,
+                Y = 10f,
+                DX = 2f,
+                DY = 2f,
+                Color = Color.Red,
+                Size = 20f
+            };
+            this.timer = new Timer();
+            timer.Interval = 20;
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
         }
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+            var left = KeyboardInfo.GetKeyState(Keys.Left);
+            var right = KeyboardInfo.GetKeyState(Keys.Right);
+            var up = KeyboardInfo.GetKeyState(Keys.Up);
+            var down = KeyboardInfo.GetKeyState(Keys.Down);
+
+            if (left.IsPressed)
+            {
+                ball.MoveLeft();
+                this.Invalidate();
+            }
+
+            if (right.IsPressed)
+            {
+                ball.MoveRight();
+                this.Invalidate();
+            }
+
+            if (up.IsPressed)
+            {
+                ball.MoveUp();
+                this.Invalidate();
+            }
+
+            if (down.IsPressed)
+            {
+                ball.MoveDown();
+                this.Invalidate();
+            }
+
+
+        }
+
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            foreach (Ball ball in listBall)
+            base.OnPaint(e);
+            if (this.ball != null)
             {
-                ball.draw(e.Graphics);
+                this.ball.Draw(e.Graphics);
             }
-        }
-
-        public void AddBall()
-        {
-
-            listBall.Add(new Ball(this));
-
         }
     }
 }
