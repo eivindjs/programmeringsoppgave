@@ -16,11 +16,9 @@ namespace projectcsharp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-<<<<<<< HEAD
             Application.Run(new LoginForm());
-=======
-            Application.Run(new LevelForm());
->>>>>>> efafba191a9400ced3917f21ecd319f554d2ae9c
+
+
         }
     }
 }
