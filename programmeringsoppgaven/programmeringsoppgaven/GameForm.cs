@@ -25,8 +25,7 @@ namespace projectcsharp
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-          
-            myPanel.Invalidate();
+            myPanel.Restart();
         }
       
     }

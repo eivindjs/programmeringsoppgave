@@ -1,5 +1,4 @@
-﻿using projectcharp;
-using projectcsharp;
+﻿using projectcsharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +13,27 @@ namespace projectcsharp
 {
     public partial class MyPanel : Panel
     {
-        private Ball ball;
+        private MovingMan movingMan;
         private Timer timer;
+        private PictureBox superman;
+   
+
         public MyPanel()
+        {
+            superman = new PictureBox();
+            superman.Image = projectcsharp.Properties.Resources.smallsuperman;
+            superman.Size = new System.Drawing.Size(50, 50);
+            superman.SizeMode = PictureBoxSizeMode.Zoom;
+            this.Controls.Add(superman);
+            this.timer = new Timer();
+            this.timer = new Timer();
+            timer.Interval = 20;
+            timer.Tick += new EventHandler(timer_Tick);
+          
+
+            Restart();
+        }
+        public void Restart()
         {
             this.SetStyle(ControlStyles.DoubleBuffer |
              ControlStyles.UserPaint |
@@ -24,18 +41,17 @@ namespace projectcsharp
              true);
             this.UpdateStyles();
 
-            this.ball = new Ball
+            this.movingMan = new MovingMan
             {
                 X = 10f,
                 Y = 10f,
                 DX = 2f,
                 DY = 2f,
-                Color = Color.Red,
-                Size = 20f
+               
             };
-            this.timer = new Timer();
-            timer.Interval = 20;
-            timer.Tick += new EventHandler(timer_Tick);
+
+            superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
+
             timer.Start();
         }
 
@@ -46,40 +62,60 @@ namespace projectcsharp
             var up = KeyboardInfo.GetKeyState(Keys.Up);
             var down = KeyboardInfo.GetKeyState(Keys.Down);
 
-            if (left.IsPressed)
+            if (movingMan.Y < (this.Parent.Height - ((this.Parent.Height * 0.11) + 50)))
             {
-                ball.MoveLeft();
-                this.Invalidate();
-            }
 
-            if (right.IsPressed)
+                if (left.IsPressed)
+                {
+                    movingMan.MoveLeft();
+                    this.Invalidate();
+                }
+
+                if (right.IsPressed)
+                {
+                    movingMan.MoveRight();
+                    this.Invalidate();
+                }
+
+                if (up.IsPressed)
+                {
+                    movingMan.MoveUp();
+                    this.Invalidate();
+                }
+
+                if (down.IsPressed)
+                {
+                    movingMan.MoveDown();
+                    this.Invalidate();
+                }
+                else
+                {
+                    if (movingMan.X != 10f && !up.IsPressed)
+                    {
+                        movingMan.Drop();
+                        this.Invalidate();
+                    }
+                }
+
+                superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
+            }
+            else
             {
-                ball.MoveRight();
-                this.Invalidate();
-            }
+                timer.Stop();
 
-            if (up.IsPressed)
-            {
-                ball.MoveUp();
-                this.Invalidate();
+                MessageBox.Show("Game over!");
             }
-
-            if (down.IsPressed)
-            {
-                ball.MoveDown();
-                this.Invalidate();
-            }
-
 
         }
 
+       
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            if (this.ball != null)
+            if (this.movingMan != null)
             {
-                this.ball.Draw(e.Graphics);
+                this.movingMan.Draw(e.Graphics);
             }
         }
     }

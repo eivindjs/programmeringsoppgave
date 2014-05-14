@@ -51,7 +51,7 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ball.cs" />
+    <Compile Include="MovingMan.cs" />
     <Compile Include="DBConnect.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -159,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Oppgavebeskrivelse.html" />
+    <None Include="Resources\smallsuperman.png" />
     <None Include="Resources\loginbackground.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
