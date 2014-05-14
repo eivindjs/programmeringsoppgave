@@ -12,15 +12,17 @@ using System.Windows.Forms;
 
 namespace projectcsharp
 {
-    public partial class MyPanel : Panel
+    public partial class MyPanel : TableLayoutPanel
     {
         private MovingMan movingMan;
         private System.Windows.Forms.Timer timer;
         private PictureBox superman;
         private bool running;
+        private Obstacle obstacle;
 
         public MyPanel()
         {
+            
             superman = new PictureBox();
             superman.Image = projectcsharp.Properties.Resources.smallsuperman;
             superman.Size = new System.Drawing.Size(50, 50);
@@ -31,8 +33,10 @@ namespace projectcsharp
             timer.Interval = 20;
             timer.Tick += new EventHandler(timer_Tick);
             running = true;
+            obstacle = new Obstacle();
             Restart();
             startAnimation();
+            
         }
 
         public void UpdateGraphics()
@@ -66,11 +70,9 @@ namespace projectcsharp
                 Y = 10f,
                 DX = 2f,
                 DY = 2f,
-
             };
 
             superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
-
             timer.Start();
         }
 
@@ -120,16 +122,19 @@ namespace projectcsharp
             }
 
         }
-
-
-
+        /// <summary>
+        /// Kjøres ved this.Invalidate();
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
             if (this.movingMan != null)
             {
                 this.movingMan.Draw(e.Graphics);
+                this.obstacle.Draw(e.Graphics);
             }
+
             superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
         }
     }

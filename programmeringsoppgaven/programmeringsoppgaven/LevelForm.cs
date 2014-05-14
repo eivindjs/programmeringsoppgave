@@ -7,23 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using projectcsharp;
 
 namespace projectcsharp
 {
-    public partial class Settings : Form
+    public partial class LevelForm : Form
     {
-        //private DataTable dt;
-        //private DBConnect db;
+        private MyPanel myPanel = new MyPanel();
 
-        public Settings()
+        public LevelForm()
         {
             InitializeComponent();
-            tbUsername.Text = User.Username;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnStart_Click(object sender, EventArgs e)
         {
+            myPanel.Restart();
 
         }
     }

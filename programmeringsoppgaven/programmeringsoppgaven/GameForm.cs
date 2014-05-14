@@ -23,6 +23,16 @@ namespace projectcsharp
         {
             myPanel.Restart();
         }
+
+        private void GameForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void myPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
       
     }
 }
