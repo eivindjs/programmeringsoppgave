@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,9 +15,9 @@ namespace projectcsharp
     public partial class MyPanel : Panel
     {
         private MovingMan movingMan;
-        private Timer timer;
+        private System.Windows.Forms.Timer timer;
         private PictureBox superman;
-   
+        private bool running;
 
         public MyPanel()
         {
@@ -25,14 +26,32 @@ namespace projectcsharp
             superman.Size = new System.Drawing.Size(50, 50);
             superman.SizeMode = PictureBoxSizeMode.Zoom;
             this.Controls.Add(superman);
-            this.timer = new Timer();
-            this.timer = new Timer();
+            this.timer = new System.Windows.Forms.Timer();
+            this.timer = new System.Windows.Forms.Timer();
             timer.Interval = 20;
             timer.Tick += new EventHandler(timer_Tick);
-          
-
+            running = true;
             Restart();
+            startAnimation();
         }
+
+        public void UpdateGraphics()
+        {
+            while (running)
+            {
+                this.Invalidate(); //kaller på OnPaint()
+                Thread.Sleep(17); //å la tråden sove i 17 ms er optimalt for å oppnå en framerate på ca 60 FPS
+            }
+        }
+
+        private void startAnimation()
+        {
+            ThreadStart ts = new ThreadStart(UpdateGraphics);
+            Thread thread = new Thread(ts);
+            thread.IsBackground = true;
+            thread.Start();
+        }
+
         public void Restart()
         {
             this.SetStyle(ControlStyles.DoubleBuffer |
@@ -47,7 +66,7 @@ namespace projectcsharp
                 Y = 10f,
                 DX = 2f,
                 DY = 2f,
-               
+
             };
 
             superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
@@ -68,36 +87,30 @@ namespace projectcsharp
                 if (left.IsPressed)
                 {
                     movingMan.MoveLeft();
-                    this.Invalidate();
                 }
 
                 if (right.IsPressed)
                 {
                     movingMan.MoveRight();
-                    this.Invalidate();
                 }
 
                 if (up.IsPressed)
                 {
                     movingMan.MoveUp();
-                    this.Invalidate();
                 }
 
                 if (down.IsPressed)
                 {
                     movingMan.MoveDown();
-                    this.Invalidate();
                 }
                 else
                 {
                     if (movingMan.X != 10f && !up.IsPressed)
                     {
                         movingMan.Drop();
-                        this.Invalidate();
                     }
                 }
 
-                superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
             }
             else
             {
@@ -108,7 +121,7 @@ namespace projectcsharp
 
         }
 
-       
+
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -117,6 +130,7 @@ namespace projectcsharp
             {
                 this.movingMan.Draw(e.Graphics);
             }
+            superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
         }
     }
 }
