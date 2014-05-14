@@ -48,6 +48,8 @@ namespace projectcsharp
 
                 if (passwordIn == userPW)
                 {
+                    User.Username = username;
+                    User.Id = userID;
                     var threadNewGame= new Thread(ThreadNewGame);
                     threadNewGame.Start();
                     this.Close();

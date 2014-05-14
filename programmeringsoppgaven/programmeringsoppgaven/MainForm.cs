@@ -43,13 +43,24 @@ namespace projectcsharp
 
         private void btnScore_Click(object sender, EventArgs e)
         {
-
+            var threadScore = new Thread(ThreadHighScore);
+            threadScore.Start();
         }
-
+        private void ThreadHighScore()
+        {
+            Highscore highScore = new Highscore();
+            Application.Run(highScore);
+        }
         private void btnSettings_Click(object sender, EventArgs e)
         {
+            var threadSettings = new Thread(ThreadSettings);
+            threadSettings.Start();
 
         }
-      
+        private void ThreadSettings()
+        {
+            Settings settings = new Settings();
+            Application.Run(settings);
+        }
     }
 }
