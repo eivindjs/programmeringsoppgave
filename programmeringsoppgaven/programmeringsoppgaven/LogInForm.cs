@@ -87,6 +87,11 @@ namespace projectcsharp
             threadRegisterNew.IsBackground = true;
             
         }
+
+        private void tbPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
      
     }
 }
