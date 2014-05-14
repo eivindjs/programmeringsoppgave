@@ -13,6 +13,7 @@ namespace projectcsharp
 {
     public partial class Settings : Form
     {
+
         /// <summary>
         /// Klasse/Form der du kan endre brukernavne ditt, passord og slette poengsummen din
         /// </summary>
@@ -23,6 +24,9 @@ namespace projectcsharp
         private string oldPassword;
         private string newPassword;
         private int id;
+        //private DataTable dt;
+        //private DBConnect db;
+
 
         public Settings()
         {

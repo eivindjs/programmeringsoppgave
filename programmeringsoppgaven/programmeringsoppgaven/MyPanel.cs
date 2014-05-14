@@ -6,33 +6,56 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace projectcsharp
 {
-    public partial class MyPanel : Panel
+    public partial class MyPanel : TableLayoutPanel
     {
         private MovingMan movingMan;
-        private Timer timer;
+        private System.Windows.Forms.Timer timer;
         private PictureBox superman;
-   
+        private bool running;
+        private Obstacle obstacle;
 
         public MyPanel()
         {
+            
             superman = new PictureBox();
             superman.Image = projectcsharp.Properties.Resources.smallsuperman;
             superman.Size = new System.Drawing.Size(50, 50);
             superman.SizeMode = PictureBoxSizeMode.Zoom;
             this.Controls.Add(superman);
-            this.timer = new Timer();
-            this.timer = new Timer();
+            this.timer = new System.Windows.Forms.Timer();
+            this.timer = new System.Windows.Forms.Timer();
             timer.Interval = 20;
             timer.Tick += new EventHandler(timer_Tick);
-          
-
+            running = true;
+            obstacle = new Obstacle();
             Restart();
+            startAnimation();
+            
         }
+
+        public void UpdateGraphics()
+        {
+            while (running)
+            {
+                this.Invalidate(); //kaller på OnPaint()
+                Thread.Sleep(17); //å la tråden sove i 17 ms er optimalt for å oppnå en framerate på ca 60 FPS
+            }
+        }
+
+        private void startAnimation()
+        {
+            ThreadStart ts = new ThreadStart(UpdateGraphics);
+            Thread thread = new Thread(ts);
+            thread.IsBackground = true;
+            thread.Start();
+        }
+
         public void Restart()
         {
             this.SetStyle(ControlStyles.DoubleBuffer |
@@ -47,11 +70,9 @@ namespace projectcsharp
                 Y = 10f,
                 DX = 2f,
                 DY = 2f,
-               
             };
 
             superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
-
             timer.Start();
         }
 
@@ -68,36 +89,30 @@ namespace projectcsharp
                 if (left.IsPressed)
                 {
                     movingMan.MoveLeft();
-                    this.Invalidate();
                 }
 
                 if (right.IsPressed)
                 {
                     movingMan.MoveRight();
-                    this.Invalidate();
                 }
 
                 if (up.IsPressed)
                 {
                     movingMan.MoveUp();
-                    this.Invalidate();
                 }
 
                 if (down.IsPressed)
                 {
                     movingMan.MoveDown();
-                    this.Invalidate();
                 }
                 else
                 {
                     if (movingMan.X != 10f && !up.IsPressed)
                     {
                         movingMan.Drop();
-                        this.Invalidate();
                     }
                 }
 
-                superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
             }
             else
             {
@@ -107,16 +122,20 @@ namespace projectcsharp
             }
 
         }
-
-       
-
+        /// <summary>
+        /// Kjøres ved this.Invalidate();
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
             if (this.movingMan != null)
             {
                 this.movingMan.Draw(e.Graphics);
+                this.obstacle.Draw(e.Graphics);
             }
+
+            superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
         }
     }
 }

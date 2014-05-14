@@ -47,7 +47,7 @@
             this.tableLayoutPanel1.Controls.Add(this.panelButton, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88.95349F));
@@ -61,10 +61,11 @@
             this.myPanel.Controls.Add(this.lblLevel);
             this.myPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.myPanel.Location = new System.Drawing.Point(6, 6);
-            this.myPanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.myPanel.Margin = new System.Windows.Forms.Padding(6);
             this.myPanel.Name = "myPanel";
             this.myPanel.Size = new System.Drawing.Size(1342, 785);
             this.myPanel.TabIndex = 2;
+            this.myPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.myPanel_Paint);
             // 
             // lblLevel
             // 
@@ -80,7 +81,7 @@
             // 
             this.panelButton.Controls.Add(this.buttonStart);
             this.panelButton.Location = new System.Drawing.Point(6, 803);
-            this.panelButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panelButton.Margin = new System.Windows.Forms.Padding(6);
             this.panelButton.Name = "panelButton";
             this.panelButton.Size = new System.Drawing.Size(1236, 81);
             this.panelButton.TabIndex = 1;
@@ -88,7 +89,7 @@
             // buttonStart
             // 
             this.buttonStart.Location = new System.Drawing.Point(8, 8);
-            this.buttonStart.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonStart.Margin = new System.Windows.Forms.Padding(6);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(214, 67);
             this.buttonStart.TabIndex = 0;
@@ -102,9 +103,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1354, 897);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "GameForm";
             this.Text = "GameForm";
+            this.Load += new System.EventHandler(this.GameForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.myPanel.ResumeLayout(false);
             this.myPanel.PerformLayout();
