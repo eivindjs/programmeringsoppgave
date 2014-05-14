@@ -14,6 +14,7 @@ namespace projectcsharp
         /// </summary>
         private static int id;
         private static string username;
+        private static string password;
       
         public static int Id
         {
@@ -24,6 +25,11 @@ namespace projectcsharp
         {
             get { return username; }
             set { username = value; }
+        }
+        public static string Password
+        {
+            get { return password; }
+            set { password = value;}
         }
     }
 }

@@ -13,8 +13,16 @@ namespace projectcsharp
 {
     public partial class Settings : Form
     {
-        private DataTable dt;
-        private DBConnect db;
+        /// <summary>
+        /// Klasse/Form der du kan endre brukernavne ditt, passord og slette poengsummen din
+        /// </summary>
+        
+        private DBConnect db = new DBConnect();
+        private string query;
+        private string username;
+        private string oldPassword;
+        private string newPassword;
+        private int id;
 
         public Settings()
         {
@@ -24,7 +32,79 @@ namespace projectcsharp
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            username = tbUsername.Text;
+            oldPassword = Encryption.Encrypt(tbOldPass.Text);
+            newPassword = Encryption.Encrypt(tbNewPass.Text);
+            id = User.Id;
 
+            if (tbOldPass.Text == String.Empty && tbNewPass.Text == String.Empty)
+            {
+                query = String.Format("UPDATE User SET username = '" + username + "' WHERE userID = " + id + "");
+                Update(query);
+            }
+      
+            if (User.Password == oldPassword && tbOldPass.Text != String.Empty && tbNewPass.Text != String.Empty)
+            {
+                query = String.Format("UPDATE User SET username = '" + username + "', password = '" + newPassword + "' WHERE userID = " + id + "");
+                Update(query);
+            }
+
+            else
+            {
+                MessageBox.Show("Feil passord");
+            }          
         }
+        /// <summary>
+        /// Metode for å oppdatere en bruker
+        /// </summary>
+        /// <param name="sqlquery">sql spørring(string)</param>
+        private void Update(string sqlquery)
+        {
+            try
+            {
+                db.InsertDeleteUpdate(sqlquery);
+                MessageBox.Show("Endring lagret!, de nye endringene vil bli tatt i bruk ved neste innlogging");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Feil oppsto ved UPDATE med melding: " + ex.Message);
+            }
+            finally
+            {
+                this.Close();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Sikker på at du vil slette highscoren din?","", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.OK)
+            {
+                query = String.Format("DELETE FROM Highscore WHERE userID = '" + User.Id + "'");
+                Delete(query);
+            }
+           
+        }
+        /// <summary>
+        /// Metode for å slette poengsummen til innlogget bruker
+        /// </summary>
+        /// <param name="sqlquery">sql spørring(string)</param>
+        private void Delete(string sqlquery)
+        {
+            try
+            {
+                db.InsertDeleteUpdate(sqlquery);
+                MessageBox.Show("Highscoren din er slettet!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Feil oppsto ved DELETE med melding: " + ex.Message);
+            }
+            finally
+            {
+                this.Close();
+            }
+        }
+        
     }
 }

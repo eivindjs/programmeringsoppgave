@@ -52,6 +52,11 @@ namespace projectcsharp
         }
 
         //for SELECT
+        /// <summary>
+        /// sifjsoefs
+        /// </summary>
+        /// <param name="query">sefsef</param>
+        /// <returns>sefsefs</returns>
         public DataTable getAll(string query)
         {
             if (this.OpenConnection() == true)

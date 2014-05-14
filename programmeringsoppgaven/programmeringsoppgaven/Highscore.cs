@@ -12,11 +12,12 @@ namespace projectcsharp
 {
     public partial class Highscore : Form
     {
-
-        private Image image = projectcsharp.Properties.Resources.loginbackground;
-        private DBConnect db = new DBConnect();
-        private DataTable dt = new DataTable();
-        private BindingSource bs = new BindingSource();
+        /// <summary>
+        /// Klasse som viser highscore for alle brukere og sorterer etter
+        /// poeng score. Viser de 10 beste.
+        /// </summary>
+        private DBConnect db = new DBConnect(); //sql klasse for å koble til
+        private DataTable dt = new DataTable(); //DataTable for å hente ut verdier fra sql
 
         public Highscore()
         {

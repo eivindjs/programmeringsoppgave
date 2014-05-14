@@ -36,11 +36,11 @@
             // 
             // btnNewGame
             // 
-            this.btnNewGame.Location = new System.Drawing.Point(144, 40);
+            this.btnNewGame.Location = new System.Drawing.Point(144, 37);
             this.btnNewGame.Name = "btnNewGame";
             this.btnNewGame.Size = new System.Drawing.Size(89, 23);
             this.btnNewGame.TabIndex = 0;
-            this.btnNewGame.Text = "New Game";
+            this.btnNewGame.Text = "Nytt Spill";
             this.btnNewGame.UseVisualStyleBackColor = true;
             this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
             // 
@@ -60,7 +60,7 @@
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(89, 23);
             this.btnAbout.TabIndex = 2;
-            this.btnAbout.Text = "About";
+            this.btnAbout.Text = "Om";
             this.btnAbout.UseVisualStyleBackColor = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
@@ -70,7 +70,7 @@
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(89, 23);
             this.btnSettings.TabIndex = 3;
-            this.btnSettings.Text = "Settings";
+            this.btnSettings.Text = "Innstillinger";
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
@@ -79,7 +79,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::projectcsharp.Properties.Resources.loginbackground;
-            this.ClientSize = new System.Drawing.Size(402, 289);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(386, 289);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.btnScore);

@@ -50,6 +50,7 @@ namespace projectcsharp
                 {
                     User.Username = username;
                     User.Id = userID;
+                    User.Password = userPW;
                     var threadNewGame= new Thread(ThreadNewGame);
                     threadNewGame.Start();
                     this.Close();
