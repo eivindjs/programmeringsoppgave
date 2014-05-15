@@ -58,7 +58,7 @@
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(129, 23);
             this.btnRegister.TabIndex = 2;
-            this.btnRegister.Text = "Register new account";
+            this.btnRegister.Text = "Registrer ny bruker";
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
@@ -67,18 +67,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(37, 50);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 13);
+            this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Create username:";
+            this.label1.Text = "Brukernavn:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(37, 91);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 13);
+            this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Create password:";
+            this.label2.Text = "Passord:";
             // 
             // RegisterNewUser
             // 
@@ -92,7 +92,7 @@
             this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.tbUsername);
             this.Name = "RegisterNewUser";
-            this.Text = "RegisterNewUser";
+            this.Text = "Registrer ny bruker";
             this.ResumeLayout(false);
             this.PerformLayout();
 
