@@ -44,12 +44,15 @@ namespace projectcsharp
             if (tbOldPass.Text == String.Empty && tbNewPass.Text == String.Empty)
             {
                 query = String.Format("UPDATE User SET username = '" + username + "' WHERE userID = " + id + "");
+                User.Username = username;
                 Update(query);
             }
       
             if (User.Password == oldPassword && tbOldPass.Text != String.Empty && tbNewPass.Text != String.Empty)
             {
                 query = String.Format("UPDATE User SET username = '" + username + "', password = '" + newPassword + "' WHERE userID = " + id + "");
+                User.Username = username;
+                User.Password = newPassword;
                 Update(query);
             }
 
@@ -67,7 +70,7 @@ namespace projectcsharp
             try
             {
                 db.InsertDeleteUpdate(sqlquery);
-                MessageBox.Show("Endring lagret!, de nye endringene vil bli tatt i bruk ved neste innlogging");
+                MessageBox.Show("Endring lagret!");
             }
             catch (Exception ex)
             {
