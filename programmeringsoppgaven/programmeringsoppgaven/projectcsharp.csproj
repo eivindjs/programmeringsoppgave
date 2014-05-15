@@ -51,9 +51,6 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="GamePanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="LevelForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,12 +78,6 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="GameForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GameForm.Designer.cs">
-      <DependentUpon>GameForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -120,9 +111,6 @@
     <Compile Include="User.cs" />
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GameForm.resx">
-      <DependentUpon>GameForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Highscore.resx">
       <DependentUpon>Highscore.cs</DependentUpon>
@@ -173,6 +161,7 @@
   <ItemGroup>
     <Content Include="Oppgavebeskrivelse.html" />
     <Content Include="README.txt" />
+    <None Include="Resources\super.png" />
     <None Include="Resources\smallsuperman.png" />
     <None Include="Resources\loginbackground.jpg" />
   </ItemGroup>

@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace projectcsharp
 {
-    public partial class MyPanel : Panel
+    public partial class MyPanel : Panel 
     {
         private MovingMan movingMan;
         private System.Windows.Forms.Timer timer;
@@ -29,7 +29,7 @@ namespace projectcsharp
             this.UpdateStyles();
 
             superman = new PictureBox();
-            superman.Image = projectcsharp.Properties.Resources.smallsuperman;
+            superman.Image = projectcsharp.Properties.Resources.super;
             superman.Size = new System.Drawing.Size(50, 50);
             superman.SizeMode = PictureBoxSizeMode.Zoom;
             this.Controls.Add(superman);

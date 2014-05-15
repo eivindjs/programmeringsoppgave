@@ -26,8 +26,8 @@ namespace projectcsharp
 
         private void ThreadNewGame()
         {
-            GameForm gameform = new GameForm();
-            Application.Run(gameform);
+            LevelForm levelForm = new LevelForm();
+            Application.Run(levelForm);
         }
         //Kort og enkelt ka det går ut på? ka du tror Tord?
         private void btnAbout_Click(object sender, EventArgs e)

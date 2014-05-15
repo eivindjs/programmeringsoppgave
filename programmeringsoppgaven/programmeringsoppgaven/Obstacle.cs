@@ -34,11 +34,20 @@ namespace projectcsharp
 
         }
 
+        public Obstacle(float height, float width)
+        {
+
+        }
+
        
         public void Draw(Graphics g)
         {
-            Pen redPen = new Pen(Color.Red, 1);
-            g.DrawPath(redPen, myPath); 
+
+                SolidBrush redBrush = new SolidBrush(Color.Green);
+
+            //Pen redPen = new Pen(Color.Red, 1);
+
+            g.FillPath(redBrush, myPath); 
         }
     }
 }
