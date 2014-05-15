@@ -172,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Oppgavebeskrivelse.html" />
+    <Content Include="README.txt" />
     <None Include="Resources\smallsuperman.png" />
     <None Include="Resources\loginbackground.jpg" />
   </ItemGroup>

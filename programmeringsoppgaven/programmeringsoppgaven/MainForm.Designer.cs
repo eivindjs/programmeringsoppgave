@@ -86,7 +86,7 @@
             this.Controls.Add(this.btnScore);
             this.Controls.Add(this.btnNewGame);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Hovedvindu";
             this.ResumeLayout(false);
 
         }

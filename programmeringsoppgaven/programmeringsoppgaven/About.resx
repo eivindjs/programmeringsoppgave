@@ -117,4 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="lblAbout.Text" xml:space="preserve">
+    <value>Spillet hanlder først om at du skal ha det gøy. Målet er å samle
+inn så mange smilefjes som mulig i løpet av en viss tid. Klarer
+du dette innenfor tiden, så kommer du videre til neste nivå. 
+Kommer du borti noen av hindrene trekkes du 50 poeng. 
+
+Gul smilefjes: 50 poeng
+Grønn smilefjes: 100 poeng
+Grått smilefjes: 150 peong
+
+Utviklet av: Eivind og Tord
+</value>
+  </data>
 </root>

@@ -18,12 +18,12 @@ namespace projectcsharp
         /// Klasse/Form der du kan endre brukernavne ditt, passord og slette poengsummen din
         /// </summary>
         
-        private DBConnect db = new DBConnect();
-        private string query;
-        private string username;
-        private string oldPassword;
-        private string newPassword;
-        private int id;
+        private DBConnect db = new DBConnect(); //Oppkobling mot database
+        private string query; //Variabel for sql spørringer
+        private string username; //Variabel for brukernavn
+        private string oldPassword; //Gamle passordet du skriver inn
+        private string newPassword; //Nye Passordet
+        private int id; //bruker ID'en
         //private DataTable dt;
         //private DBConnect db;
 

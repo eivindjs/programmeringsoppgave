@@ -12,9 +12,9 @@ namespace projectcsharp
         /// Statisk klasse for å ta vare på brukernavn og id, så det blir 
         /// letter å hente ut info i andre klasser.
         /// </summary>
-        private static int id;
-        private static string username;
-        private static string password;
+        private static int id; //Bruker id
+        private static string username; //Brukernavn
+        private static string password; //Passord til innlogget bruker
       
         public static int Id
         {

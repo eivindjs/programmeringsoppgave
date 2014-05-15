@@ -4,21 +4,22 @@ using System.Linq;
 using System.Web;
 using MySql.Data.MySqlClient;
 using System.Data;
-/**
- * Her skjer alle oppkoblinger mot DB.
- * 
- **/
+
 namespace projectcsharp
 {
+    /// <summary>
+    /// Klasse som kobler opp mot databasen og inneholder metoder for
+    /// å hente ut data, sett inn data, oppdatere data og slette data.
+    /// </summary>
     public class DBConnect
     {
-        private MySqlConnection connection;
-        private MySqlDataAdapter adapter;
-        private DataTable dataTable;
-        private string server;
-        private string database;
-        private string uid;
-        private string password;
+        private MySqlConnection connection; //
+        private MySqlDataAdapter adapter; //
+        private DataTable dataTable; //tabell for data
+        private string server; //server navn
+        private string database; //database navn
+        private string uid; //brukernavn
+        private string password; //passord
 
         public DBConnect()
         {
@@ -38,25 +39,30 @@ namespace projectcsharp
             connection = new MySqlConnection(connectionString);
         }
 
-        //Åpner tilkoblig mot database
+        /// <summary>
+        /// Åpner tilkoblig mot database
+        /// </summary>
+        /// <returns>true</returns>
         private bool OpenConnection()
         {
             connection.Open();
             return true;
         }
-        //Lukker tilkobling mot database
+        /// <summary>
+        /// Lukker tilkoblingen mot databasen
+        /// </summary>
+        /// <returns>true</returns>
         private bool CloseConnection()
         {
             connection.Close();
             return true;
         }
 
-        //for SELECT
         /// <summary>
-        /// sifjsoefs
+        /// Henter ut data fra databasen(SELECT)
         /// </summary>
-        /// <param name="query">sefsef</param>
-        /// <returns>sefsefs</returns>
+        /// <param name="query">Sql spørring</param>
+        /// <returns>Datatable med data</returns>
         public DataTable getAll(string query)
         {
             if (this.OpenConnection() == true)
@@ -69,7 +75,10 @@ namespace projectcsharp
             return dataTable;
         }
 
-        //For INSERT, DELETE og UPDATE
+        /// <summary>
+        /// Metode for å sette inn, slette og oppdatere data i databasen
+        /// </summary>
+        /// <param name="query">Sql spørring</param>
         public void InsertDeleteUpdate(string query)
         {
             if (this.OpenConnection() == true)

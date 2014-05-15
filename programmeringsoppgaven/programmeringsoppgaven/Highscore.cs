@@ -16,7 +16,7 @@ namespace projectcsharp
         /// Klasse som viser highscore for alle brukere og sorterer etter
         /// poeng score. Viser de 10 beste.
         /// </summary>
-        private DBConnect db = new DBConnect(); //sql klasse for å koble til
+        private DBConnect db = new DBConnect(); //sql klasse for å koble til databasen
         private DataTable dt = new DataTable(); //DataTable for å hente ut verdier fra sql
 
         public Highscore()
@@ -29,10 +29,11 @@ namespace projectcsharp
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    int score = Convert.ToInt16(dt.Rows[i]["score"]);
-                    string username = Convert.ToString(dt.Rows[i]["username"]);
-                    DateTime dato = Convert.ToDateTime(dt.Rows[i]["dato"]);
-                    dtGridviewScore.Rows.Add(username, dato.ToShortDateString(), score);
+                    int score = Convert.ToInt16(dt.Rows[i]["score"]); //Henter ut poengsummen
+                    string username = Convert.ToString(dt.Rows[i]["username"]); //Henter ut brukernavn
+                    DateTime dato = Convert.ToDateTime(dt.Rows[i]["dato"]); //Henter ut dato
+                    dtGridviewScore.Rows.Add(username, dato.ToShortDateString(), score); //legger til dato, brukernavn og poengsum i gridviewen
+                   
                    
                  }
             }
