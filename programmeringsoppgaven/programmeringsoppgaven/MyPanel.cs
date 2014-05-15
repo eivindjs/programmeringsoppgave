@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace projectcsharp
 {
-    public partial class MyPanel : TableLayoutPanel
+    public partial class MyPanel : Panel
     {
         private MovingMan movingMan;
         private System.Windows.Forms.Timer timer;
@@ -22,21 +22,23 @@ namespace projectcsharp
 
         public MyPanel()
         {
-            
+            this.SetStyle(ControlStyles.DoubleBuffer |
+           ControlStyles.UserPaint |
+           ControlStyles.AllPaintingInWmPaint,
+           true);
+            this.UpdateStyles();
+
             superman = new PictureBox();
             superman.Image = projectcsharp.Properties.Resources.smallsuperman;
             superman.Size = new System.Drawing.Size(50, 50);
             superman.SizeMode = PictureBoxSizeMode.Zoom;
             this.Controls.Add(superman);
-            this.timer = new System.Windows.Forms.Timer();
+            obstacle = new Obstacle();
+
             this.timer = new System.Windows.Forms.Timer();
             timer.Interval = 20;
             timer.Tick += new EventHandler(timer_Tick);
             running = true;
-            obstacle = new Obstacle();
-            Restart();
-            startAnimation();
-            
         }
 
         public void UpdateGraphics()
@@ -58,12 +60,6 @@ namespace projectcsharp
 
         public void Restart()
         {
-            this.SetStyle(ControlStyles.DoubleBuffer |
-             ControlStyles.UserPaint |
-             ControlStyles.AllPaintingInWmPaint,
-             true);
-            this.UpdateStyles();
-
             this.movingMan = new MovingMan
             {
                 X = 10f,
@@ -74,6 +70,8 @@ namespace projectcsharp
 
             superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
             timer.Start();
+
+            startAnimation();        
         }
 
         void timer_Tick(object sender, EventArgs e)
@@ -85,6 +83,8 @@ namespace projectcsharp
 
             if (movingMan.Y < (this.Parent.Height - ((this.Parent.Height * 0.11) + 50)))
             {
+               int size = this.Size.Height;
+
 
                 if (left.IsPressed)
                 {
@@ -112,7 +112,6 @@ namespace projectcsharp
                         movingMan.Drop();
                     }
                 }
-
             }
             else
             {
@@ -120,7 +119,6 @@ namespace projectcsharp
 
                 MessageBox.Show("Game over!");
             }
-
         }
         /// <summary>
         /// Kjøres ved this.Invalidate();
@@ -133,9 +131,9 @@ namespace projectcsharp
             {
                 this.movingMan.Draw(e.Graphics);
                 this.obstacle.Draw(e.Graphics);
-            }
+                superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
 
-            superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
+            }
         }
     }
 }
