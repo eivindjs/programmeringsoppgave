@@ -12,7 +12,6 @@ namespace projectcsharp
 {
     public partial class LevelForm : Form
     {
-        private MyPanel myPanel = new MyPanel();
 
         public LevelForm()
         {
@@ -21,7 +20,7 @@ namespace projectcsharp
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            myPanel.Restart();
+            myPanel1.Restart();
 
         }
     }
