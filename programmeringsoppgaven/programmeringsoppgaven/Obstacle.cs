@@ -12,42 +12,43 @@ namespace projectcsharp
     {
         private GraphicsPath myPath;
         private Object mySync;
-        private Random randomPoint;
+        private Random randomPoint = new Random();
+        private int manSize { get; set; }
 
         public Obstacle()
         {
             myPath = new GraphicsPath();
             mySync = new Object();
-            randomPoint = new Random();
-            randomPoint.Next(0,100);
-
-            myPath.StartFigure(); //Starter en figur 
-
-            myPath.AddLine(randomPoint.Next(0,230), randomPoint.Next(30, 290), randomPoint.Next(2, 308), randomPoint.Next(10, 190));
-            myPath.AddLine(randomPoint.Next(0, 400), randomPoint.Next(30, 350), randomPoint.Next(2, 308), randomPoint.Next(10, 190));
-
-            myPath.CloseFigure(); //Lukker figuren
-
+            randomPoint.Next(0, 100);
+            
+          
             myPath.StartFigure(); // Starter en ny figur i samme Path. 
             myPath.AddRectangle(new Rectangle(randomPoint.Next(0, 350), randomPoint.Next(0, 250), randomPoint.Next(0, 350), randomPoint.Next(0, 250)));
             myPath.CloseFigure();
 
+            myPath.StartFigure(); // Starter en ny figur i samme Path. 
+            myPath.AddRectangle(new Rectangle(randomPoint.Next(0, 350), randomPoint.Next(0, 250), randomPoint.Next(0, 350), randomPoint.Next(0, 250)));
+            myPath.CloseFigure();
         }
 
-        public Obstacle(float height, float width)
+        public GraphicsPath GetPath()
         {
-
+            return myPath;
         }
-
-       
+  
         public void Draw(Graphics g)
         {
-
-                SolidBrush redBrush = new SolidBrush(Color.Green);
+            SolidBrush redBrush = new SolidBrush(Color.Green);
 
             //Pen redPen = new Pen(Color.Red, 1);
 
-            g.FillPath(redBrush, myPath); 
+            g.FillPath(redBrush, myPath);
+
+           // g.FillPath(redBrush,manPath);
         }
+
+
+
+
     }
 }
