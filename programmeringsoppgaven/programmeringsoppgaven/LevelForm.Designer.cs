@@ -105,7 +105,7 @@
             this.buttonTablePanel.RowCount = 1;
             this.buttonTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.buttonTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.buttonTablePanel.Size = new System.Drawing.Size(737, 40);
+            this.buttonTablePanel.Size = new System.Drawing.Size(769, 40);
             this.buttonTablePanel.TabIndex = 2;
             // 
             // btnStart
