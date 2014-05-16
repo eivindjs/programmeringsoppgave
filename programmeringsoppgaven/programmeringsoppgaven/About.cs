@@ -12,7 +12,7 @@ namespace projectcsharp
 {
     /// <summary>
     /// En klasse som kort og enkelt forteller hva spillet handler om 
-    /// og hvem som har utviklet det.
+    /// og hvem som har utviklet det. Forteller også om spilleregler.
     /// </summary>
     public partial class About : Form
     {

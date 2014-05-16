@@ -36,6 +36,10 @@
             this.tbOldPass = new System.Windows.Forms.TextBox();
             this.tbNewPass = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.rbEasy = new System.Windows.Forms.RadioButton();
+            this.rbNormal = new System.Windows.Forms.RadioButton();
+            this.rbHard = new System.Windows.Forms.RadioButton();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -56,7 +60,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(62, 245);
+            this.btnSave.Location = new System.Drawing.Point(18, 252);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(127, 36);
             this.btnSave.TabIndex = 2;
@@ -102,13 +106,55 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(62, 189);
+            this.btnDelete.Location = new System.Drawing.Point(18, 211);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(105, 23);
+            this.btnDelete.Size = new System.Drawing.Size(127, 35);
             this.btnDelete.TabIndex = 7;
             this.btnDelete.Text = "Slett Highscoren min";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // rbEasy
+            // 
+            this.rbEasy.AutoSize = true;
+            this.rbEasy.Location = new System.Drawing.Point(273, 221);
+            this.rbEasy.Name = "rbEasy";
+            this.rbEasy.Size = new System.Drawing.Size(43, 17);
+            this.rbEasy.TabIndex = 8;
+            this.rbEasy.TabStop = true;
+            this.rbEasy.Text = "Lett";
+            this.rbEasy.UseVisualStyleBackColor = true;
+            // 
+            // rbNormal
+            // 
+            this.rbNormal.AutoSize = true;
+            this.rbNormal.Location = new System.Drawing.Point(273, 244);
+            this.rbNormal.Name = "rbNormal";
+            this.rbNormal.Size = new System.Drawing.Size(61, 17);
+            this.rbNormal.TabIndex = 9;
+            this.rbNormal.TabStop = true;
+            this.rbNormal.Text = "Middels";
+            this.rbNormal.UseVisualStyleBackColor = true;
+            // 
+            // rbHard
+            // 
+            this.rbHard.AutoSize = true;
+            this.rbHard.Location = new System.Drawing.Point(273, 267);
+            this.rbHard.Name = "rbHard";
+            this.rbHard.Size = new System.Drawing.Size(71, 17);
+            this.rbHard.TabIndex = 10;
+            this.rbHard.TabStop = true;
+            this.rbHard.Text = "Vanskelig";
+            this.rbHard.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(253, 192);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(118, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Velg Vanskelighetsgrad";
             // 
             // Settings
             // 
@@ -117,6 +163,10 @@
             this.BackgroundImage = global::projectcsharp.Properties.Resources.loginbackground;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(400, 324);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.rbHard);
+            this.Controls.Add(this.rbNormal);
+            this.Controls.Add(this.rbEasy);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.tbNewPass);
             this.Controls.Add(this.tbOldPass);
@@ -142,5 +192,9 @@
         private System.Windows.Forms.TextBox tbOldPass;
         private System.Windows.Forms.TextBox tbNewPass;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.RadioButton rbEasy;
+        private System.Windows.Forms.RadioButton rbNormal;
+        private System.Windows.Forms.RadioButton rbHard;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -15,21 +15,28 @@ namespace projectcsharp
         private static int id; //Bruker id
         private static string username; //Brukernavn
         private static string password; //Passord til innlogget bruker
-      
+        private static int difficulty_level;
+
+        public static int Difficulty_level
+        {
+            get { return User.difficulty_level; }
+            set { User.difficulty_level = value; }
+        }
+
         public static int Id
         {
-            get { return id; }
-            set { id = value; }
+            get { return User.id; }
+            set { User.id = value; }
         }
         public static string Username
         {
-            get { return username; }
-            set { username = value; }
+            get { return User.username; }
+            set { User.username = value; }
         }
         public static string Password
         {
-            get { return password; }
-            set { password = value;}
+            get { return User.password; }
+            set { User.password = value;}
         }
     }
 }
