@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -12,14 +13,19 @@ using System.Windows.Forms;
 
 namespace projectcsharp
 {
-    public partial class MyPanel : Panel 
+    public partial class MyPanel : Panel
     {
+        private ThreadStart ts;
+        private Thread thread;
         private MovingMan movingMan;
         private System.Windows.Forms.Timer timer;
         private PictureBox superman;
         private bool running;
-        private Obstacle obstacle;
-
+        private Obstacle obstacle1;
+        private int manSize;
+        private List<Obstacle> listObstacle = new List<Obstacle>();
+        private Object mySync = new Object();
+        
         public MyPanel()
         {
             this.SetStyle(ControlStyles.DoubleBuffer |
@@ -28,17 +34,18 @@ namespace projectcsharp
            true);
             this.UpdateStyles();
 
+            manSize = 30;
             superman = new PictureBox();
             superman.Image = projectcsharp.Properties.Resources.super;
-            superman.Size = new System.Drawing.Size(50, 50);
+            superman.Size = new System.Drawing.Size(manSize, manSize);
             superman.SizeMode = PictureBoxSizeMode.Zoom;
+
             this.Controls.Add(superman);
-            obstacle = new Obstacle();
+           
 
             this.timer = new System.Windows.Forms.Timer();
             timer.Interval = 20;
             timer.Tick += new EventHandler(timer_Tick);
-            running = true;
         }
 
         public void UpdateGraphics()
@@ -52,27 +59,36 @@ namespace projectcsharp
 
         private void startAnimation()
         {
-            ThreadStart ts = new ThreadStart(UpdateGraphics);
-            Thread thread = new Thread(ts);
+            ts = new ThreadStart(UpdateGraphics);
+            thread = new Thread(ts);
             thread.IsBackground = true;
             thread.Start();
         }
 
         public void Restart()
         {
+            for (int i = 1; i <= 2; i++ )
+            {
+                obstacle1 = new Obstacle(this, i);
+                listObstacle.Add(obstacle1);
+            }
+               
+            running = true;
+
             this.movingMan = new MovingMan
             {
                 X = 10f,
                 Y = 10f,
-                DX = 2f,
-                DY = 2f,
+                DX = 4f,
+                DY = 3f,
             };
 
             superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
             timer.Start();
 
-            startAnimation();        
+            startAnimation();
         }
+     
 
         void timer_Tick(object sender, EventArgs e)
         {
@@ -83,7 +99,7 @@ namespace projectcsharp
 
             if (movingMan.Y < (this.Parent.Height - ((this.Parent.Height * 0.11) + 50)))
             {
-               int size = this.Size.Height;
+                int size = this.Size.Height;
 
 
                 if (left.IsPressed)
@@ -117,7 +133,11 @@ namespace projectcsharp
             {
                 timer.Stop();
 
-                MessageBox.Show("Game over!");
+                if (running)
+                {
+
+                    MessageBox.Show("Game over!");
+                }
             }
         }
         /// <summary>
@@ -126,13 +146,51 @@ namespace projectcsharp
         /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
-            base.OnPaint(e);
-            if (this.movingMan != null)
+            lock (mySync)
             {
-                this.movingMan.Draw(e.Graphics);
-                this.obstacle.Draw(e.Graphics);
-                superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
+                if (this.movingMan != null)
+                {
+                    e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                    base.OnPaint(e);
 
+                    GraphicsPath supermanPath = new GraphicsPath();
+
+                    supermanPath.StartFigure(); // Starter en ny figur i samme Path. 
+                    supermanPath.AddRectangle(new Rectangle((int)movingMan.X, (int)movingMan.Y, (int)manSize, (int)manSize));
+                    supermanPath.CloseFigure();
+
+                    for (int i = 0; i < listObstacle.Count; i++)
+                    {
+                        Obstacle obstacle = listObstacle[i]; //henter hindring fra lista
+
+                        //LAG REGION
+
+
+                        //Lag for-løkke for Obstacles 
+
+                        //SJEKK KOLLISJON
+                        Region obstacleRegion = new Region(obstacle.GetPath());
+                        Region supermanRegion = new Region(supermanPath);
+
+
+                        obstacleRegion.Intersect(supermanRegion);
+
+                        if (!obstacleRegion.IsEmpty(e.Graphics)) //Kollisjon dersom snittet ikke er tomt. 
+                        {
+                            timer.Stop();
+
+                            running = false;
+                          //  MessageBox.Show("Game over!");
+
+                        }
+
+
+                        movingMan.Draw(e.Graphics);
+                        obstacle1.Draw(e.Graphics);
+
+                        superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
+                    }
+                }
             }
         }
     }
