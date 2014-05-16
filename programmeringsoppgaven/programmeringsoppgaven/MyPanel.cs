@@ -67,9 +67,12 @@ namespace projectcsharp
 
         public void Restart()
         {
-            obstacle1 = new Obstacle();
-
-            listObstacle.Add(obstacle1);
+            for (int i = 1; i <= 2; i++ )
+            {
+                obstacle1 = new Obstacle(this, i);
+                listObstacle.Add(obstacle1);
+            }
+               
             running = true;
 
             this.movingMan = new MovingMan
