@@ -45,9 +45,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(79, 57);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(29, 57);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 13);
+            this.label1.Size = new System.Drawing.Size(138, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Endre brukernavn";
             // 
@@ -71,18 +74,24 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(79, 99);
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(33, 97);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 13);
+            this.label2.Size = new System.Drawing.Size(134, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "Gammelt passord";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(79, 137);
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(67, 137);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 13);
+            this.label3.Size = new System.Drawing.Size(100, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "Nytt passord";
             // 
@@ -117,42 +126,55 @@
             // rbEasy
             // 
             this.rbEasy.AutoSize = true;
+            this.rbEasy.BackColor = System.Drawing.Color.Transparent;
+            this.rbEasy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbEasy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbEasy.ForeColor = System.Drawing.Color.White;
             this.rbEasy.Location = new System.Drawing.Point(273, 221);
             this.rbEasy.Name = "rbEasy";
-            this.rbEasy.Size = new System.Drawing.Size(43, 17);
+            this.rbEasy.Size = new System.Drawing.Size(54, 21);
             this.rbEasy.TabIndex = 8;
             this.rbEasy.TabStop = true;
             this.rbEasy.Text = "Lett";
-            this.rbEasy.UseVisualStyleBackColor = true;
+            this.rbEasy.UseVisualStyleBackColor = false;
             // 
             // rbNormal
             // 
             this.rbNormal.AutoSize = true;
+            this.rbNormal.BackColor = System.Drawing.Color.Transparent;
+            this.rbNormal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbNormal.ForeColor = System.Drawing.Color.White;
             this.rbNormal.Location = new System.Drawing.Point(273, 244);
             this.rbNormal.Name = "rbNormal";
-            this.rbNormal.Size = new System.Drawing.Size(61, 17);
+            this.rbNormal.Size = new System.Drawing.Size(81, 21);
             this.rbNormal.TabIndex = 9;
             this.rbNormal.TabStop = true;
             this.rbNormal.Text = "Middels";
-            this.rbNormal.UseVisualStyleBackColor = true;
+            this.rbNormal.UseVisualStyleBackColor = false;
             // 
             // rbHard
             // 
             this.rbHard.AutoSize = true;
+            this.rbHard.BackColor = System.Drawing.Color.Transparent;
+            this.rbHard.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbHard.ForeColor = System.Drawing.Color.White;
             this.rbHard.Location = new System.Drawing.Point(273, 267);
             this.rbHard.Name = "rbHard";
-            this.rbHard.Size = new System.Drawing.Size(71, 17);
+            this.rbHard.Size = new System.Drawing.Size(96, 21);
             this.rbHard.TabIndex = 10;
             this.rbHard.TabStop = true;
             this.rbHard.Text = "Vanskelig";
-            this.rbHard.UseVisualStyleBackColor = true;
+            this.rbHard.UseVisualStyleBackColor = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(253, 192);
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(209, 190);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(118, 13);
+            this.label4.Size = new System.Drawing.Size(179, 17);
             this.label4.TabIndex = 11;
             this.label4.Text = "Velg Vanskelighetsgrad";
             // 
@@ -160,7 +182,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::projectcsharp.Properties.Resources.loginbackground;
+            this.BackgroundImage = global::projectcsharp.Properties.Resources.backgroundImage;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(400, 324);
             this.Controls.Add(this.label4);

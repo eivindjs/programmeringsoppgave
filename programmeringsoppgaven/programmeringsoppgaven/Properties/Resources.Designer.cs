@@ -63,10 +63,19 @@ namespace projectcsharp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap background {
+        internal static System.Drawing.Bitmap backgroundImage {
             get {
-                object obj = ResourceManager.GetObject("background", resourceCulture);
+                object obj = ResourceManager.GetObject("backgroundImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream collisionSound {
+            get {
+                return ResourceManager.GetStream("collisionSound", resourceCulture);
             }
         }
         
@@ -76,16 +85,6 @@ namespace projectcsharp.Properties {
         internal static System.Drawing.Bitmap loginbackground {
             get {
                 object obj = ResourceManager.GetObject("loginbackground", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap pattern_1s2c {
-            get {
-                object obj = ResourceManager.GetObject("pattern_1s2c", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

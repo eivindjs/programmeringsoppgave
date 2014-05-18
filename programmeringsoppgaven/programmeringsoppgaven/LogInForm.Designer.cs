@@ -29,13 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.btnRegister = new System.Windows.Forms.Button();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.tbUsername = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblHeadline = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.progressBarLogin = new System.Windows.Forms.ProgressBar();
             this.timerLogin = new System.Windows.Forms.Timer(this.components);
@@ -45,18 +44,24 @@
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
+            this.lblUsername.BackColor = System.Drawing.Color.Transparent;
+            this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.ForeColor = System.Drawing.Color.White;
             this.lblUsername.Location = new System.Drawing.Point(43, 72);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(65, 13);
+            this.lblUsername.Size = new System.Drawing.Size(96, 17);
             this.lblUsername.TabIndex = 1;
             this.lblUsername.Text = "Brukernavn:";
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(46, 110);
+            this.lblPassword.BackColor = System.Drawing.Color.Transparent;
+            this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassword.ForeColor = System.Drawing.Color.White;
+            this.lblPassword.Location = new System.Drawing.Point(43, 110);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(48, 13);
+            this.lblPassword.Size = new System.Drawing.Size(72, 17);
             this.lblPassword.TabIndex = 2;
             this.lblPassword.Text = "Passord:";
             // 
@@ -73,7 +78,7 @@
             // tbPassword
             // 
             this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPassword.Location = new System.Drawing.Point(118, 107);
+            this.tbPassword.Location = new System.Drawing.Point(155, 110);
             this.tbPassword.Multiline = true;
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.PasswordChar = '*';
@@ -83,26 +88,28 @@
             // tbUsername
             // 
             this.tbUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbUsername.Location = new System.Drawing.Point(118, 65);
+            this.tbUsername.Location = new System.Drawing.Point(155, 72);
             this.tbUsername.Name = "tbUsername";
             this.tbUsername.Size = new System.Drawing.Size(100, 22);
             this.tbUsername.TabIndex = 3;
             // 
-            // label1
+            // lblHeadline
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(267, 18);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Eivind and Tords ultimate gaming machine";
+            this.lblHeadline.AutoSize = true;
+            this.lblHeadline.BackColor = System.Drawing.Color.Transparent;
+            this.lblHeadline.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeadline.ForeColor = System.Drawing.Color.White;
+            this.lblHeadline.Location = new System.Drawing.Point(12, 20);
+            this.lblHeadline.Name = "lblHeadline";
+            this.lblHeadline.Size = new System.Drawing.Size(325, 18);
+            this.lblHeadline.TabIndex = 0;
+            this.lblHeadline.Text = "Eivind and Tords ultimate gaming machine";
             // 
             // btnLogin
             // 
             this.btnLogin.Location = new System.Drawing.Point(169, 143);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(62, 23);
+            this.btnLogin.Size = new System.Drawing.Size(63, 23);
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Logg inn";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -123,6 +130,8 @@
             // lblLoginMessage
             // 
             this.lblLoginMessage.AutoSize = true;
+            this.lblLoginMessage.BackColor = System.Drawing.Color.Transparent;
+            this.lblLoginMessage.ForeColor = System.Drawing.Color.White;
             this.lblLoginMessage.Location = new System.Drawing.Point(49, 219);
             this.lblLoginMessage.Name = "lblLoginMessage";
             this.lblLoginMessage.Size = new System.Drawing.Size(0, 13);
@@ -133,17 +142,19 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::projectcsharp.Properties.Resources.backgroundImage;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(384, 251);
             this.Controls.Add(this.lblLoginMessage);
             this.Controls.Add(this.progressBarLogin);
             this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblHeadline);
             this.Controls.Add(this.tbUsername);
             this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
+            this.DoubleBuffered = true;
             this.Name = "LoginForm";
             this.Text = "Logg inn eller registrer ny bruker for å spille";
             this.ResumeLayout(false);
@@ -158,7 +169,7 @@
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.TextBox tbUsername;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblHeadline;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.ProgressBar progressBarLogin;
         private System.Windows.Forms.Timer timerLogin;

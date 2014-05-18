@@ -38,12 +38,14 @@
             // dtGridviewScore
             // 
             this.dtGridviewScore.AllowUserToDeleteRows = false;
+            this.dtGridviewScore.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.dtGridviewScore.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtGridviewScore.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.username,
             this.dato,
             this.score});
             this.dtGridviewScore.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtGridviewScore.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.dtGridviewScore.Location = new System.Drawing.Point(0, 0);
             this.dtGridviewScore.Name = "dtGridviewScore";
             this.dtGridviewScore.ReadOnly = true;
@@ -52,30 +54,30 @@
             // 
             // username
             // 
-            this.username.HeaderText = "Username";
+            this.username.HeaderText = "Brukernavn";
             this.username.Name = "username";
             this.username.ReadOnly = true;
-            this.username.Width = 118;
+            this.username.Width = 120;
             // 
             // dato
             // 
-            this.dato.HeaderText = "Date";
+            this.dato.HeaderText = "Dato";
             this.dato.Name = "dato";
             this.dato.ReadOnly = true;
             this.dato.Width = 118;
             // 
             // score
             // 
-            this.score.HeaderText = "Score";
+            this.score.HeaderText = "Poengsum";
             this.score.Name = "score";
             this.score.ReadOnly = true;
-            this.score.Width = 118;
+            this.score.Width = 119;
             // 
             // Highscore
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::projectcsharp.Properties.Resources.loginbackground;
+            this.BackgroundImage = global::projectcsharp.Properties.Resources.backgroundImage;
             this.ClientSize = new System.Drawing.Size(400, 289);
             this.Controls.Add(this.dtGridviewScore);
             this.Name = "Highscore";

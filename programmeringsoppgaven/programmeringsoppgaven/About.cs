@@ -19,7 +19,6 @@ namespace projectcsharp
         public About()
         {
             InitializeComponent();
-            lblAbout.Parent = pictureBox1;
             lblAbout.BackColor = Color.Transparent;
            
         }

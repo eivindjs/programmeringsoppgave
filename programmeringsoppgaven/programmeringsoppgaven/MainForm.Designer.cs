@@ -36,9 +36,9 @@
             // 
             // btnNewGame
             // 
-            this.btnNewGame.Location = new System.Drawing.Point(144, 37);
+            this.btnNewGame.Location = new System.Drawing.Point(139, 43);
             this.btnNewGame.Name = "btnNewGame";
-            this.btnNewGame.Size = new System.Drawing.Size(89, 23);
+            this.btnNewGame.Size = new System.Drawing.Size(105, 30);
             this.btnNewGame.TabIndex = 0;
             this.btnNewGame.Text = "Nytt Spill";
             this.btnNewGame.UseVisualStyleBackColor = true;
@@ -46,9 +46,9 @@
             // 
             // btnScore
             // 
-            this.btnScore.Location = new System.Drawing.Point(144, 80);
+            this.btnScore.Location = new System.Drawing.Point(139, 88);
             this.btnScore.Name = "btnScore";
-            this.btnScore.Size = new System.Drawing.Size(89, 23);
+            this.btnScore.Size = new System.Drawing.Size(105, 30);
             this.btnScore.TabIndex = 1;
             this.btnScore.Text = "Highscore";
             this.btnScore.UseVisualStyleBackColor = true;
@@ -56,9 +56,9 @@
             // 
             // btnAbout
             // 
-            this.btnAbout.Location = new System.Drawing.Point(144, 120);
+            this.btnAbout.Location = new System.Drawing.Point(139, 133);
             this.btnAbout.Name = "btnAbout";
-            this.btnAbout.Size = new System.Drawing.Size(89, 23);
+            this.btnAbout.Size = new System.Drawing.Size(105, 30);
             this.btnAbout.TabIndex = 2;
             this.btnAbout.Text = "Om";
             this.btnAbout.UseVisualStyleBackColor = true;
@@ -66,9 +66,9 @@
             // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(144, 161);
+            this.btnSettings.Location = new System.Drawing.Point(139, 179);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(89, 23);
+            this.btnSettings.Size = new System.Drawing.Size(105, 30);
             this.btnSettings.TabIndex = 3;
             this.btnSettings.Text = "Innstillinger";
             this.btnSettings.UseVisualStyleBackColor = true;
@@ -78,13 +78,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::projectcsharp.Properties.Resources.loginbackground;
+            this.BackgroundImage = global::projectcsharp.Properties.Resources.backgroundImage;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(386, 289);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.btnScore);
             this.Controls.Add(this.btnNewGame);
+            this.DoubleBuffered = true;
             this.Name = "MainForm";
             this.Text = "Hovedvindu";
             this.ResumeLayout(false);

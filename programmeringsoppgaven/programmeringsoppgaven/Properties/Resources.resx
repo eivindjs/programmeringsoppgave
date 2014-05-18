@@ -127,10 +127,10 @@
   <data name="loginbackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\loginbackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="background" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pattern_1s2c" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="backgroundImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pattern-1s2c.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="collisionSound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\coin.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

@@ -34,7 +34,6 @@ namespace projectcsharp
                     DateTime dato = Convert.ToDateTime(dt.Rows[i]["dato"]); //Henter ut dato
                     dtGridviewScore.Rows.Add(username, dato.ToShortDateString(), score); //legger til dato, brukernavn og poengsum i gridviewen
                    
-                   
                  }
             }
         }

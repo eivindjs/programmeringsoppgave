@@ -27,13 +27,16 @@ namespace projectcsharp
         public LoginForm()
         {
             InitializeComponent();
-
         }
 
         //kjører når knappen btnLogin trykkes. Sjekker om bruker er registert med riktig passord
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            timerLogin.Enabled = true;
+            if (tbUsername.Text != String.Empty && tbPassword.Text != String.Empty)
+                timerLogin.Enabled = true;   
+           
+            else
+                MessageBox.Show("Du må skrive inn brukernavn og/eller passord");   
         }
 
         private void ThreadRegister()

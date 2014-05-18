@@ -17,16 +17,14 @@ namespace projectcsharp
         /// <summary>
         /// Klasse/Form der du kan endre brukernavne ditt, passord og slette poengsummen din
         /// </summary>
-        
+        #region Private Medlemsvariabler
         private DBConnect db = new DBConnect(); //Oppkobling mot database
         private string query; //Variabel for sql spørringer
         private string username; //Variabel for brukernavn
         private string oldPassword; //Gamle passordet du skriver inn
         private string newPassword; //Nye Passordet
         private int id; //bruker ID'en
-        //private DataTable dt;
-        //private DBConnect db;
-
+        #endregion 
 
         public Settings()
         {
@@ -51,32 +49,39 @@ namespace projectcsharp
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            username = tbUsername.Text;
-            oldPassword = Encryption.Encrypt(tbOldPass.Text);
-            newPassword = Encryption.Encrypt(tbNewPass.Text);
-            id = User.Id;
-
-            if (tbOldPass.Text == String.Empty && tbNewPass.Text == String.Empty)
+            if (tbUsername.Text != String.Empty)
             {
-                query = String.Format("UPDATE User SET username = '" + username + "' WHERE userID = " + id + "");
-                User.Username = username;
-                Update(query);
-                Level();
-            }
-      
-            if (User.Password == oldPassword && tbOldPass.Text != String.Empty && tbNewPass.Text != String.Empty)
-            {
-                query = String.Format("UPDATE User SET username = '" + username + "', password = '" + newPassword + "' WHERE userID = " + id + "");
-                User.Username = username;
-                User.Password = newPassword;
-                Update(query);
-                Level();
-            }
+                username = tbUsername.Text;
+                oldPassword = Encryption.Encrypt(tbOldPass.Text);
+                newPassword = Encryption.Encrypt(tbNewPass.Text);
+                id = User.Id;
 
+                if (tbOldPass.Text == String.Empty && tbNewPass.Text == String.Empty)
+                {
+                    query = String.Format("UPDATE User SET username = '" + username + "' WHERE userID = " + id + "");
+                    User.Username = username;
+                    Update(query);
+                    Level();
+                }
+
+                if (User.Password == oldPassword && tbOldPass.Text != String.Empty && tbNewPass.Text != String.Empty)
+                {
+                    query = String.Format("UPDATE User SET username = '" + username + "', password = '" + newPassword + "' WHERE userID = " + id + "");
+                    User.Username = username;
+                    User.Password = newPassword;
+                    Update(query);
+                    Level();
+                }
+
+                else
+                {
+                    MessageBox.Show("Feil passord eller du har ikke satt et nytt passord");
+                }
+            }
             else
             {
-                MessageBox.Show("Feil passord");
-            }          
+                MessageBox.Show("Kan ikke lagre tomme felter");
+            }
         }
         /// <summary>
         /// Metode for å oppdatere en bruker
@@ -109,6 +114,9 @@ namespace projectcsharp
             }
            
         }
+        /// <summary>
+        /// Metode for valg av level
+        /// </summary>
         private void Level()
         {
             if (rbEasy.Checked == true)
