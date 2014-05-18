@@ -23,7 +23,7 @@ namespace projectcsharp
         private bool running;
         private Obstacle obstacle1;
         private int manSize;
-        private List<Obstacle> listObstacle = new List<Obstacle>();
+        private List<Obstacle> listObstacle;
         private Object mySync = new Object();
         
         public MyPanel()
@@ -67,9 +67,12 @@ namespace projectcsharp
 
         public void Restart()
         {
-            for (int i = 1; i <= 2; i++ )
+            listObstacle = new List<Obstacle>();
+
+            for (int i = 1; i <= 2; i++)
             {
-                obstacle1 = new Obstacle(this, i);
+                obstacle1 = new Obstacle(i);
+
                 listObstacle.Add(obstacle1);
             }
                
@@ -186,7 +189,22 @@ namespace projectcsharp
 
 
                         movingMan.Draw(e.Graphics);
-                        obstacle1.Draw(e.Graphics);
+
+                        switch (i)
+                        {
+                            case 1:
+                                obstacle1.Draw(e.Graphics, 100, 100);
+
+                                break;
+                            case 2:
+                                obstacle1.Draw(e.Graphics, 300, 300);
+
+                                break;
+                            default:
+                                break;
+
+                        }
+                        
 
                         superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
                     }
