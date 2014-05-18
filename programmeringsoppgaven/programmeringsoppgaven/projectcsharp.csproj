@@ -163,6 +163,8 @@
   <ItemGroup>
     <Content Include="Oppgavebeskrivelse.html" />
     <Content Include="README.txt" />
+    <None Include="Resources\pattern-1s2c.png" />
+    <None Include="Resources\background.png" />
     <None Include="Resources\loginbackground.png" />
     <None Include="Resources\super.png" />
     <None Include="Resources\smallsuperman.png" />

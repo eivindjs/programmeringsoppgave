@@ -39,7 +39,7 @@
             this.lblAbout.AutoSize = true;
             this.lblAbout.BackColor = System.Drawing.Color.DeepPink;
             this.lblAbout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAbout.ForeColor = System.Drawing.Color.OrangeRed;
+            this.lblAbout.ForeColor = System.Drawing.Color.Snow;
             this.lblAbout.Location = new System.Drawing.Point(5, 48);
             this.lblAbout.Name = "lblAbout";
             this.lblAbout.Size = new System.Drawing.Size(362, 169);
@@ -50,7 +50,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::projectcsharp.Properties.Resources.loginbackground;
+            this.pictureBox1.Image = global::projectcsharp.Properties.Resources.pattern_1s2c;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(384, 262);
@@ -62,11 +62,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::projectcsharp.Properties.Resources.loginbackground;
+            this.BackgroundImage = global::projectcsharp.Properties.Resources.pattern_1s2c;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(384, 262);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblAbout);
+            this.DoubleBuffered = true;
             this.Name = "About";
             this.Text = "Om";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
