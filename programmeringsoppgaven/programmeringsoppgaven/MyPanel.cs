@@ -92,10 +92,10 @@ namespace projectcsharp
 
         void timer_Tick(object sender, EventArgs e)
         {
-            var left = KeyboardInfo.GetKeyState(Keys.Left);
-            var right = KeyboardInfo.GetKeyState(Keys.Right);
-            var up = KeyboardInfo.GetKeyState(Keys.Up);
-            var down = KeyboardInfo.GetKeyState(Keys.Down);
+            var left = KeyEvent.GetKeyState(Keys.Left);
+            var right = KeyEvent.GetKeyState(Keys.Right);
+            var up = KeyEvent.GetKeyState(Keys.Up);
+            var down = KeyEvent.GetKeyState(Keys.Down);
 
             if (movingMan.Y < (this.Parent.Height - ((this.Parent.Height * 0.11) + 50)))
             {
