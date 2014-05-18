@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
@@ -36,6 +37,9 @@
             this.tbUsername = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.progressBarLogin = new System.Windows.Forms.ProgressBar();
+            this.timerLogin = new System.Windows.Forms.Timer(this.components);
+            this.lblLoginMessage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblUsername
@@ -75,7 +79,6 @@
             this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(100, 20);
             this.tbPassword.TabIndex = 4;
-            this.tbPassword.TextChanged += new System.EventHandler(this.tbPassword_TextChanged);
             // 
             // tbUsername
             // 
@@ -105,12 +108,35 @@
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
+            // progressBarLogin
+            // 
+            this.progressBarLogin.Location = new System.Drawing.Point(49, 189);
+            this.progressBarLogin.Name = "progressBarLogin";
+            this.progressBarLogin.Size = new System.Drawing.Size(302, 23);
+            this.progressBarLogin.TabIndex = 7;
+            this.progressBarLogin.Visible = false;
+            // 
+            // timerLogin
+            // 
+            this.timerLogin.Tick += new System.EventHandler(this.timerLogin_Tick);
+            // 
+            // lblLoginMessage
+            // 
+            this.lblLoginMessage.AutoSize = true;
+            this.lblLoginMessage.Location = new System.Drawing.Point(49, 219);
+            this.lblLoginMessage.Name = "lblLoginMessage";
+            this.lblLoginMessage.Size = new System.Drawing.Size(0, 13);
+            this.lblLoginMessage.TabIndex = 8;
+            this.lblLoginMessage.Visible = false;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(384, 251);
+            this.Controls.Add(this.lblLoginMessage);
+            this.Controls.Add(this.progressBarLogin);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbUsername);
@@ -134,6 +160,9 @@
         private System.Windows.Forms.TextBox tbUsername;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.ProgressBar progressBarLogin;
+        private System.Windows.Forms.Timer timerLogin;
+        private System.Windows.Forms.Label lblLoginMessage;
     }
 }
 

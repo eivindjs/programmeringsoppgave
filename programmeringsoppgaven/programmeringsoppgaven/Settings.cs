@@ -32,6 +32,21 @@ namespace projectcsharp
         {
             InitializeComponent();
             tbUsername.Text = User.Username;
+            if (User.Difficulty_level > 0)
+            {
+                if (User.Difficulty_level == 1)
+                {
+                    rbEasy.Checked = true;
+                }
+                if (User.Difficulty_level == 2)
+                {
+                    rbNormal.Checked = true;
+                }
+                if (User.Difficulty_level == 3)
+                {
+                    rbHard.Checked = true;
+                }
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -46,6 +61,7 @@ namespace projectcsharp
                 query = String.Format("UPDATE User SET username = '" + username + "' WHERE userID = " + id + "");
                 User.Username = username;
                 Update(query);
+                Level();
             }
       
             if (User.Password == oldPassword && tbOldPass.Text != String.Empty && tbNewPass.Text != String.Empty)
@@ -54,6 +70,7 @@ namespace projectcsharp
                 User.Username = username;
                 User.Password = newPassword;
                 Update(query);
+                Level();
             }
 
             else
@@ -91,6 +108,27 @@ namespace projectcsharp
                 Delete(query);
             }
            
+        }
+        private void Level()
+        {
+            if (rbEasy.Checked == true)
+            {
+                User.Difficulty_level = 1;
+                rbNormal.Checked = false;
+                rbHard.Checked = false;
+            }
+            else if (rbNormal.Checked == true)
+            {
+                User.Difficulty_level = 2;
+                rbHard.Checked = false;
+                rbEasy.Checked = false;
+            }
+            else if (rbHard.Checked == true)
+            {
+                User.Difficulty_level = 3;
+                rbEasy.Checked = false;
+                rbNormal.Checked = false;
+            }
         }
         /// <summary>
         /// Metode for å slette poengsummen til innlogget bruker
