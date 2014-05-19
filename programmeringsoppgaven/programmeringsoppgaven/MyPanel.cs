@@ -20,17 +20,19 @@ namespace projectcsharp
         private Thread thread;
         private MovingMan movingMan;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Timer countDownTimer;
         private PictureBox superman;
         private bool running;
-        private Obstacle obstacle1;
-        private Obstacle smiley;
         private int manSize;
-        private List<Obstacle> listObstacle, listSmileys;
+        private List<Obstacle> listObstacle;
+        private List<Smiley> listSmileys;
         private Object mySync = new Object();
-        private bool insertingObstacles;
-        private int obstaclesToInsert = 2; //angir hvor mange objekter som skal settes på brettet
-        private int smileysCount = 6;
-
+        public int seconds;
+        public int minutes;
+        private Label lblTime, lblScore;
+        private int poengsum;
+        public static int level = 1;
+        private int smileysToCatch = 1;
 
         #endregion
 
@@ -41,7 +43,12 @@ namespace projectcsharp
            ControlStyles.AllPaintingInWmPaint,
            true);
             this.UpdateStyles();
-
+            lblTime = new Label();
+            lblScore = new Label();
+            lblTime.Location = new Point(300, 0);
+            lblScore.Location = new Point(400, 0);
+            this.Controls.Add(lblTime);
+            this.Controls.Add(lblScore);
             manSize = 30;
             superman = new PictureBox();
             superman.Image = projectcsharp.Properties.Resources.super;
@@ -49,13 +56,149 @@ namespace projectcsharp
             superman.SizeMode = PictureBoxSizeMode.Zoom;
 
             this.Controls.Add(superman);
-           
 
             this.timer = new System.Windows.Forms.Timer();
             timer.Interval = 20;
             timer.Tick += new EventHandler(timer_Tick);
+
+            countDownTimer = new System.Windows.Forms.Timer();
+            countDownTimer.Interval = 1000;
+            countDownTimer.Tick += new EventHandler(countDownTimer_Tick);
+
+
+
+
         }
-        #region Timer, Thread og grafikk
+        #region Insert Objects
+        public void InsertObstacles()
+        {
+            if (level == 1)
+            {
+                listObstacle = new List<Obstacle>();
+                listObstacle.Add(new Obstacle(10, 150, 150, 90));
+                listObstacle.Add(new Obstacle(300, 30, 90, 50));
+                listObstacle.Add(new Obstacle(500, 50, 65, 50));
+
+            }
+            else if (level == 2)
+            {
+                listObstacle = new List<Obstacle>();
+                listObstacle.Add(new Obstacle(90, 90, 120, 60));
+                listObstacle.Add(new Obstacle(260, 60, 160, 110));
+                listObstacle.Add(new Obstacle(500, 200, 150, 50));
+
+            }
+            else if (level == 3)
+            {
+
+            }
+            else if (level == 4)
+            {
+
+            }
+            else if (level == 5)
+            {
+
+            }
+
+
+
+
+        }
+        public void InsertSmileys()
+        {
+            if (level == 1)
+            {
+                listSmileys = new List<Smiley>();
+                listSmileys.Add(new Smiley(100, 100));
+                listSmileys.Add(new Smiley(200, 200));
+                listSmileys.Add(new Smiley(700, 50));
+                listSmileys.Add(new Smiley(600, 300));
+
+
+            }
+            else if (level == 2)
+            {
+
+                listSmileys = new List<Smiley>();
+                listSmileys.Add(new Smiley(60, 70));
+                listSmileys.Add(new Smiley(160, 340));
+                listSmileys.Add(new Smiley(700, 250));
+                listSmileys.Add(new Smiley(350, 50));
+                listSmileys.Add(new Smiley(550, 190));
+
+
+            }
+            else if (level == 3)
+            {
+
+            }
+            else if (level == 4)
+            {
+
+            }
+            else if (level == 5)
+            {
+
+            }
+
+            smileysToCatch = listSmileys.Count();
+
+        }
+
+        public void InsertShooter()
+        {
+            if (level == 1)
+            {
+
+            }
+            else if (level == 2)
+            {
+
+            }
+            else if (level == 3)
+            {
+
+            }
+            else if (level == 4)
+            {
+
+            }
+            else if (level == 5)
+            {
+
+            }
+
+        }
+        #endregion
+
+        #region Tråd- og timer-håndtering
+
+        public void Restart()
+        {
+            poengsum = 0;
+            lblScore.Text = "Score: " + 0;
+            countDownTimer.Enabled = true; //starter nedtelling(legges bare i en knapp)
+            seconds = 2;
+            minutes = 1;
+
+            InsertSmileys();
+            InsertObstacles();
+
+            movingMan = new MovingMan //setter verdiene til MovingMan tilbake vha properties
+            {
+                X = 10f,
+                Y = 10f,
+                DX = 4f,
+                DY = 3f,
+            };
+
+            superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
+            running = true;
+            timer.Start();
+            startAnimation();
+        }
+
         public void UpdateGraphics()
         {
             while (running)
@@ -73,21 +216,44 @@ namespace projectcsharp
             thread.Start();
         }
 
-        public void Restart()
+        public void NextLevel()
         {
-            movingMan = new MovingMan
-            {
-                X = 10f,
-                Y = 10f,
-                DX = 4f,
-                DY = 3f,
-            };
+            level++;
 
-            superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
-            running = true;
-            insertingObstacles = true;
-            timer.Start();
-            startAnimation();
+        }
+
+        private void countDownTimer_Tick(object sender, EventArgs e)
+        {
+            // når tiden er lik null
+            if ((minutes == 0) && (seconds == 0))
+            {
+                countDownTimer.Enabled = false; //stopper timeren
+                MessageBox.Show("Game over!");
+                running = false;
+                lblTime.Text = "Tid Igjen: 00:00";
+            }
+            else
+            {
+                if (seconds < 1)
+                {
+                    seconds = 59;
+                    if (minutes == 0)
+                    {
+                        minutes = 59;
+
+                    }
+                    else
+                    {
+                        minutes -= 1;
+                    }
+                }
+                else
+                    seconds -= 1;
+                // Display the current values of hours, minutes and seconds in
+                // the corresponding fields.
+                lblTime.Text = "Tid Igjen: " + minutes.ToString() + ":" + seconds.ToString();
+
+            }
         }
 
         void timer_Tick(object sender, EventArgs e)
@@ -97,7 +263,7 @@ namespace projectcsharp
             var up = KeyEvent.GetKeyState(Keys.Up);
             var down = KeyEvent.GetKeyState(Keys.Down);
 
-            if (movingMan.Y < (this.Parent.Height - ((this.Parent.Height * 0.11) + 50)))
+            if (movingMan.Y < (this.Size.Height + 50))
             {
                 int size = this.Size.Height;
 
@@ -132,125 +298,115 @@ namespace projectcsharp
             else
             {
                 timer.Stop();
-  
+
             }
+
+        }
+
+
+        public void PlaySound()
+        {
+
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.collisionSound);
+
+            player.PlaySync();
         }
 
         #endregion
 
+        public bool CheckCollision(GraphicsPath a, GraphicsPath b, PaintEventArgs e)
+        {
+            Region obstacleRegion = new Region(a);
+            Region supermanRegion = new Region(b);
+            obstacleRegion.Intersect(supermanRegion);
 
+            if (!obstacleRegion.IsEmpty(e.Graphics)) //Kollisjon dersom snittet ikke er tomt. 
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        #region OnPaint
         /// <summary>
         /// Kjøres ved this.Invalidate();
+        /// Viktigste klassen i programmet mtp. kollisjonsdeteksjon. MovingMan sin picture box blir lagt til en GraphicsPath,
+        /// som igjen blir lagt til en region som for hver hindring (Obstacle) sjekker om de berører hverandre. Da stopper spillet.
+        /// Her tegnes også alt opp for hver kjøring (hvert 17. ms i tråden). Smileys, Obstacles, startplattform, skytere
+        /// med dens kuler, og MovingMan tegnes.
         /// </summary>
         /// <param name="e"></param>
+        /// 
         protected override void OnPaint(PaintEventArgs e)
         {
             lock (mySync)
             {
-                if (insertingObstacles)
+                if (this.movingMan != null)
                 {
-                    listObstacle = new List<Obstacle>();
-                    listSmileys = new List<Obstacle>();
-                    for (int i = 1; i <= obstaclesToInsert; i++)
+                    e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                    base.OnPaint(e);
+
+                    GraphicsPath supermanPath = new GraphicsPath();
+                    supermanPath.StartFigure(); // Starter en ny figur i samme Path. 
+                    supermanPath.AddRectangle(new Rectangle((int)movingMan.X, (int)movingMan.Y, (int)manSize, (int)manSize));
+                    supermanPath.CloseFigure();
+
+                    e.Graphics.DrawLine(new Pen(Color.Green), new Point(0, 40), new Point(40, 40));
+
+                    for (int i = 0; i < listSmileys.Count; i++) //tegn alle smileys
                     {
-                        obstacle1 = new Obstacle(i);
-                        listObstacle.Add(obstacle1);
+                        Smiley smiley = listSmileys[i];
+                        smiley.Draw(e.Graphics);
+                        if (CheckCollision(smiley.GetPath(), supermanPath, e))
+                        {
+                            poengsum += 50;
+                            lblScore.Text = "Score: " + poengsum;
+                            listSmileys.RemoveAt(i);
+
+                            ThreadStart playSound = new ThreadStart(PlaySound);
+                            Thread soundThread = new Thread(playSound);
+                            soundThread.IsBackground = true;
+                            soundThread.Start();
+
+                            smileysToCatch--;
+
+                            if (smileysToCatch == 0)
+                            {
+                                running = false;
+                                timer.Enabled = false;
+                                timer.Stop();
+                                if (MessageBox.Show("Du vant! Trykk yes for neste level", "Gratulerer!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+
+                                    //lagre score!!!
+                                    level++;
+                                    Restart();
+                                }
+                            }
+                        }              
                     }
-
-
 
                     for (int i = 0; i < listObstacle.Count; i++)
                     {
-                        for (int j = 0; j < smileysCount; j++) //prøver å opprette et gitt antall smileys per hindring i tilfelle kollisjon
+                        Obstacle obstacle1 = listObstacle[i];
+
+                        obstacle1.Draw(e.Graphics);
+
+                        if (CheckCollision(obstacle1.GetPath(), supermanPath, e))
                         {
-                            smiley = new Obstacle(this);
-                            Region smileyRegion = new Region(smiley.GetPath());
-
-                            Obstacle obstacle = listObstacle[i];
-
-                            Region obstacleRegionS = new Region(obstacle.GetPath());
-
-                            obstacleRegionS.Intersect(smileyRegion);
-
-                            if (obstacleRegionS.IsEmpty(e.Graphics)) //Kollisjon dersom snittet ikke er tomt. 
+                            running = false;
+                            timer.Enabled = false;
+                            timer.Stop();
+                            if (MessageBox.Show("Du tapte. Starte på nytt?", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                listSmileys.Add(smiley);
+                                Restart();
                             }
-                        }
-                    }
-
-                    insertingObstacles = false;
-                }
-                else
-                {
-
-                    if (this.movingMan != null)
-                    {
-                        e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                        base.OnPaint(e);
-
-                        GraphicsPath supermanPath = new GraphicsPath();
-
-                        supermanPath.StartFigure(); // Starter en ny figur i samme Path. 
-                        supermanPath.AddRectangle(new Rectangle((int)movingMan.X, (int)movingMan.Y, (int)manSize, (int)manSize));
-                        supermanPath.CloseFigure();
-
-
-                        for (int i = 0; i < listSmileys.Count; i++)
-                        {
-
-                            Obstacle smiley = listSmileys[i];
-
-                            smiley.Draw(e.Graphics);
-
-                        }
-
-
-                        for (int i = 0; i < listObstacle.Count; i++)
-                        {
-                            Obstacle obstacle1 = listObstacle[i];
-
-
-                            Region obstacleRegion = new Region(obstacle1.GetPath());
-                            Region supermanRegion = new Region(supermanPath);
-
-
-                            movingMan.Draw(e.Graphics);
-
-                            switch (i)
-                            {
-                                case 0:
-                                    obstacle1.Draw(e.Graphics, 60, 60);
-
-                                    break;
-                                case 1:
-                                    obstacle1.Draw(e.Graphics, 60, 60);
-
-                                    break;
-                                default:
-                                    obstacle1.Draw(e.Graphics, 400, 350);
-
-                                    break;
-                            }
-
-                            obstacleRegion.Intersect(supermanRegion);
-
-                            if (!obstacleRegion.IsEmpty(e.Graphics)) //Kollisjon dersom snittet ikke er tomt. 
-                            {
-                                timer.Stop();
-
-                                running = false;
-                                //  MessageBox.Show("Game over!");
-
-                            }
-
-
-                         
-                            superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
-                        }
+                        }              
+                        superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
                     }
                 }
             }
         }
+        #endregion
     }
 }

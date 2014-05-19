@@ -29,13 +29,10 @@
         private void InitializeComponent()
         {
             this.mainTablePanel = new System.Windows.Forms.TableLayoutPanel();
-            this.infoTablePanel = new System.Windows.Forms.TableLayoutPanel();
-            this.lblLevel = new System.Windows.Forms.Label();
             this.buttonTablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.btnStart = new System.Windows.Forms.Button();
             this.myPanel1 = new projectcsharp.MyPanel();
             this.mainTablePanel.SuspendLayout();
-            this.infoTablePanel.SuspendLayout();
             this.buttonTablePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,47 +45,17 @@
             this.mainTablePanel.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.mainTablePanel.ColumnCount = 1;
             this.mainTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.mainTablePanel.Controls.Add(this.infoTablePanel, 0, 0);
-            this.mainTablePanel.Controls.Add(this.buttonTablePanel, 0, 2);
-            this.mainTablePanel.Controls.Add(this.myPanel1, 0, 1);
+            this.mainTablePanel.Controls.Add(this.buttonTablePanel, 0, 1);
+            this.mainTablePanel.Controls.Add(this.myPanel1, 0, 0);
             this.mainTablePanel.Location = new System.Drawing.Point(0, 0);
             this.mainTablePanel.Margin = new System.Windows.Forms.Padding(2);
             this.mainTablePanel.Name = "mainTablePanel";
-            this.mainTablePanel.RowCount = 3;
-            this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
+            this.mainTablePanel.RowCount = 2;
+            this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.mainTablePanel.Size = new System.Drawing.Size(774, 437);
             this.mainTablePanel.TabIndex = 0;
-            // 
-            // infoTablePanel
-            // 
-            this.infoTablePanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.infoTablePanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.infoTablePanel.ColumnCount = 4;
-            this.infoTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.infoTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.infoTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.infoTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.infoTablePanel.Controls.Add(this.lblLevel, 0, 0);
-            this.infoTablePanel.Location = new System.Drawing.Point(2, 2);
-            this.infoTablePanel.Margin = new System.Windows.Forms.Padding(2);
-            this.infoTablePanel.Name = "infoTablePanel";
-            this.infoTablePanel.RowCount = 1;
-            this.infoTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.infoTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 17F));
-            this.infoTablePanel.Size = new System.Drawing.Size(770, 17);
-            this.infoTablePanel.TabIndex = 1;
-            // 
-            // lblLevel
-            // 
-            this.lblLevel.AutoSize = true;
-            this.lblLevel.Location = new System.Drawing.Point(2, 0);
-            this.lblLevel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblLevel.Name = "lblLevel";
-            this.lblLevel.Size = new System.Drawing.Size(39, 13);
-            this.lblLevel.TabIndex = 0;
-            this.lblLevel.Text = "Level1";
             // 
             // buttonTablePanel
             // 
@@ -99,7 +66,7 @@
             this.buttonTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.buttonTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.buttonTablePanel.Controls.Add(this.btnStart, 0, 0);
-            this.buttonTablePanel.Location = new System.Drawing.Point(2, 394);
+            this.buttonTablePanel.Location = new System.Drawing.Point(2, 395);
             this.buttonTablePanel.Margin = new System.Windows.Forms.Padding(2);
             this.buttonTablePanel.Name = "buttonTablePanel";
             this.buttonTablePanel.RowCount = 1;
@@ -123,9 +90,10 @@
             // 
             // myPanel1
             // 
-            this.myPanel1.Location = new System.Drawing.Point(3, 24);
+            this.myPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.myPanel1.Location = new System.Drawing.Point(3, 3);
             this.myPanel1.Name = "myPanel1";
-            this.myPanel1.Size = new System.Drawing.Size(768, 365);
+            this.myPanel1.Size = new System.Drawing.Size(768, 378);
             this.myPanel1.TabIndex = 3;
             // 
             // LevelForm
@@ -134,12 +102,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 437);
             this.Controls.Add(this.mainTablePanel);
+            this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "LevelForm";
             this.Text = "LevelForm";
             this.mainTablePanel.ResumeLayout(false);
-            this.infoTablePanel.ResumeLayout(false);
-            this.infoTablePanel.PerformLayout();
             this.buttonTablePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -148,8 +117,6 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel mainTablePanel;
-        private System.Windows.Forms.TableLayoutPanel infoTablePanel;
-        private System.Windows.Forms.Label lblLevel;
         private System.Windows.Forms.TableLayoutPanel buttonTablePanel;
         private System.Windows.Forms.Button btnStart;
         private MyPanel myPanel1;

@@ -16,6 +16,8 @@ namespace projectcsharp
         public LevelForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle; //størelsen på vinduet er absolutt
+
         }
 
         private void btnStart_Click(object sender, EventArgs e)

@@ -26,21 +26,6 @@ namespace projectcsharp
             superman.Size = new System.Drawing.Size(50, 50);
             superman.SizeMode = PictureBoxSizeMode.Zoom;
         }
-        public MovingMan(int _size)
-        {
-            size = _size;
-            superman = new PictureBox();
-            superman.Image = projectcsharp.Properties.Resources.super;
-            superman.Size = new System.Drawing.Size(size, size);
-            superman.SizeMode = PictureBoxSizeMode.Zoom;        
-        }
-   
-
-        public void Draw(Graphics g)
-        {
-           
-        }
-
 
         public void MoveRight()
         {

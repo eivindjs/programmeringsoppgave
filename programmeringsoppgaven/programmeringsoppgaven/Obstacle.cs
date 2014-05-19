@@ -10,55 +10,44 @@ namespace projectcsharp
 {
     class Obstacle
     {
-        private GraphicsPath myPath;
-        private Object mySync;
+        private GraphicsPath myPath = new GraphicsPath(); //vil ha en path for alle hindringer
+        private Object mySync = new Object();
         private Random random = new Random();
-        private int manSize { get; set; }
         private Color obstacleColor;
-        private int smileyX;
-        private int smileyY;
-        private Rectangle rect;
+        private int x { get; set; }
+        private int y { get; set; }
+        private int width { get; set; }
+        private int height { get; set; }
+        private int level;
 
-        public Obstacle ()
-        {
-
+        public Obstacle()
+        {           
         }
-        public Obstacle(MyPanel parentPanel)
+        public Obstacle(int _x, int _y, int _width, int _height)
         {
-            smileyX = random.Next(60, parentPanel.Parent.Width);
-            smileyY = random.Next(60, parentPanel.Parent.Height);
-
-            rect = new Rectangle(smileyX - 17, smileyY - 15, 25, 20);
-
-            myPath = new GraphicsPath();
-            myPath.AddRectangle(new Rectangle(smileyX - 17, smileyY - 15, 25, 20));
-        }
-
-    
-
-        public Obstacle(int position)
-        {
-            myPath = new GraphicsPath();
-            mySync = new Object();
-
+            x = _x;
+            y = _y;
+            width = _width;
+            height = _height;
+            level = MyPanel.level;
             obstacleColor = Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
-
-            switch (position)
+            if (level < 3)
             {
-                case 1:
-                    myPath.StartFigure(); //Ny figur. 
-                    myPath.AddLine(300, 300, 380, 300);
-                    myPath.AddLine(380, 370, 300, 370);
-                    myPath.CloseFigure(); //Lukk! 
-                    break;
-                case 2:
-                    myPath.StartFigure(); //Ny figur. 
-                    myPath.AddEllipse(new Rectangle(100, 100, 110, 80));
-                    myPath.CloseFigure(); //Lukk! 
-                    break;
-                default:
-                 
-                    break;
+                myPath.StartFigure(); //Ny figur. 
+                myPath.AddLine(x, y, x + width, y);
+                myPath.AddLine(x + width, y + height, x, y + height);
+                myPath.CloseFigure(); //Lukk! 
+
+                myPath.StartFigure(); //Ny figur. 
+                myPath.AddEllipse(new Rectangle(x, y + 150, width, height));
+                myPath.CloseFigure(); //Lukk! 
+            }
+            else
+            {
+                myPath.StartFigure(); //Ny figur. 
+                myPath.AddLine(x, y, x + width, y);
+                myPath.AddLine(x + width, y + height, x, y + height);
+                myPath.CloseFigure(); //Lukk! 
             }
         }
 
@@ -70,30 +59,7 @@ namespace projectcsharp
         public void Draw(Graphics g)
         {
             SolidBrush brush = new SolidBrush(obstacleColor);
-            g.TranslateTransform(200, 200);
             g.FillPath(brush, myPath);
-
-            Pen blackPen = new Pen(Color.Black);
-
-            Brush b;
-            b = Brushes.Yellow;
-            g.FillEllipse(b, (smileyX - 20), (smileyY - 20), 30, 30);
-            b = Brushes.Black;
-            //eyes
-            g.FillEllipse(b, smileyX - 13, smileyY - 13, 5, 10);
-            g.FillEllipse(b, smileyX, smileyY - 13, 5, 10);
-            //tegner smileyn
-
-            g.DrawArc(blackPen, rect, 20, 145);
-
-        }
-
-        public void Draw(Graphics g, int x, int y)
-        {
-            SolidBrush brush = new SolidBrush(obstacleColor);
-            g.TranslateTransform(x, y);
-            g.FillPath(brush, myPath);
-
         }
 
     }
