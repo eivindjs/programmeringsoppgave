@@ -10,10 +10,13 @@ namespace projectcsharp
 {
    public class Shooter 
    {
-       private Point[] point;
+       private Point[] point; //Punkt
        private GraphicsPath myPath = new GraphicsPath();
 
-       public Shooter() { }
+       /// <summary>
+       /// Klasse for skytterne, tar inn point array som inneholder 3 point objekter for posisjonen den skal stå
+       /// </summary>
+       /// <param name="_point">punkt/plassering(point[]{new Point(x,y),new Point(x,y),new Point(x,y),};)</param>
        public Shooter(Point[] _point)
        {
            point = _point;
@@ -24,6 +27,7 @@ namespace projectcsharp
        {
            return myPath;
        }
+       //Tegner skytterene
        public void Draw(Graphics g)
        {
            Brush b;
