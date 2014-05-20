@@ -26,11 +26,13 @@ namespace projectcsharp
         private int manSize;
         private List<Obstacle> listObstacle;
         private List<Smiley> listSmileys;
+        private List<Shooter> listShooters;
         private Object mySync = new Object();
         public int seconds;
         public int minutes;
         private Label lblTime, lblScore;
-        private int poengsum;
+        private DBConnect db = new DBConnect();
+        private int highScore;
         public static int level = 1;
         private int smileysToCatch = 1;
 
@@ -54,7 +56,7 @@ namespace projectcsharp
             superman.Image = projectcsharp.Properties.Resources.super;
             superman.Size = new System.Drawing.Size(manSize, manSize);
             superman.SizeMode = PictureBoxSizeMode.Zoom;
-
+            
             this.Controls.Add(superman);
 
             this.timer = new System.Windows.Forms.Timer();
@@ -114,12 +116,15 @@ namespace projectcsharp
                 listSmileys.Add(new Smiley(200, 200));
                 listSmileys.Add(new Smiley(700, 50));
                 listSmileys.Add(new Smiley(600, 300));
-
+                seconds = 10;
+                minutes = 1;
+                lblScore.Text = "Score: " + 0;
 
             }
             else if (level == 2)
             {
-
+                minutes = 1;
+                seconds = 0;
                 listSmileys = new List<Smiley>();
                 listSmileys.Add(new Smiley(60, 70));
                 listSmileys.Add(new Smiley(160, 340));
@@ -150,23 +155,27 @@ namespace projectcsharp
         {
             if (level == 1)
             {
+                //fire skyttere
+                listShooters = new List<Shooter>();
+                listShooters.Add(new Shooter(new Point [] {new Point(500, this.Height), new Point(540, this.Height), new Point(520, 350)}));
+                listShooters.Add(new Shooter(new Point[] { new Point(500, this.Width), new Point(540, this.Width), new Point(520, 350) }));
 
             }
             else if (level == 2)
             {
-
+                //fem skyttere
             }
             else if (level == 3)
             {
-
+                //seks skyttere
             }
             else if (level == 4)
             {
-
+                //sju
             }
             else if (level == 5)
             {
-
+                //åtte
             }
 
         }
@@ -176,15 +185,12 @@ namespace projectcsharp
 
         public void Restart()
         {
-            poengsum = 0;
-            lblScore.Text = "Score: " + 0;
             countDownTimer.Enabled = true; //starter nedtelling(legges bare i en knapp)
-            seconds = 2;
-            minutes = 1;
+           
 
             InsertSmileys();
             InsertObstacles();
-
+            InsertShooter();
             movingMan = new MovingMan //setter verdiene til MovingMan tilbake vha properties
             {
                 X = 10f,
@@ -227,7 +233,9 @@ namespace projectcsharp
             // når tiden er lik null
             if ((minutes == 0) && (seconds == 0))
             {
+                //må kanskje legge inn mer her
                 countDownTimer.Enabled = false; //stopper timeren
+
                 MessageBox.Show("Game over!");
                 running = false;
                 lblTime.Text = "Tid Igjen: 00:00";
@@ -359,8 +367,8 @@ namespace projectcsharp
                         smiley.Draw(e.Graphics);
                         if (CheckCollision(smiley.GetPath(), supermanPath, e))
                         {
-                            poengsum += 50;
-                            lblScore.Text = "Score: " + poengsum;
+                            highScore += 50;
+                            lblScore.Text = "Score: " + highScore;
                             listSmileys.RemoveAt(i);
 
                             ThreadStart playSound = new ThreadStart(PlaySound);
@@ -377,15 +385,40 @@ namespace projectcsharp
                                 timer.Stop();
                                 if (MessageBox.Show("Du vant! Trykk yes for neste level", "Gratulerer!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                 {
-
-                                    //lagre score!!!
                                     level++;
                                     Restart();
                                 }
                             }
-                        }              
+                        }
                     }
+                    for (int i = 0; i < listShooters.Count; i++)
+                    {
+                        Shooter shooter = listShooters[i];
+                        shooter.Draw(e.Graphics);
 
+                        if(CheckCollision(shooter.GetPath(), supermanPath, e))
+                        {
+                            running = false;
+                            timer.Enabled = false;
+                            timer.Stop();
+                            DialogResult dialogResult = MessageBox.Show("Du tapte. Starte på nytt?", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                Restart();
+                                highScore = 0;
+                                seconds = 10;
+                                minutes = 1;
+                            }
+                            else
+                            {
+                                this.Hide();
+                                MainForm.levelForm.Close();
+
+                            }
+                        }
+                        superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
+
+                    }
                     for (int i = 0; i < listObstacle.Count; i++)
                     {
                         Obstacle obstacle1 = listObstacle[i];
@@ -397,16 +430,46 @@ namespace projectcsharp
                             running = false;
                             timer.Enabled = false;
                             timer.Stop();
-                            if (MessageBox.Show("Du tapte. Starte på nytt?", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            //for highscore(funker)
+                            //  string query = string.Format("INSERT INTO Highscore (username, dato, score, userID) VALUES('{0}', '{1}', '{2}', '{3}')", User.Username, DateTime.Now.ToString("yyyy-MM-dd H:mm:ss"), poengsum, User.Id);
+                            // Insert(query);
+                            DialogResult dialogResult = MessageBox.Show("Du tapte. Starte på nytt?", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (dialogResult == DialogResult.Yes)
                             {
                                 Restart();
+                                highScore = 0;
+                                seconds = 10;
+                                minutes = 1;
                             }
-                        }              
+                            else
+                            {
+                                //fungerere må bære være innlogget
+                                this.Hide();
+                                MainForm.levelForm.Close();
+
+                            }
+                        }
                         superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
                     }
                 }
             }
         }
         #endregion
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sql"></param>
+        private void Insert(string sql)
+        {
+            try
+            {
+                db.InsertDeleteUpdate(sql);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Feil oppsto ved INSERT med melding: " + ex.Message);
+            }
+        }
     }
 }

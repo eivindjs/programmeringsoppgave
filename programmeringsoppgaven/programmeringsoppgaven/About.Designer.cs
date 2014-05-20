@@ -40,7 +40,7 @@
             this.lblAbout.ForeColor = System.Drawing.Color.Snow;
             this.lblAbout.Location = new System.Drawing.Point(5, 48);
             this.lblAbout.Name = "lblAbout";
-            this.lblAbout.Size = new System.Drawing.Size(362, 169);
+            this.lblAbout.Size = new System.Drawing.Size(368, 182);
             this.lblAbout.TabIndex = 0;
             this.lblAbout.Text = resources.GetString("lblAbout.Text");
             this.lblAbout.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

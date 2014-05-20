@@ -13,6 +13,8 @@ namespace projectcsharp
 {
     public partial class MainForm : Form
     {
+        public static LevelForm levelForm;
+
         public MainForm()
         {
             InitializeComponent();
@@ -26,8 +28,19 @@ namespace projectcsharp
 
         private void ThreadNewGame()
         {
-            LevelForm levelForm = new LevelForm();
+            levelForm = new LevelForm();
             Application.Run(levelForm);
+            
+        }
+        public static void EndGame()
+        {
+            
+           
+        }
+
+        public void ShowMainForm()
+        {
+            levelForm.Close();
         }
         //Kort og enkelt ka det går ut på? ka du tror Tord?
         private void btnAbout_Click(object sender, EventArgs e)
