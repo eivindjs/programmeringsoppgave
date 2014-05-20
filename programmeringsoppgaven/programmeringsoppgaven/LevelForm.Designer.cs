@@ -93,7 +93,7 @@
             this.myPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.myPanel1.Location = new System.Drawing.Point(3, 3);
             this.myPanel1.Name = "myPanel1";
-            this.myPanel1.Size = new System.Drawing.Size(768, 378);
+            this.myPanel1.Size = new System.Drawing.Size(768, 387);
             this.myPanel1.TabIndex = 3;
             // 
             // LevelForm
