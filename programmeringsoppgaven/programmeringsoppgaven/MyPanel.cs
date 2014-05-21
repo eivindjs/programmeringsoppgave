@@ -115,10 +115,10 @@ namespace projectcsharp
             if (level == 1)
             {
                 listSmileys = new List<Smiley>();
-                listSmileys.Add(new Smiley(100, 100));
-                listSmileys.Add(new Smiley(200, 200));
-                listSmileys.Add(new Smiley(700, 50));
-                listSmileys.Add(new Smiley(600, 300));
+                listSmileys.Add(new Smiley(100, 100, 1));
+                listSmileys.Add(new Smiley(200, 200, 1));
+                listSmileys.Add(new Smiley(700, 50, 1));
+                listSmileys.Add(new Smiley(600, 300, 2));
                 seconds = 10;
                 minutes = 1;
                 lblScore.Text = "Score: " + 0;
@@ -129,11 +129,11 @@ namespace projectcsharp
                 minutes = 1;
                 seconds = 0;
                 listSmileys = new List<Smiley>();
-                listSmileys.Add(new Smiley(60, 70));
-                listSmileys.Add(new Smiley(160, 340));
-                listSmileys.Add(new Smiley(700, 250));
-                listSmileys.Add(new Smiley(350, 50));
-                listSmileys.Add(new Smiley(550, 190));
+                listSmileys.Add(new Smiley(60, 70, 1));
+                listSmileys.Add(new Smiley(160, 340, 1));
+                listSmileys.Add(new Smiley(700, 250, 1));
+                listSmileys.Add(new Smiley(350, 50, 2));
+                listSmileys.Add(new Smiley(550, 190, 3));
                 
                 lblLevel.Text = "Level 2";
 
@@ -204,8 +204,8 @@ namespace projectcsharp
         public void Restart()
         {
             countDownTimer.Enabled = true; //starter nedtelling(legges bare i en knapp)
-           
 
+           
             InsertSmileys();
             InsertObstacles();
             InsertShooter();
@@ -262,6 +262,7 @@ namespace projectcsharp
                     highScore = 0;
                     seconds = 10;
                     minutes = 1;
+                    level = 1;
                 }
                 else
                 {
@@ -396,7 +397,19 @@ namespace projectcsharp
                         smiley.Draw(e.Graphics);
                         if (CheckCollision(smiley.GetPath(), supermanPath, e))
                         {
-                            highScore += 50;
+                            if (listSmileys[i].brushColor == 1)
+                            {
+                                highScore += 50;
+                            }
+                            else if (listSmileys[i].brushColor == 2)
+                            {
+                                highScore += 100;
+                            }
+                            else if (listSmileys[i].brushColor == 3)
+                            {
+                                highScore += 150;
+                            }
+
                             lblScore.Text = "Score: " + highScore;
                             listSmileys.RemoveAt(i);
 
@@ -431,10 +444,12 @@ namespace projectcsharp
                             running = false;
                             timer.Enabled = false;
                             timer.Stop();
+                            countDownTimer.Enabled = false;
                             DialogResult dialogResult = MessageBox.Show("Du tapte. Starte på nytt?", "Game Over", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (dialogResult == DialogResult.Yes)
                             {
                                 Restart();
+                                level = 1;
                                 highScore = 0;
                                 seconds = 10;
                                 minutes = 1;
@@ -471,6 +486,7 @@ namespace projectcsharp
                                 highScore = 0;
                                 seconds = 10;
                                 minutes = 1;
+                                level = 1;
                             }
                             else
                             {

@@ -14,15 +14,16 @@ namespace projectcsharp
         private int smileyY { get; set; }
         private Rectangle rectangle;
         private GraphicsPath myPath = new GraphicsPath();
-
+        public int brushColor { get; set; }
         public Smiley ()
         {
 
         }
-        public Smiley(int _x, int _y)
+        public Smiley(int _x, int _y, int _brushColor)
         {
             smileyX = _x;
             smileyY = _y;
+            brushColor = _brushColor;
             rectangle = new Rectangle(smileyX - 17, smileyY - 15, 25, 20);   
             myPath.AddRectangle(rectangle);
         }
@@ -36,8 +37,21 @@ namespace projectcsharp
         {
             Pen blackPen = new Pen(Color.Black);
             Brush b;
-            b = Brushes.Yellow;
-            g.FillEllipse(b, (smileyX - 20), (smileyY - 20), 30, 30);
+            if (brushColor == 1)
+            {
+                b = Brushes.Yellow;
+                g.FillEllipse(b, (smileyX - 20), (smileyY - 20), 30, 30);
+            }
+            else if (brushColor == 2)
+            {
+                b = Brushes.Pink;
+                g.FillEllipse(b, (smileyX - 20), (smileyY - 20), 30, 30);
+            }
+            else if (brushColor == 3)
+            {
+                b = Brushes.Red;
+                g.FillEllipse(b, (smileyX - 20), (smileyY - 20), 30, 30);
+            }
             b = Brushes.Black;
             //øyer
             g.FillEllipse(b, smileyX - 13, smileyY - 13, 5, 10);
