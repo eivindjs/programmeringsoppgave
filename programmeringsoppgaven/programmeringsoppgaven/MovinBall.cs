@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace projectcsharp
@@ -22,18 +23,29 @@ namespace projectcsharp
             this.y = y;
             this.h = h;
             this.w = w;
+            Thread t = new Thread(new ThreadStart(Run));
+            t.Start();
         }
         /// <summary>
         /// Metode for hvordan ballene skal beveges i forhold til skytterne
         /// </summary>
         public void Move()
-        {
-
+        { 
+            //finne ut sånn at ballene skyter rett
+            x++;
         }
         /// <summary>
         /// Tegner ballene
         /// </summary>
-        
+        public void Run()
+        {
+            while (true)
+            {
+                Move();
+                //kan bruke random for når den skal skyte
+                Thread.Sleep(17);
+            }
+        }
         public void Draw(Graphics g)
         {
             SolidBrush brush = new SolidBrush(Color.Black);
