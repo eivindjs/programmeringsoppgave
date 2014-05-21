@@ -18,6 +18,8 @@ namespace projectcsharp
         public MainForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle; //størelsen på vinduet er absolutt
+
         }
 
         private void btnNewGame_Click(object sender, EventArgs e)

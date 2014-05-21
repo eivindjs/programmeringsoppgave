@@ -86,6 +86,8 @@
             this.Controls.Add(this.btnScore);
             this.Controls.Add(this.btnNewGame);
             this.DoubleBuffered = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "Hovedvindu";
             this.ResumeLayout(false);

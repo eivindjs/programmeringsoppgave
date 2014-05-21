@@ -155,6 +155,8 @@
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
             this.DoubleBuffered = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "LoginForm";
             this.Text = "Logg inn eller registrer ny bruker for å spille";
             this.ResumeLayout(false);

@@ -13,11 +13,6 @@ namespace projectcsharp
 {
     public partial class LoginForm : Form
     {
-        //HEIA EIVIND!!
-        //HEIA TORD!!
-        //Herlig at du såg det Eivind aka The Rock!
-        //Æ følge me Tord aka The Handsome!
-
         private DBConnect db = new DBConnect();
         private DataTable dt = new DataTable();
         private string username;
@@ -27,9 +22,15 @@ namespace projectcsharp
         public LoginForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle; //størelsen på vinduet er absolutt
+
         }
 
-        //kjører når knappen btnLogin trykkes. Sjekker om bruker er registert med riktig passord
+        /// <summary>
+        /// Sjekker om bruker er registert med riktig passord
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (tbUsername.Text != String.Empty && tbPassword.Text != String.Empty)
@@ -59,22 +60,24 @@ namespace projectcsharp
             threadRegisterNew.IsBackground = true;
 
         }
-
+        /// <summary>
+        /// Logger inn. Viser en progressbar ved innlogging om oppgitt passord stemmer overens
+        /// med passord lagret på brukeren i databasen. Passordet i databasen er kryptert. Oppgitt 
+        /// passord krypteres også og sjekkes mot databasen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timerLogin_Tick(object sender, EventArgs e)
         {
             username = tbUsername.Text;
             password = tbPassword.Text;
             passwordIn = Encryption.Encrypt(password);
 
-
             string query = String.Format("SELECT userID, password FROM User WHERE username = '{0}'", username);
             dt = db.getAll(query);
 
-
             if (dt != null && dt.Rows.Count > 0)
             {
-
-
                 int userID = Convert.ToInt16(dt.Rows[0]["userID"]);
                 string userPW = Convert.ToString(dt.Rows[0]["password"]);
 
@@ -108,7 +111,6 @@ namespace projectcsharp
                     progressBarLogin.Value = 0;
                     MessageBox.Show("Feil brukernavn og/eller passord.");
                 }
-
             }
             else
             {
@@ -117,9 +119,7 @@ namespace projectcsharp
                 progressBarLogin.Visible = false;
                 progressBarLogin.Value = 0;
                 MessageBox.Show("Feil brukernavn og/eller passord.");
-
             }
         }
-
     }
 }

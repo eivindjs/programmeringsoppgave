@@ -8,18 +8,20 @@ using System.Data;
 namespace projectcsharp
 {
     /// <summary>
+    /// DBConnect.cs
+    /// 
     /// Klasse som kobler opp mot databasen og inneholder metoder for
-    /// å hente ut data, sett inn data, oppdatere data og slette data.
+    /// å hente ut data, sett inn, oppdatere og slette data.
     /// </summary>
     public class DBConnect
     {
-        private MySqlConnection connection; //
-        private MySqlDataAdapter adapter; //
-        private DataTable dataTable; //tabell for data
-        private string server; //server navn
-        private string database; //database navn
-        private string uid; //brukernavn
-        private string password; //passord
+        private MySqlConnection connection; 
+        private MySqlDataAdapter adapter; 
+        private DataTable dataTable; 
+        private string server; 
+        private string database; 
+        private string uid; 
+        private string password; 
 
         public DBConnect()
         {
