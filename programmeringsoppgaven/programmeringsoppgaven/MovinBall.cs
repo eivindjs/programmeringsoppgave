@@ -12,30 +12,43 @@ namespace projectcsharp
     /// <summary>
     /// En klasse for ballene som skal skytes.
     /// </summary>
-    public class MovinBall 
+    public class MovinBall
     {
-        private int x, y, h, w; //variabler for plassering og størrelse av ballene
+
+        
+        private int x, y, direction; //variabler for plassering og retning
+        private int h = 7;
+        private int w = 7;
         private GraphicsPath myPath = new GraphicsPath();
 
-        public MovinBall(int x, int y, int h, int w)
+        public MovinBall(int x, int y, int direction)
         {
+
             this.x = x;
             this.y = y;
-            this.h = h;
-            this.w = w;
+           
+            this.direction = direction;
             Thread t = new Thread(new ThreadStart(Run));
-            t.Start();
+            t.IsBackground = true;
+            t.Start(); 
         }
         /// <summary>
         /// Metode for hvordan ballene skal beveges i forhold til skytterne
         /// </summary>
         public void Move()
         { 
-            //finne ut sånn at ballene skyter rett
-            x++;
+            //finner ut sånn at ballene skyter rett
+            if (direction == 1)
+            {
+                y --;
+            }
+            else if (direction == 2)
+            {
+                x ++;
+            }
         }
         /// <summary>
-        /// Tegner ballene
+        /// beveger ballene
         /// </summary>
         public void Run()
         {
@@ -43,9 +56,9 @@ namespace projectcsharp
             {
                 Move();
                 //kan bruke random for når den skal skyte
-                Thread.Sleep(17);
+                Thread.Sleep(10);
             }
-        }
+        } 
         public void Draw(Graphics g)
         {
             SolidBrush brush = new SolidBrush(Color.Black);
