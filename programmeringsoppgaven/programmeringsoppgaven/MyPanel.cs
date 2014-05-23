@@ -23,10 +23,7 @@ namespace projectcsharp
         private Thread thread;
         private MovingMan movingMan;
         private System.Windows.Forms.Timer timer;
-<<<<<<< HEAD
-=======
         private System.Windows.Forms.Timer ballTimer;
->>>>>>> 2c67105bd1b8c36ce69fa41e8a57acf7f628baa2
         private System.Windows.Forms.Timer countDownTimer;
         private PictureBox superman;
         private Random random;
@@ -37,16 +34,10 @@ namespace projectcsharp
         private List<Smiley> listSmileys;
         private List<Shooter> listShooters;
         private Object mySync = new Object();
-        private int smileysToCatch = 1;
         private Label lblTime, lblScore, lblLevel;
         private DBConnect db = new DBConnect();
         private int highScore;
-<<<<<<< HEAD
-=======
-        public static int level = 1;
         private int smileysToCatch = 1;
-
->>>>>>> 2c67105bd1b8c36ce69fa41e8a57acf7f628baa2
 
         #endregion
 
@@ -78,13 +69,10 @@ namespace projectcsharp
             superman.Image = projectcsharp.Properties.Resources.super;
             superman.Size = new System.Drawing.Size(manSize, manSize);
             superman.SizeMode = PictureBoxSizeMode.Zoom;
-<<<<<<< HEAD
             
             this.Controls.Add(superman); //legger pictureBox til panelet
-=======
 
             this.Controls.Add(superman);
->>>>>>> 2c67105bd1b8c36ce69fa41e8a57acf7f628baa2
 
             this.timer = new System.Windows.Forms.Timer();
             timer.Interval = 20;
