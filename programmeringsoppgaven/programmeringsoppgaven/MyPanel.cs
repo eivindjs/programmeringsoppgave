@@ -31,7 +31,7 @@ namespace projectcsharp
         private List<MovinBall> listBalls = new List<MovinBall>();
         private List<Smiley> listSmileys;
         private List<Shooter> listShooters;
-        private Object mySync = new Object();
+        public static Object mySync = new Object();
         private Label lblTime, lblScore, lblLevel;
         private DBConnect db = new DBConnect();
         private int smileysToCatch = 1;
@@ -86,23 +86,25 @@ namespace projectcsharp
         }
         public void Restart()
         {
-
-            listBalls.Clear();
-            InsertSmileys();
-            InsertObstacles();
-            InsertShooter();
-            movingMan = new MovingMan //setter verdiene til MovingMan tilbake vha properties
+            lock (mySync)
             {
-                X = 10f,
-                Y = 10f,
-                DX = 4f,
-                DY = 3f,
-            };
+                listBalls.Clear();
+                InsertSmileys();
+                InsertObstacles();
+                InsertShooter();
+                movingMan = new MovingMan //setter verdiene til MovingMan tilbake vha properties
+                {
+                    X = 10f,
+                    Y = 10f,
+                    DX = 4f,
+                    DY = 3f,
+                };
 
-            superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
-            running = true;
-            timer.Start();
-            startAnimation();
+                superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
+                running = true;
+                timer.Start();
+                startAnimation();
+            }
         }
 
 
@@ -269,59 +271,62 @@ namespace projectcsharp
                 listBalls.Add(new MovinBall(340, 100, 4));
             }
         }
-       
+
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            var left = KeyEvent.GetKeyState(Keys.Left);
-            var right = KeyEvent.GetKeyState(Keys.Right);
-            var up = KeyEvent.GetKeyState(Keys.Up);
-            var down = KeyEvent.GetKeyState(Keys.Down);
-
-            if (movingMan.Y < (this.Height - 30))
+            lock (mySync)
             {
-                if (left.IsPressed)
-                {
-                    movingMan.MoveLeft();
-                }
+                var left = KeyEvent.GetKeyState(Keys.Left);
+                var right = KeyEvent.GetKeyState(Keys.Right);
+                var up = KeyEvent.GetKeyState(Keys.Up);
+                var down = KeyEvent.GetKeyState(Keys.Down);
 
-                if (right.IsPressed)
+                if (movingMan.Y < (this.Height - 30))
                 {
-                    movingMan.MoveRight();
-                }
+                    if (left.IsPressed)
+                    {
+                        movingMan.MoveLeft();
+                    }
 
-                if (up.IsPressed)
-                {
-                    movingMan.MoveUp();
-                }
+                    if (right.IsPressed)
+                    {
+                        movingMan.MoveRight();
+                    }
 
-                if (down.IsPressed)
-                {
-                    movingMan.MoveDown();
+                    if (up.IsPressed)
+                    {
+                        movingMan.MoveUp();
+                    }
+
+                    if (down.IsPressed)
+                    {
+                        movingMan.MoveDown();
+                    }
+                    else
+                    {
+                        if (movingMan.X != 10f && !up.IsPressed)
+                        {
+                            movingMan.Drop();
+                        }
+                    }
                 }
                 else
                 {
-                    if (movingMan.X != 10f && !up.IsPressed)
-                    {
-                        movingMan.Drop();
-                    }
-                }
-            }
-            else
-            {
-                running = false;
-                timer.Enabled = false;
-                timer.Stop();
-                ballTimer.Stop();
+                    running = false;
+                    timer.Enabled = false;
+                    timer.Stop();
+                    ballTimer.Stop();
 
 
-                Insert(highScore);
+                    Insert(highScore);
 
-                MessageBox.Show("Du tapte! Prøv igjen.");
+                    MessageBox.Show("Du tapte! Prøv igjen.");
 
                     level = 1;
                     highScore = 0;
-            
+
+                }
             }
         }
 
@@ -329,15 +334,17 @@ namespace projectcsharp
 
         public void ShowMessageBox()
         {
-
-            if (smileysToCatch == 0)
+            lock (mySync)
             {
-                MessageBox.Show("Du klarte det! Trykk start for neste brett.");
 
+                if (smileysToCatch == 0)
+                {
+                    MessageBox.Show("Du klarte det! Trykk start for neste brett.");
+
+                }
+                else
+                    MessageBox.Show("Du tapte! Trykk start for nytt spill.");
             }
-            else
-            MessageBox.Show("Du tapte! Trykk start for nytt spill.");
-
         }
 
         #endregion
