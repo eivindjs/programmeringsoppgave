@@ -384,7 +384,7 @@ namespace projectcsharp
             {
                 if (this.movingMan != null)
                 {
-                    e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighSpeed;
+                    e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
                     base.OnPaint(e);
 
                     superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);

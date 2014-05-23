@@ -121,15 +121,18 @@
     <value>Spillet Smileymadness handler først om at du skal ha det gøy. 
 Målet er å samle inn så mange smilefjes som mulig i løpet av
 en viss tid. Klarer du dette innenfor tiden, så kommer du videre 
-til neste nivå. Kommer du borti noen av hindrene trekkes du 
-50 poeng. 
+til neste nivå. Kommer du borti skytterne eller blir truffet. Er det
+game over. Kommer du borti noen av de andre hindrene trekkes 
+du 5 poeng. 
 
 Gul smilefjes: 50 poeng
 Rosa smilefjes: 100 poeng
 Rødt smilefjes: 150 peong
 
-I innstillinger kan du velge for mange hindre som skal vises 
-på første nivå. Du har lett, middels og vanskelig.
+I innstillinger kan du endre brukernavn, bytte passord, slette 
+highscore(gjelder bare for deg selv) og velge hvor mange 
+hindre som skal vises på første nivå. Du har lett, middels og 
+vanskelig.
 
 Utviklet av: Eivind og Tord
 </value>
