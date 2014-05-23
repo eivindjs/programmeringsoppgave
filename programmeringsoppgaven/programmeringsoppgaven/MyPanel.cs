@@ -27,9 +27,9 @@ namespace projectcsharp
         private Random random;
         private int manSize;
 
-        private MovinBall movingBall;
+        private MovingBall movingBall;
         private List<Obstacle> listObstacle;
-        private List<MovinBall> listBalls = new List<MovinBall>();
+        private List<MovingBall> listBalls = new List<MovingBall>();
         private List<Smiley> listSmileys;
         private List<Shooter> listShooters;
 
@@ -268,10 +268,10 @@ namespace projectcsharp
             //ordne bare en if for hver level her
             if (level == 1)
             {
-                listBalls.Add(new MovinBall(10, 280, 2));
-                listBalls.Add(new MovinBall(520, 340, 1));
-                listBalls.Add(new MovinBall(this.Width, 120, 3));
-                listBalls.Add(new MovinBall(340, 100, 4));
+                listBalls.Add(new MovingBall(10, 280, 2));
+                listBalls.Add(new MovingBall(520, 340, 1));
+                listBalls.Add(new MovingBall(this.Width, 120, 3));
+                listBalls.Add(new MovingBall(340, 100, 4));
             }
             else if (level == 2)
             {
@@ -395,7 +395,7 @@ namespace projectcsharp
                     supermanPath.AddRectangle(new Rectangle((int)movingMan.X, (int)movingMan.Y, (int)manSize, (int)manSize));
                     supermanPath.CloseFigure();
 
-                    movingBall = new MovinBall();
+                    movingBall = new MovingBall();
                     GraphicsPath ballPath = new GraphicsPath();
                     ballPath.StartFigure();
                     ballPath.AddEllipse(new Rectangle(movingBall.x, movingBall.y, 7, 7));
@@ -453,7 +453,7 @@ namespace projectcsharp
                     }
                     for (int i = 0; i < myLevel.listBalls.Count; i++)
                     {
-                        MovinBall ball = myLevel.listBalls[i];
+                        MovingBall ball = myLevel.listBalls[i];
 
                         ball.Draw(e.Graphics);
 

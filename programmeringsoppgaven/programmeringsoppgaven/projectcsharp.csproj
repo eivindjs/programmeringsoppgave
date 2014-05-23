@@ -58,7 +58,7 @@
     <Compile Include="LevelForm.Designer.cs">
       <DependentUpon>LevelForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MovinBall.cs" />
+    <Compile Include="MovingBall.cs" />
     <Compile Include="MovingMan.cs" />
     <Compile Include="DBConnect.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
