@@ -26,7 +26,7 @@ namespace projectcsharp
 
             this.x = x;
             this.y = y;
-           
+            myPath.AddEllipse(x, y, w, h);
             this.direction = direction;
             Thread t = new Thread(new ThreadStart(Run));
             t.IsBackground = true;
@@ -46,6 +46,14 @@ namespace projectcsharp
             {
                 x ++;
             }
+            else if (direction == 3)
+            {
+                x--;
+            }
+            else if (direction == 4)
+            {
+                y++;
+            }
         }
         /// <summary>
         /// beveger ballene
@@ -56,7 +64,7 @@ namespace projectcsharp
             {
                 Move();
                 //kan bruke random for når den skal skyte
-                Thread.Sleep(10);
+                Thread.Sleep(10); 
             }
         } 
         public void Draw(Graphics g)
