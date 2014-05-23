@@ -107,7 +107,7 @@ namespace projectcsharp
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Sikker på at du vil slette highscoren din?","", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.OK)
+            if (dialogResult == DialogResult.Yes)
             {
                 query = String.Format("DELETE FROM Highscore WHERE userID = '" + User.Id + "'");
                 Delete(query);

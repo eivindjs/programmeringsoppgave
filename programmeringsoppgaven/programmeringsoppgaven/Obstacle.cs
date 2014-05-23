@@ -23,13 +23,13 @@ namespace projectcsharp
         public Obstacle()
         {           
         }
-        public Obstacle(int _x, int _y, int _width, int _height)
+        public Obstacle(int _x, int _y, int _width, int _height, int _level)
         {
             x = _x;
             y = _y;
             width = _width;
             height = _height;
-            level = MyPanel.level;
+            level = _level;
             obstacleColor = Color.FromArgb(random.Next(0, 256), random.Next(0, 256), random.Next(0, 256));
             if (level < 3)
             {
