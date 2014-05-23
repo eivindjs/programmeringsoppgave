@@ -49,6 +49,25 @@ namespace projectcsharp
                 myPath.AddLine(x, y, x + width, y);
                 myPath.AddLine(x + width, y + height, x, y + height);
                 myPath.CloseFigure(); //Lukk! 
+
+                Point[] points = {
+                    new Point(40, 60),
+                    new Point(50, 70),
+                    new Point(30, 90)};
+
+
+                //må fikse x og y osv
+                myPath.StartFigure(); //Fancy figur
+                myPath.AddArc(175, 50, 50, 50, 0, -180);
+                myPath.AddLine(100, 0, 250, 20);
+                myPath.AddLine(250, 20, 225, 75);
+                myPath.CloseFigure();
+
+                myPath.StartFigure(); // Ny figur
+                myPath.AddLine(50, 20, 5, 90);
+                myPath.AddCurve(points, 3);
+                myPath.AddLine(50, 150, 150, 180);
+                myPath.CloseFigure();
             }
         }
 
