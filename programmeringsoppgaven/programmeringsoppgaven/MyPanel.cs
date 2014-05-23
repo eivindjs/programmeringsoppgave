@@ -27,12 +27,13 @@ namespace projectcsharp
         private PictureBox superman;
         private Random random;
         private int manSize;
+        private MovinBall movingBall;
         private List<Obstacle> listObstacle;
         private List<MovinBall> listBalls = new List<MovinBall>();
         private List<Smiley> listSmileys;
         private List<Shooter> listShooters;
         private Object mySync = new Object();
-        private Label lblTime, lblScore, lblLevel;
+       // private Label lblTime, lblScore, lblLevel;
         private DBConnect db = new DBConnect();
         private int smileysToCatch = 1;
         #endregion
@@ -55,15 +56,15 @@ namespace projectcsharp
            ControlStyles.AllPaintingInWmPaint,
            true);
             this.UpdateStyles();
-            lblTime = new Label();
-            lblScore = new Label();
-            lblLevel = new Label();
-            lblTime.Location = new Point(300, 0);
-            lblScore.Location = new Point(400, 0);
-            lblLevel.Location = new Point(240, 0);
-            this.Controls.Add(lblTime);
-            this.Controls.Add(lblScore);
-            this.Controls.Add(lblLevel);
+          //  lblTime = new Label();
+           // lblScore = new Label();
+           // lblLevel = new Label();
+           // lblTime.Location = new Point(300, 0);
+           // lblScore.Location = new Point(400, 0);
+           // lblLevel.Location = new Point(240, 0);
+            //this.Controls.Add(lblTime);
+         //   this.Controls.Add(lblScore);
+          //  this.Controls.Add(lblLevel);
             manSize = 30;
             superman = new PictureBox();
             superman.Image = projectcsharp.Properties.Resources.super;
@@ -178,12 +179,10 @@ namespace projectcsharp
             else if (level == 4)
             {
 
-                lblLevel.Text = "Level 4";
             }
             else if (level == 5)
             {
 
-                lblLevel.Text = "Level 5";
             }
 
             smileysToCatch = listSmileys.Count();
@@ -267,6 +266,10 @@ namespace projectcsharp
                 listBalls.Add(new MovinBall(520, 340, 1));
                 listBalls.Add(new MovinBall(this.Width, 120, 3));
                 listBalls.Add(new MovinBall(340, 100, 4));
+            }
+            else if (level == 2)
+            {
+
             }
         }
        
@@ -387,6 +390,12 @@ namespace projectcsharp
                     supermanPath.AddRectangle(new Rectangle((int)movingMan.X, (int)movingMan.Y, (int)manSize, (int)manSize));
                     supermanPath.CloseFigure();
 
+                    movingBall = new MovinBall();
+                    GraphicsPath ballPath = new GraphicsPath();
+                    ballPath.StartFigure();
+                    ballPath.AddEllipse(new Rectangle(movingBall.x, movingBall.y, 7, 7));
+                    ballPath.CloseFigure();
+
                     e.Graphics.DrawLine(new Pen(Color.Green), new Point(0, 40), new Point(40, 40)); //plattformen ved start
 
                     for (int i = 0; i < listSmileys.Count; i++) //tegn alle smileys
@@ -417,6 +426,7 @@ namespace projectcsharp
 
                             if (smileysToCatch == 0)
                             {
+                                listBalls.Clear();
                                 running = false;
                                 timer.Enabled = false;
                                 timer.Stop();
@@ -456,7 +466,8 @@ namespace projectcsharp
                         MovinBall ball = listBalls[i];
 
                         ball.Draw(e.Graphics);
-                        if (CheckCollision(ball.GetPath(), supermanPath, e))
+
+                        if (CheckCollision(supermanPath, ballPath, e))
                         {
 
                             ShowMessageBox();
@@ -466,6 +477,11 @@ namespace projectcsharp
                                 seconds = 10;
                                 minutes = 1;            
                         }
+                        if (movingBall.x > this.Width)
+                        {
+                            listBalls.RemoveAt(i);
+                        } 
+
                     }
                     for (int i = 0; i < listObstacle.Count; i++)
                     {

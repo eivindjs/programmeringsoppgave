@@ -15,12 +15,18 @@ namespace projectcsharp
     public class MovinBall
     {
 
-        
-        private int x, y, direction; //variabler for plassering og retning
+
+        public int x { get; set; }
+        public int y { get; set; }
+        private int direction; //variabler for plassering og retning
         private int h = 7;
         private int w = 7;
         private GraphicsPath myPath = new GraphicsPath();
 
+        public MovinBall()
+        {
+
+        }
         public MovinBall(int x, int y, int direction)
         {
 
@@ -63,7 +69,6 @@ namespace projectcsharp
             while (true)
             {
                 Move();
-                //kan bruke random for når den skal skyte
                 Thread.Sleep(10); 
             }
         } 
