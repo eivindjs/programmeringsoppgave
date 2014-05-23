@@ -13,6 +13,9 @@ using System.Windows.Forms;
 
 namespace projectcsharp
 {
+    /// <summary>
+    /// Her skjer magien.
+    /// </summary>
     public partial class MyPanel : Panel
     {
         #region Private medlemsvariabler
@@ -20,8 +23,6 @@ namespace projectcsharp
         private Thread thread;
         private MovingMan movingMan;
         private System.Windows.Forms.Timer timer;
-     
-
         private System.Windows.Forms.Timer countDownTimer;
         private PictureBox superman;
         private bool running;
@@ -31,17 +32,20 @@ namespace projectcsharp
         private List<Smiley> listSmileys;
         private List<Shooter> listShooters;
         private Object mySync = new Object();
-        public int seconds;
-        public int minutes;
+        private int smileysToCatch = 1;
         private Label lblTime, lblScore, lblLevel;
         private DBConnect db = new DBConnect();
         private int highScore;
-        public static int level = 1;
-        private int smileysToCatch = 1;
-       
 
         #endregion
 
+        public static int level = 1;
+        public int seconds;
+        public int minutes;
+       
+        /// <summary>
+        /// Konstruktøren. Her instansieres viktige objekter som skal være tilgjengelig ved oppstart.
+        /// </summary>
         public MyPanel()
         {
             this.SetStyle(ControlStyles.DoubleBuffer |
@@ -64,14 +68,14 @@ namespace projectcsharp
             superman.Size = new System.Drawing.Size(manSize, manSize);
             superman.SizeMode = PictureBoxSizeMode.Zoom;
             
-            this.Controls.Add(superman);
+            this.Controls.Add(superman); //legger pictureBox til panelet
 
             this.timer = new System.Windows.Forms.Timer();
             timer.Interval = 20;
             timer.Tick += new EventHandler(timer_Tick);
 
             countDownTimer = new System.Windows.Forms.Timer();
-            countDownTimer.Interval = 1000;
+            countDownTimer.Interval = 1000; //skal "tikke" hvert sekund, for å emulere en stoppeklokke
             countDownTimer.Tick += new EventHandler(countDownTimer_Tick);
 
 
@@ -362,7 +366,13 @@ namespace projectcsharp
         }
 
         #endregion
-
+        /// <summary>
+        /// Sjekker kollisjon for alle typer graphicsPath. GraphicsPath a og b danner hver sin Region. Har de kontakt med hverandre, vil metoden returnere true. Ellers false.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public bool CheckCollision(GraphicsPath a, GraphicsPath b, PaintEventArgs e)
         {
             Region obstacleRegion = new Region(a);
