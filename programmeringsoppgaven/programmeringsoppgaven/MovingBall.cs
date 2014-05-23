@@ -12,7 +12,7 @@ namespace projectcsharp
     /// <summary>
     /// En klasse for ballene som skal skytes.
     /// </summary>
-    public class MovinBall
+    public class MovingBall
     {
 
         
@@ -21,7 +21,7 @@ namespace projectcsharp
         private int w = 7;
         private GraphicsPath myPath = new GraphicsPath();
 
-        public MovinBall(int x, int y, int direction)
+        public MovingBall(int x, int y, int direction)
         {
 
             this.x = x;
