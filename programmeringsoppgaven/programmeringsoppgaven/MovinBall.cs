@@ -23,11 +23,13 @@ namespace projectcsharp
         private int w = 7;
         private GraphicsPath myPath = new GraphicsPath();
 
+
         public MovinBall()
         {
 
         }
         public MovinBall(int x, int y, int direction)
+
         {
 
             this.x = x;

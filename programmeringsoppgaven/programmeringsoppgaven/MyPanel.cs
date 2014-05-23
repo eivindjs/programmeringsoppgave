@@ -18,15 +18,15 @@ namespace projectcsharp
     /// </summary>
     public partial class MyPanel : Panel
     {
-        #region Private medlemsvariabler
+        #region  Medlemsvariabler
         private ThreadStart ts;
         private Thread thread;
         private MovingMan movingMan;
         private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.Timer ballTimer;
         private PictureBox superman;
         private Random random;
         private int manSize;
+
         private MovinBall movingBall;
         private List<Obstacle> listObstacle;
         private List<MovinBall> listBalls = new List<MovinBall>();
@@ -35,20 +35,21 @@ namespace projectcsharp
 
        // private Label lblTime, lblScore, lblLevel;
 
+
         public static Object mySync = new Object();
        // private Label lblTime, lblScore, lblLevel;
 
         private DBConnect db = new DBConnect();
-        private int smileysToCatch = 1;
-        #endregion
-
+        public static int smileysToCatch = 1;
         public int level { get; set; }
         public int seconds { get; set; }
         public int minutes { get; set; }
         public bool playSound { get; set; }
         public bool running { get; set; }
         public int highScore { get; set; }
-       
+        public Level myLevel;
+        #endregion
+
         /// <summary>
         /// Konstruktøren. Her instansieres viktige objekter som skal være tilgjengelig ved oppstart.
         /// </summary>
@@ -84,19 +85,16 @@ namespace projectcsharp
             timer.Tick += new EventHandler(timer_Tick);
 
             random = new Random();
-            ballTimer = new System.Windows.Forms.Timer();
-            ballTimer.Interval = random.Next(1000, 4000);
-            ballTimer.Tick += new EventHandler(ballTimer_Tick);
+      
 
         }
+
         public void Restart()
         {
             lock (mySync)
             {
-                listBalls.Clear();
-                InsertSmileys();
-                InsertObstacles();
-                InsertShooter();
+                myLevel = new Level(this);
+               
                 movingMan = new MovingMan //setter verdiene til MovingMan tilbake vha properties
                 {
                     X = 10f,
@@ -111,6 +109,7 @@ namespace projectcsharp
                 startAnimation();
             }
         }
+
 
 
 
@@ -236,9 +235,8 @@ namespace projectcsharp
         }
         #endregion
 
-        #region Tråd- og timer-håndtering
 
-        
+        #region Tråd- og timer-håndtering
 
         public void UpdateGraphics()
         {
@@ -256,13 +254,15 @@ namespace projectcsharp
             thread = new Thread(ts);
             thread.IsBackground = true;
             thread.Start();
-            ballTimer.Start();
+
+            myLevel.StartTimer();
         }
         /// <summary>
         /// Timer for ballene, som skytes
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+
         private void ballTimer_Tick(object sender, EventArgs e)
         {
             //ordne bare en if for hver level her
@@ -323,8 +323,7 @@ namespace projectcsharp
                     running = false;
                     timer.Enabled = false;
                     timer.Stop();
-                    ballTimer.Stop();
-
+                    myLevel.StopTimer();
 
                     Insert(highScore);
 
@@ -332,29 +331,24 @@ namespace projectcsharp
 
                     level = 1;
                     highScore = 0;
-
                 }
             }
         }
-
-    
 
         public void ShowMessageBox()
         {
             lock (mySync)
             {
-
                 if (smileysToCatch == 0)
                 {
                     MessageBox.Show("Du klarte det! Trykk start for neste brett.");
-
                 }
                 else
                     MessageBox.Show("Du tapte! Trykk start for nytt spill.");
             }
         }
-
         #endregion
+
         /// <summary>
         /// Sjekker kollisjon for alle typer graphicsPath. GraphicsPath a og b danner hver sin Region. Har de kontakt med hverandre, vil metoden returnere true. Ellers false.
         /// </summary>
@@ -409,28 +403,13 @@ namespace projectcsharp
 
                     e.Graphics.DrawLine(new Pen(Color.Green), new Point(0, 40), new Point(40, 40)); //plattformen ved start
 
-                    for (int i = 0; i < listSmileys.Count; i++) //tegn alle smileys
+                    for (int i = 0; i < myLevel.listSmileys.Count; i++) //tegn alle smileys
                     {
-                        Smiley smiley = listSmileys[i];
+                        Smiley smiley = myLevel.listSmileys[i];
                         smiley.Draw(e.Graphics);
                         if (CheckCollision(smiley.GetPath(), supermanPath, e))
                         {
-                            if (listSmileys[i].brushColor == 1)
-                            {
-                                highScore += 50;
-                            }
-                            else if (listSmileys[i].brushColor == 2)
-                            {
-                                highScore += 100;
-                            }
-                            else if (listSmileys[i].brushColor == 3)
-                            {
-                                highScore += 150;
-                            }
-
-                            listSmileys.RemoveAt(i);
-
-
+                            myLevel.AddScore(i);
                             playSound = true;
 
                             smileysToCatch--;
@@ -447,9 +426,9 @@ namespace projectcsharp
                             }
                         }
                     }
-                    for (int i = 0; i < listShooters.Count; i++)
+                    for (int i = 0; i < myLevel.listShooters.Count; i++)
                     {
-                        Shooter shooter = listShooters[i];
+                        Shooter shooter = myLevel.listShooters[i];
                         shooter.Draw(e.Graphics);
 
                         if (CheckCollision(shooter.GetPath(), supermanPath, e))
@@ -457,7 +436,8 @@ namespace projectcsharp
                             running = false;
                             timer.Enabled = false;
                             timer.Stop();
-                            ballTimer.Stop();
+
+                            myLevel.StopTimer();
                             Insert(highScore);
 
 
@@ -466,15 +446,14 @@ namespace projectcsharp
                                 level = 1;
                                 highScore = 0;
                                 seconds = 10;
-                                minutes = 1;
-                          
+                                minutes = 1;                         
                         }
                         superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
 
                     }
-                    for (int i = 0; i < listBalls.Count; i++)
+                    for (int i = 0; i < myLevel.listBalls.Count; i++)
                     {
-                        MovinBall ball = listBalls[i];
+                        MovinBall ball = myLevel.listBalls[i];
 
                         ball.Draw(e.Graphics);
 
@@ -494,9 +473,9 @@ namespace projectcsharp
                         } 
 
                     }
-                    for (int i = 0; i < listObstacle.Count; i++)
+                    for (int i = 0; i < myLevel.listObstacle.Count; i++)
                     {
-                        Obstacle obstacle1 = listObstacle[i];
+                        Obstacle obstacle1 = myLevel.listObstacle[i];
 
                         obstacle1.Draw(e.Graphics);
 
@@ -505,7 +484,8 @@ namespace projectcsharp
                             running = false;
                             timer.Enabled = false;
                             timer.Stop();
-                            ballTimer.Stop();
+
+                            myLevel.StopTimer();
 
                             Insert(highScore);
 

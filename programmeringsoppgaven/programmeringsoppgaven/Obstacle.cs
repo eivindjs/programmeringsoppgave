@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace projectcsharp
 {
-    class Obstacle
+    public class Obstacle
     {
         private GraphicsPath myPath = new GraphicsPath(); //vil ha en path for alle hindringer
         private Object mySync = new Object();
