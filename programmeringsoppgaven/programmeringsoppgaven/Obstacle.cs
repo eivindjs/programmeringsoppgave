@@ -37,6 +37,7 @@ namespace projectcsharp
                 myPath.AddLine(x, y, x + width, y);
                 myPath.AddLine(x + width, y + height, x, y + height);
                 myPath.CloseFigure(); //Lukk! 
+              
 
                 myPath.StartFigure(); //Ny figur. 
                 myPath.AddEllipse(new Rectangle(x, y + 150, width, height));

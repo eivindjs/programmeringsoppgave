@@ -38,9 +38,9 @@
             this.lblAbout.BackColor = System.Drawing.Color.Transparent;
             this.lblAbout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAbout.ForeColor = System.Drawing.Color.Snow;
-            this.lblAbout.Location = new System.Drawing.Point(5, 48);
+            this.lblAbout.Location = new System.Drawing.Point(1, 9);
             this.lblAbout.Name = "lblAbout";
-            this.lblAbout.Size = new System.Drawing.Size(368, 182);
+            this.lblAbout.Size = new System.Drawing.Size(372, 221);
             this.lblAbout.TabIndex = 0;
             this.lblAbout.Text = resources.GetString("lblAbout.Text");
             this.lblAbout.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -51,7 +51,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::projectcsharp.Properties.Resources.backgroundImage;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(384, 262);
+            this.ClientSize = new System.Drawing.Size(393, 262);
             this.Controls.Add(this.lblAbout);
             this.DoubleBuffered = true;
             this.Name = "About";

@@ -21,6 +21,7 @@ namespace projectcsharp
         public About()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle; //størelsen på vinduet er absolutt
             lblAbout.BackColor = Color.Transparent;
            
         }
