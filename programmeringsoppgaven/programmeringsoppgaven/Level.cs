@@ -89,7 +89,7 @@ namespace projectcsharp
                 listObstacle = new List<Obstacle>();
                 listObstacle.Add(new Obstacle(260, 60, 160, 110, level));
                 listObstacle.Add(new Obstacle(560, 150, 120, 70, level));
-
+                listObstacle.Add(new Obstacle(5, 240, 80, 70, level));
                
             }
             else if (level == 4)
@@ -136,6 +136,12 @@ namespace projectcsharp
             {
                 listSmileys = new List<Smiley>();
                 listSmileys.Add(new Smiley(160, 340, 1));
+                listSmileys.Add(new Smiley(40, 120, 3));
+                listSmileys.Add(new Smiley(750, 360, 3));
+                listSmileys.Add(new Smiley(270, 40, 2));
+                listSmileys.Add(new Smiley(20, 350, 2));
+                listSmileys.Add(new Smiley(630, 120, 1));
+                listSmileys.Add(new Smiley(460, 310, 1));
             }
             else if (level == 4)
             {
@@ -177,19 +183,20 @@ namespace projectcsharp
             }
             else if (level == 3)
             {
-                //seks skyttere
+                
                 listShooters = new List<Shooter>();
-              
+                listShooters.Add(new Shooter(new Point[] { new Point(400, parentPanel.Height), new Point(440, parentPanel.Height), new Point(420, 350) }));
+                listShooters.Add(new Shooter(new Point[] { new Point(600, 340), new Point(640, 340), new Point(620, 300) }));
                 listShooters.Add(new Shooter(new Point[] { new Point(730, 120), new Point(parentPanel.Width, 100), new Point(parentPanel.Width, 140) }));
                 listShooters.Add(new Shooter(new Point[] { new Point(200, parentPanel.Height), new Point(240, parentPanel.Height), new Point(220, 350) }));
+                listShooters.Add(new Shooter(new Point[] { new Point(600, 0), new Point(640, 0), new Point(620, 30) }));
+
             }
             else if (level == 4)
             {
-                //sju
             }
             else if (level == 5)
             {
-                //åtte
             }
 
         }

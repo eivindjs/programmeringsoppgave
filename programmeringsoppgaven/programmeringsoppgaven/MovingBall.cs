@@ -32,7 +32,9 @@ namespace projectcsharp
 
             this.x = x;
             this.y = y;
+            myPath.StartFigure();
             myPath.AddEllipse(x, y, w, h);
+            myPath.CloseFigure();
             this.direction = direction;
             Thread t = new Thread(new ThreadStart(Run));
             t.IsBackground = true;

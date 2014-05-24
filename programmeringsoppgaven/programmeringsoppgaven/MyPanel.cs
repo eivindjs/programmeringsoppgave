@@ -27,7 +27,7 @@ namespace projectcsharp
         private Random random;
         private int manSize;
 
-        private MovingBall movingBall;
+        private MovingBall movingBall = new MovingBall();
         private List<Obstacle> listObstacle;
         private List<MovingBall> listBalls = new List<MovingBall>();
         private List<Smiley> listSmileys;
@@ -398,12 +398,8 @@ namespace projectcsharp
                     supermanPath.AddRectangle(new Rectangle((int)movingMan.X, (int)movingMan.Y, (int)manSize, (int)manSize));
                     supermanPath.CloseFigure();
 
-                    movingBall = new MovingBall();
-                    GraphicsPath ballPath = new GraphicsPath();
-                    ballPath.StartFigure();
-                    ballPath.AddEllipse(new Rectangle(movingBall.x, movingBall.y, 7, 7));
-                    ballPath.CloseFigure();
 
+                 
                     e.Graphics.DrawLine(new Pen(Color.Green), new Point(0, 40), new Point(40, 40)); //plattformen ved start
 
                     for (int i = 0; i < myLevel.listSmileys.Count; i++) //tegn alle smileys
@@ -460,7 +456,7 @@ namespace projectcsharp
 
                         ball.Draw(e.Graphics);
                         //not working :/
-                        if (CheckCollision(supermanPath, ballPath, e))
+                        if (CheckCollision(ball.GetPath(), supermanPath, e))
                         {
 
                             ShowMessageBox();
@@ -496,6 +492,7 @@ namespace projectcsharp
                                 
                             level = 1;                                                    
                         }
+                      
                        
                     }
                 }

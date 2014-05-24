@@ -50,8 +50,7 @@ namespace projectcsharp
                 myPath.AddLine(x + width, y + height, x, y + height);
                 myPath.CloseFigure(); //Lukk! 
 
-                Point[] points = {
-                    new Point(60, 80),
+                Point[] points = { new Point(60, 80),
                     new Point(70, 90),
                     new Point(50, 110)};
 
@@ -66,6 +65,11 @@ namespace projectcsharp
                 myPath.AddLine(60, 60, 5, 90);
                 myPath.AddCurve(points, 3);
                 myPath.AddLine(60, 150, 150, 180);
+                myPath.CloseFigure();
+
+                Point[] poin = { new Point(x, y + width + height), new Point(x + y, y + width + height), new Point(x + 30 , y+ height + y) };
+                myPath.StartFigure();
+                myPath.AddPolygon(poin);
                 myPath.CloseFigure();
             }
         }
