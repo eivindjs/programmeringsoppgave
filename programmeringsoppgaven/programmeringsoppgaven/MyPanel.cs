@@ -26,19 +26,8 @@ namespace projectcsharp
         private PictureBox superman;
         private Random random;
         private int manSize;
-
-        private MovingBall movingBall;
-        private List<Obstacle> listObstacle;
-        private List<MovingBall> listBalls = new List<MovingBall>();
-        private List<Smiley> listSmileys;
-        private List<Shooter> listShooters;
-
-       // private Label lblTime, lblScore, lblLevel;
-
-
         public static Object mySync = new Object();
-       // private Label lblTime, lblScore, lblLevel;
-
+        private Label lblTime, lblScore, lblLevel;
         private DBConnect db = new DBConnect();
         public static int smileysToCatch = 1;
         public int level { get; set; }
@@ -48,6 +37,7 @@ namespace projectcsharp
         public bool running { get; set; }
         public int highScore { get; set; }
         public Level myLevel;
+        private int run = 1;
         #endregion
 
         /// <summary>
@@ -55,27 +45,29 @@ namespace projectcsharp
         /// </summary>
         public MyPanel()
         {
+            seconds = 1;
+            minutes = 1;
             level = 1;
             this.SetStyle(ControlStyles.DoubleBuffer |
            ControlStyles.UserPaint |
            ControlStyles.AllPaintingInWmPaint,
            true);
             this.UpdateStyles();
-          //  lblTime = new Label();
-           // lblScore = new Label();
-           // lblLevel = new Label();
-           // lblTime.Location = new Point(300, 0);
-           // lblScore.Location = new Point(400, 0);
-           // lblLevel.Location = new Point(240, 0);
-            //this.Controls.Add(lblTime);
-         //   this.Controls.Add(lblScore);
-          //  this.Controls.Add(lblLevel);
+            lblTime = new Label();
+            lblScore = new Label();
+            lblLevel = new Label();
+            lblTime.Location = new Point(300, 0);
+            lblScore.Location = new Point(400, 0);
+            lblLevel.Location = new Point(240, 0);
+            this.Controls.Add(lblTime);
+            this.Controls.Add(lblScore);
+            this.Controls.Add(lblLevel);
             manSize = 30;
             superman = new PictureBox();
             superman.Image = projectcsharp.Properties.Resources.super;
             superman.Size = new System.Drawing.Size(manSize, manSize);
             superman.SizeMode = PictureBoxSizeMode.Zoom;
-            
+
             this.Controls.Add(superman); //legger pictureBox til panelet
 
             this.Controls.Add(superman);
@@ -85,7 +77,7 @@ namespace projectcsharp
             timer.Tick += new EventHandler(timer_Tick);
 
             random = new Random();
-      
+
 
         }
 
@@ -93,8 +85,9 @@ namespace projectcsharp
         {
             lock (mySync)
             {
+                
                 myLevel = new Level(this);
-               
+
                 movingMan = new MovingMan //setter verdiene til MovingMan tilbake vha properties
                 {
                     X = 10f,
@@ -110,132 +103,6 @@ namespace projectcsharp
             }
         }
 
-
-
-
-
-        #region Insert Objects
-        public void InsertObstacles()
-        {
-            if (level == 1)
-            {
-                listObstacle = new List<Obstacle>();
-                listObstacle.Add(new Obstacle(10, 150, 150, 90, level));
-                listObstacle.Add(new Obstacle(300, 30, 90, 50, level));
-                listObstacle.Add(new Obstacle(500, 50, 65, 50, level));
-
-            }
-            else if (level == 2)
-            {
-                listObstacle = new List<Obstacle>();
-                listObstacle.Add(new Obstacle(90, 90, 120, 60, level));
-                listObstacle.Add(new Obstacle(260, 60, 160, 110, level));
-                listObstacle.Add(new Obstacle(500, 200, 150, 50, level));
-
-            }
-            else if (level == 3)
-            {
-
-            }
-            else if (level == 4)
-            {
-
-            }
-            else if (level == 5)
-            {
-
-            }
-
-
-
-
-        }
-        public void InsertSmileys()
-        {
-            if (level == 1)
-            {
-                listSmileys = new List<Smiley>();
-                listSmileys.Add(new Smiley(100, 100, 1));
-                listSmileys.Add(new Smiley(200, 200, 1));
-                listSmileys.Add(new Smiley(700, 50, 1));
-                listSmileys.Add(new Smiley(600, 300, 2));
-                minutes = 1;
-                seconds = 10;
-             
-            }
-            else if (level == 2)
-            {
-            
-                listSmileys = new List<Smiley>();
-                listSmileys.Add(new Smiley(60, 70, 1));
-                listSmileys.Add(new Smiley(160, 340, 1));
-                listSmileys.Add(new Smiley(700, 250, 1));
-                listSmileys.Add(new Smiley(350, 50, 2));
-                listSmileys.Add(new Smiley(550, 190, 3));
-                minutes = 0;
-                seconds = 50;
-             
-
-            }
-            else if (level == 3)
-            {
-
-            }
-            else if (level == 4)
-            {
-
-            }
-            else if (level == 5)
-            {
-
-            }
-
-            smileysToCatch = listSmileys.Count();
-
-        }
-
-        public void InsertShooter()
-        {
-            if (level == 1)
-            {
-                //fire skyttere
-                listShooters = new List<Shooter>();
-                listShooters.Add(new Shooter(new Point[] { new Point(500, this.Height), new Point(540, this.Height), new Point(520, 350) }));
-                listShooters.Add(new Shooter(new Point[] { new Point(730, 120), new Point(this.Width, 100), new Point(this.Width, 140) }));
-                listShooters.Add(new Shooter(new Point[] { new Point(320, 80), new Point(360, 80), new Point(340, 110) }));
-                listShooters.Add(new Shooter(new Point[] { new Point(30, 280), new Point(0, 260), new Point(0, 300) }));
-
-                
-            }
-            else if (level == 2)
-            {
-                //fem skyttere
-                listShooters = new List<Shooter>();
-                listShooters.Add(new Shooter(new Point[] { new Point(30, 280), new Point(0, 260), new Point(0, 300) }));
-                listShooters.Add(new Shooter(new Point[] { new Point(730, 120), new Point(this.Width, 100), new Point(this.Width, 140) }));
-                listShooters.Add(new Shooter(new Point[] { new Point(200, this.Height), new Point(240, this.Height), new Point(220, 350) }));
-                listShooters.Add(new Shooter(new Point[] { new Point(140, 90), new Point(180, 90), new Point(160, 65) }));
-                listShooters.Add(new Shooter(new Point[] { new Point(540, 250), new Point(580, 250), new Point(560, 280) }));
-
-
-            }
-            else if (level == 3)
-            {
-                //seks skyttere
-            }
-            else if (level == 4)
-            {
-                //sju
-            }
-            else if (level == 5)
-            {
-                //åtte
-            }
-
-        }
-        #endregion
-
-
         #region Tråd- og timer-håndtering
 
         public void UpdateGraphics()
@@ -250,10 +117,15 @@ namespace projectcsharp
 
         private void startAnimation()
         {
-            ts = new ThreadStart(UpdateGraphics);
-            thread = new Thread(ts);
-            thread.IsBackground = true;
-            thread.Start();
+            if (run == 1)
+            {
+                ts = new ThreadStart(UpdateGraphics);
+                thread = new Thread(ts);
+                thread.IsBackground = true;
+                thread.Start();
+
+                run++;
+            }
 
             myLevel.StartTimer();
         }
@@ -262,23 +134,6 @@ namespace projectcsharp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-
-        private void ballTimer_Tick(object sender, EventArgs e)
-        {
-            //ordne bare en if for hver level her
-            if (level == 1)
-            {
-                listBalls.Add(new MovingBall(10, 280, 2));
-                listBalls.Add(new MovingBall(520, 340, 1));
-                listBalls.Add(new MovingBall(this.Width, 120, 3));
-                listBalls.Add(new MovingBall(340, 100, 4));
-            }
-            else if (level == 2)
-            {
-
-            }
-        }
-
 
         private void timer_Tick(object sender, EventArgs e)
         {
@@ -395,12 +250,6 @@ namespace projectcsharp
                     supermanPath.AddRectangle(new Rectangle((int)movingMan.X, (int)movingMan.Y, (int)manSize, (int)manSize));
                     supermanPath.CloseFigure();
 
-                    movingBall = new MovingBall();
-                    GraphicsPath ballPath = new GraphicsPath();
-                    ballPath.StartFigure();
-                    ballPath.AddEllipse(new Rectangle(movingBall.x, movingBall.y, 7, 7));
-                    ballPath.CloseFigure();
-
                     e.Graphics.DrawLine(new Pen(Color.Green), new Point(0, 40), new Point(40, 40)); //plattformen ved start
 
                     for (int i = 0; i < myLevel.listSmileys.Count; i++) //tegn alle smileys
@@ -416,7 +265,6 @@ namespace projectcsharp
 
                             if (smileysToCatch == 0)
                             {
-                                listBalls.Clear();
                                 running = false;
                                 timer.Enabled = false;
                                 timer.Stop();
@@ -442,37 +290,16 @@ namespace projectcsharp
 
 
                             ShowMessageBox();
-                                Restart();
-                                level = 1;
-                                highScore = 0;
-                                seconds = 10;
-                                minutes = 1;                         
+                            Restart();
+                            level = 1;
+                            highScore = 0;
+                            seconds = 10;
+                            minutes = 1;
                         }
                         superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
 
                     }
-                    for (int i = 0; i < myLevel.listBalls.Count; i++)
-                    {
-                        MovingBall ball = myLevel.listBalls[i];
-
-                        ball.Draw(e.Graphics);
-
-                        if (CheckCollision(supermanPath, ballPath, e))
-                        {
-
-                            ShowMessageBox();
-
-                                level = 1;
-                                highScore = 0;
-                                seconds = 10;
-                                minutes = 1;            
-                        }
-                        if (movingBall.x > this.Width)
-                        {
-                            listBalls.RemoveAt(i);
-                        } 
-
-                    }
+                
                     for (int i = 0; i < myLevel.listObstacle.Count; i++)
                     {
                         Obstacle obstacle1 = myLevel.listObstacle[i];
@@ -490,8 +317,8 @@ namespace projectcsharp
                             Insert(highScore);
 
                             ShowMessageBox();
-                                
-                            level = 1;                                                    
+
+                            level = 1;
                         }
                     }
                 }
