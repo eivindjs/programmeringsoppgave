@@ -86,6 +86,7 @@ namespace projectcsharp
             }
             else if (level == 3)
             {
+            
 
             }
             else if (level == 4)
@@ -130,7 +131,8 @@ namespace projectcsharp
             }
             else if (level == 3)
             {
-
+                listSmileys = new List<Smiley>();
+                listSmileys.Add(new Smiley(60, 70, 1));
             }
             else if (level == 4)
             {
