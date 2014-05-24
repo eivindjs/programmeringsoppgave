@@ -51,12 +51,11 @@ namespace projectcsharp
                 myPath.CloseFigure(); //Lukk! 
 
                 Point[] points = {
-                    new Point(40, 60),
-                    new Point(50, 70),
-                    new Point(30, 90)};
+                    new Point(60, 80),
+                    new Point(70, 90),
+                    new Point(50, 110)};
 
-
-                //må fikse x og y osv
+         
                 myPath.StartFigure(); //Fancy figur
                 myPath.AddArc(175, 50, 50, 50, 0, -180);
                 myPath.AddLine(100, 0, 250, 20);
@@ -64,9 +63,9 @@ namespace projectcsharp
                 myPath.CloseFigure();
 
                 myPath.StartFigure(); // Ny figur
-                myPath.AddLine(50, 20, 5, 90);
+                myPath.AddLine(60, 60, 5, 90);
                 myPath.AddCurve(points, 3);
-                myPath.AddLine(50, 150, 150, 180);
+                myPath.AddLine(60, 150, 150, 180);
                 myPath.CloseFigure();
             }
         }

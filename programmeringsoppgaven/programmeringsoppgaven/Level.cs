@@ -18,7 +18,7 @@ namespace projectcsharp
         private MyPanel parentPanel;
         public System.Windows.Forms.Timer ballTimer;
         private Random random;
-        public int highScore { get; set; }
+       // public int highScore { get; set; } 
 
         public Level(MyPanel _panel)
         {
@@ -27,7 +27,7 @@ namespace projectcsharp
             ballTimer.Interval = random.Next(1000, 4000);
             ballTimer.Tick += new EventHandler(ballTimer_Tick);
             parentPanel = _panel;
-            level = parentPanel.level;
+            level = 3;
             listBalls = new List<MovingBall>();
 
             listBalls.Clear();
@@ -51,15 +51,15 @@ namespace projectcsharp
         {
             if (listSmileys[i].brushColor == 1)
             {
-                highScore += 50;
+               parentPanel.highScore += 50;
             }
             else if (listSmileys[i].brushColor == 2)
             {
-                highScore += 100;
+                parentPanel.highScore += 100;
             }
             else if (listSmileys[i].brushColor == 3)
             {
-                highScore += 150;
+                parentPanel.highScore += 150;
             }
 
             listSmileys.RemoveAt(i);
@@ -86,8 +86,11 @@ namespace projectcsharp
             }
             else if (level == 3)
             {
-            
+                listObstacle = new List<Obstacle>();
+                listObstacle.Add(new Obstacle(260, 60, 160, 110, level));
+                listObstacle.Add(new Obstacle(560, 150, 120, 70, level));
 
+               
             }
             else if (level == 4)
             {
@@ -132,7 +135,7 @@ namespace projectcsharp
             else if (level == 3)
             {
                 listSmileys = new List<Smiley>();
-                listSmileys.Add(new Smiley(60, 70, 1));
+                listSmileys.Add(new Smiley(160, 340, 1));
             }
             else if (level == 4)
             {
@@ -169,12 +172,16 @@ namespace projectcsharp
                 listShooters.Add(new Shooter(new Point[] { new Point(200, parentPanel.Height), new Point(240, parentPanel.Height), new Point(220, 350) }));
                 listShooters.Add(new Shooter(new Point[] { new Point(140, 90), new Point(180, 90), new Point(160, 65) }));
                 listShooters.Add(new Shooter(new Point[] { new Point(540, 250), new Point(580, 250), new Point(560, 280) }));
-
+                
 
             }
             else if (level == 3)
             {
                 //seks skyttere
+                listShooters = new List<Shooter>();
+              
+                listShooters.Add(new Shooter(new Point[] { new Point(730, 120), new Point(parentPanel.Width, 100), new Point(parentPanel.Width, 140) }));
+                listShooters.Add(new Shooter(new Point[] { new Point(200, parentPanel.Height), new Point(240, parentPanel.Height), new Point(220, 350) }));
             }
             else if (level == 4)
             {
@@ -198,6 +205,26 @@ namespace projectcsharp
                 listBalls.Add(new MovingBall(520, 340, 1));
                 listBalls.Add(new MovingBall(parentPanel.Width, 120, 3));
                 listBalls.Add(new MovingBall(340, 100, 4));
+            }
+            else if (level == 2)
+            {
+                listBalls.Add(new MovingBall(parentPanel.Width, 120, 3));
+                listBalls.Add(new MovingBall(30, 270, 2));
+                listBalls.Add(new MovingBall(220, 340, 1));
+                listBalls.Add(new MovingBall(160, 55, 1));
+                listBalls.Add(new MovingBall(560, 270, 4));
+            }
+            else if (level == 3)
+            {
+
+            }
+            else if (level == 4)
+            {
+
+            }
+            else if (level == 5)
+            {
+
             }
         }
     }

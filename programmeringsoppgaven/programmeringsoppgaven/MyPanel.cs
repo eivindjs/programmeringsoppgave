@@ -130,7 +130,7 @@ namespace projectcsharp
                 listObstacle = new List<Obstacle>();
                 listObstacle.Add(new Obstacle(90, 90, 120, 60, level));
                 listObstacle.Add(new Obstacle(260, 60, 160, 110, level));
-                listObstacle.Add(new Obstacle(500, 200, 150, 50, level));
+                listObstacle.Add(new Obstacle(500, 200, 150, 50, level)); 
 
             }
             else if (level == 3)
