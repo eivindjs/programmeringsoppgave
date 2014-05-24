@@ -56,6 +56,7 @@ namespace projectcsharp
         public MyPanel()
         {
             level = 1;
+            
             this.SetStyle(ControlStyles.DoubleBuffer |
            ControlStyles.UserPaint |
            ControlStyles.AllPaintingInWmPaint,
@@ -94,7 +95,6 @@ namespace projectcsharp
             lock (mySync)
             {
                 myLevel = new Level(this);
-               
                 movingMan = new MovingMan //setter verdiene til MovingMan tilbake vha properties
                 {
                     X = 10f,
@@ -135,7 +135,7 @@ namespace projectcsharp
             }
             else if (level == 3)
             {
-
+                
             }
             else if (level == 4)
             {
@@ -330,7 +330,7 @@ namespace projectcsharp
                     MessageBox.Show("Du tapte! Prøv igjen.");
 
                     level = 1;
-                    highScore = 0;
+                    highScore = 0; 
                 }
             }
         }
@@ -342,9 +342,12 @@ namespace projectcsharp
                 if (smileysToCatch == 0)
                 {
                     MessageBox.Show("Du klarte det! Trykk start for neste brett.");
+                    listBalls.Clear();
                 }
                 else
+                {
                     MessageBox.Show("Du tapte! Trykk start for nytt spill.");
+                }
             }
         }
         #endregion
@@ -456,7 +459,7 @@ namespace projectcsharp
                         MovingBall ball = myLevel.listBalls[i];
 
                         ball.Draw(e.Graphics);
-
+                        //not working :/
                         if (CheckCollision(supermanPath, ballPath, e))
                         {
 
@@ -493,6 +496,7 @@ namespace projectcsharp
                                 
                             level = 1;                                                    
                         }
+                       
                     }
                 }
             }
