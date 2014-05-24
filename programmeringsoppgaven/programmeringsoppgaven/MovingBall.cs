@@ -14,8 +14,6 @@ namespace projectcsharp
     /// </summary>
     public class MovingBall
     {
-
-
         public int x { get; set; }
         public int y { get; set; }
         private int direction; //variabler for plassering og retning

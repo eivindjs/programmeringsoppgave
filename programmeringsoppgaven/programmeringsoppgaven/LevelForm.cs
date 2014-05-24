@@ -16,7 +16,6 @@ namespace projectcsharp
         private System.Windows.Forms.Timer stopWatch;
         private System.Windows.Forms.Timer updateTimer;
 
-
         public LevelForm()
         {
             InitializeComponent();
@@ -25,10 +24,14 @@ namespace projectcsharp
             stopWatch = new System.Windows.Forms.Timer();
             stopWatch.Interval = 1000; //skal "tikke" hvert sekund, for å emulere en stoppeklokke
             stopWatch.Tick += new EventHandler(StopWatch_Tick);
+            stopWatch.Enabled = false;
 
             updateTimer = new System.Windows.Forms.Timer();
             updateTimer.Interval = 17;
             updateTimer.Tick += new EventHandler(UpdateTimer_Tick);
+            updateTimer.Enabled = false;
+
+
 
         }
 
