@@ -36,6 +36,11 @@ namespace projectcsharp
             InsertShooter(); 
         }
 
+        public void ClearBalls()
+        {
+
+            listBalls.Clear();
+        }
         public void StartTimer()
         {
             ballTimer.Start();
