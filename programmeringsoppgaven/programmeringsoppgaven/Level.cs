@@ -27,7 +27,7 @@ namespace projectcsharp
             ballTimer.Interval = random.Next(1000, 4000);
             ballTimer.Tick += new EventHandler(ballTimer_Tick);
             parentPanel = _panel;
-            level = 3;
+            level = parentPanel.level;
             listBalls = new List<MovingBall>();
 
             listBalls.Clear();

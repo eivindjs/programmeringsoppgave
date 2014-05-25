@@ -15,7 +15,9 @@ namespace projectcsharp
     {
         private System.Windows.Forms.Timer stopWatch;
         private System.Windows.Forms.Timer updateTimer;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public LevelForm()
         {
             InitializeComponent();

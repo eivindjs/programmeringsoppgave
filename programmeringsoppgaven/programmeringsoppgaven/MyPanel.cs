@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -113,7 +114,7 @@ namespace projectcsharp
 
 
 
-
+/*
         #region Insert Objects
         public void InsertObstacles()
         {
@@ -234,7 +235,7 @@ namespace projectcsharp
 
         }
         #endregion
-
+*/
 
         #region Tråd- og timer-håndtering
 
@@ -453,23 +454,42 @@ namespace projectcsharp
                     for (int i = 0; i < myLevel.listBalls.Count; i++)
                     {
                         MovingBall ball = myLevel.listBalls[i];
-
                         ball.Draw(e.Graphics);
-                        //not working :/
-                        if (CheckCollision(ball.GetPath(), supermanPath, e))
+
+                        GraphicsPath ballPath = new GraphicsPath();
+                        ballPath.StartFigure();
+                        ballPath.AddEllipse(myLevel.listBalls[i].x, myLevel.listBalls[i].y, 7, 7);
+                        ballPath.CloseFigure();
+                        //fungere men bli litt kresj :P
+                        if (CheckCollision(ballPath, supermanPath, e))
                         {
 
                             ShowMessageBox();
+                            running = false;
+                            timer.Enabled = false;
+                            timer.Stop();
 
-                                level = 1;
-                                highScore = 0;
-                                seconds = 10;
-                                minutes = 1;            
+                            myLevel.StopTimer();
+                            myLevel.listBalls.Clear();
+
+                         //   Insert(highScore);
+
+                            ShowMessageBox();
+
+                            level = 1;            
                         }
-                        if (movingBall.x > this.Width)
+                        //fjerner baller fra listen som
+                        else if (myLevel.listBalls[i].x > this.Width || myLevel.listBalls[i].x < 0)
                         {
-                            listBalls.RemoveAt(i);
+                            myLevel.listBalls.RemoveAt(i);
+                            Debug.Print("ball fjernet");
                         } 
+                        else if (myLevel.listBalls[i].y > this.Height || myLevel.listBalls[i].y < 0)
+                        {
+                            myLevel.listBalls.RemoveAt(i);
+                            Debug.Print("ball fjernet");
+
+                        }
 
                     }
                     for (int i = 0; i < myLevel.listObstacle.Count; i++)
@@ -483,9 +503,8 @@ namespace projectcsharp
                             running = false;
                             timer.Enabled = false;
                             timer.Stop();
-
+                            
                             myLevel.StopTimer();
-
                             Insert(highScore);
 
                             ShowMessageBox();
