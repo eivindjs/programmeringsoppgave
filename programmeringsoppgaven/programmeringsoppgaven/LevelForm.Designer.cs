@@ -34,8 +34,8 @@
             this.lblScore = new System.Windows.Forms.Label();
             this.lblLevel = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
-            this.myPanel1 = new projectcsharp.MyPanel();
             this.btnClose = new System.Windows.Forms.Button();
+            this.gamePanel = new projectcsharp.MyPanel();
             this.mainTablePanel.SuspendLayout();
             this.buttonTablePanel.SuspendLayout();
             this.SuspendLayout();
@@ -50,7 +50,7 @@
             this.mainTablePanel.ColumnCount = 1;
             this.mainTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainTablePanel.Controls.Add(this.buttonTablePanel, 0, 1);
-            this.mainTablePanel.Controls.Add(this.myPanel1, 0, 0);
+            this.mainTablePanel.Controls.Add(this.gamePanel, 0, 0);
             this.mainTablePanel.Location = new System.Drawing.Point(0, 0);
             this.mainTablePanel.Margin = new System.Windows.Forms.Padding(2);
             this.mainTablePanel.Name = "mainTablePanel";
@@ -138,16 +138,6 @@
             this.lblTime.TabIndex = 1;
             this.lblTime.Text = "Time";
             // 
-            // myPanel1
-            // 
-            this.myPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.myPanel1.level = 1;
-            this.myPanel1.Location = new System.Drawing.Point(3, 3);
-            this.myPanel1.Name = "myPanel1";
-            this.myPanel1.running = false;
-            this.myPanel1.Size = new System.Drawing.Size(768, 387);
-            this.myPanel1.TabIndex = 3;
-            // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -161,6 +151,19 @@
             this.btnClose.Text = "Avslutt";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // gamePanel
+            // 
+            this.gamePanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gamePanel.highScore = 0;
+            this.gamePanel.level = 1;
+            this.gamePanel.Location = new System.Drawing.Point(3, 3);
+            this.gamePanel.minutes = 0;
+            this.gamePanel.Name = "gamePanel";
+            this.gamePanel.running = false;
+            this.gamePanel.seconds = 0;
+            this.gamePanel.Size = new System.Drawing.Size(768, 387);
+            this.gamePanel.TabIndex = 3;
             // 
             // LevelForm
             // 
@@ -186,7 +189,7 @@
         private System.Windows.Forms.TableLayoutPanel mainTablePanel;
         private System.Windows.Forms.TableLayoutPanel buttonTablePanel;
         private System.Windows.Forms.Button btnStart;
-        private MyPanel myPanel1;
+        private MyPanel gamePanel;
         private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.Label lblLevel;
         private System.Windows.Forms.Label lblTime;

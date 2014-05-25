@@ -44,7 +44,6 @@ namespace projectcsharp
         {
             levelForm.Close();
         }
-        //Kort og enkelt ka det går ut på? ka du tror Tord?
         private void btnAbout_Click(object sender, EventArgs e)
         {
             var threadAbout = new Thread(ThreadAbout);
