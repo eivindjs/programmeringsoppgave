@@ -198,6 +198,8 @@ namespace projectcsharp
             else
                 return false;
         }
+
+       
         #region OnPaint
         /// <summary>
         /// Kjøres ved this.Invalidate();
@@ -302,7 +304,7 @@ namespace projectcsharp
                             myLevel.listBalls.Clear();
 
                          //   Insert(highScore);
-
+                            
                             ShowMessageBox();
 
                             level = 1;            
