@@ -74,17 +74,33 @@ namespace projectcsharp
 
             this.timer = new System.Windows.Forms.Timer();
             timer.Interval = 17;
-            timer.Tick += new EventHandler(timer_Tick);
+            timer.Tick += new EventHandler(Timer_Tick);
 
 
 
 
         }
 
-        public void StartGame()
-        {    
-            myLevel = new Level(this);
 
+        public void RunGame()
+        {
+            if (level == 1)
+            {
+                StartGame();
+            }
+            else if (smileysToCatch == 0)
+            {
+                StartNextLevel();
+            }
+            else
+                RestartCurrentGame();
+        }
+
+        public void StartGame()
+        {
+            myLevel = new Level(this);
+            seconds = 10; // korrekt???
+            minutes = 1; // korrekt???
             smileysToCatch = myLevel.listSmileys.Count;
 
             movingMan = new MovingMan //setter verdiene til MovingMan tilbake vha properties
@@ -109,24 +125,23 @@ namespace projectcsharp
         public void StopGame()
         {
             running = false;
-            restart = true;
-            timer.Enabled = false;
+            // timer.Enabled = false;
             timer.Stop();
             myLevel.StopTimer();
-            Insert(highScore);
-            level = 1; // korrekt???
-            highScore = 0; //MIDLERTIDIG. DENNE KAN FJERNES
+            //level = 1; // korrekt???
+
             myLevel.ClearBalls();
-            gameOver = true;
 
             seconds = 10; // korrekt???
             minutes = 1; // korrekt???
 
             ShowMessageBox();
         }
-   
+
         public void StartNextLevel()
         {
+            running = true;
+
             timer.Enabled = true;
             timer.Start();
 
@@ -142,8 +157,6 @@ namespace projectcsharp
             };
             superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
 
-            running = true;
-            timer.Start();
             startAnimation();
         }
 
@@ -163,11 +176,12 @@ namespace projectcsharp
             ts = new ThreadStart(UpdateGraphics);
             thread = new Thread(ts);
             thread.IsBackground = true;
-            myLevel.StartTimer();
             thread.Start();
+            myLevel.StartBallTimer();
+
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             lock (mySync)
             {
@@ -208,7 +222,7 @@ namespace projectcsharp
                 else
                 {
                     StopGame();
-                  
+                    // Insert(highScore);    
                 }
             }
         }
@@ -271,101 +285,137 @@ namespace projectcsharp
         /// 
         protected override void OnPaint(PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            lock (mySync)
+            if (running)
             {
-                if (this.movingMan != null)
+
+                lock (mySync)
                 {
-                    base.OnPaint(e);
-
-                    superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
-                    GraphicsPath supermanPath = new GraphicsPath();
-                    supermanPath.StartFigure(); 
-                    supermanPath.AddRectangle(new Rectangle((int)movingMan.X, (int)movingMan.Y, (int)manSize, (int)manSize));
-                    supermanPath.CloseFigure();
-
-                    e.Graphics.DrawLine(new Pen(Color.Green), new Point(0, 40), new Point(40, 40)); //plattformen ved start
-
-                    for (int i = 0; i < myLevel.listSmileys.Count; i++) //tegn alle smileys
+                    if (this.movingMan != null)
                     {
-                        Smiley smiley = myLevel.listSmileys[i];
-                        smiley.Draw(e.Graphics);
-                        if (CheckCollision(smiley.GetPath(), supermanPath, e))
+                        base.OnPaint(e);
+                        e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+
+                        superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
+                        GraphicsPath supermanPath = new GraphicsPath();
+                        supermanPath.StartFigure();
+                        supermanPath.AddRectangle(new Rectangle((int)movingMan.X, (int)movingMan.Y, (int)manSize, (int)manSize));
+                        supermanPath.CloseFigure();
+
+                        e.Graphics.DrawLine(new Pen(Color.Green), new Point(0, 40), new Point(40, 40)); //plattformen ved start
+
+                        for (int i = 0; i < myLevel.listSmileys.Count; i++) //tegn alle smileys
                         {
-                            myLevel.AddScore(i);
-                            smileysToCatch--;
-
-                            playSound = new ThreadStart(PlaySound);
-                            soundThread = new Thread(playSound);
-                            soundThread.IsBackground = true;
-                            soundThread.Start();
-
-                            if (smileysToCatch == 0)
+                            Smiley smiley = myLevel.listSmileys[i];
+                            smiley.Draw(e.Graphics);
+                            if (CheckCollision(smiley.GetPath(), supermanPath, e))
                             {
-                                level++;
-                                StopGame();
-                                gameOver = false;
+                                myLevel.AddScore(i);
+                                smileysToCatch--;
 
+                                playSound = new ThreadStart(PlaySound);
+                                soundThread = new Thread(playSound);
+                                soundThread.IsBackground = true;
+                                soundThread.Start();
+
+                                if (smileysToCatch == 0)
+                                {
+                                    level++;
+                                    StopGame();
+                                    restart = false;
+                                    gameOver = false;
+
+
+                                }
                             }
                         }
-                    }
-                    for (int i = 0; i < myLevel.listShooters.Count; i++)
-                    {
-                        Shooter shooter = myLevel.listShooters[i];
-                        shooter.Draw(e.Graphics);
-
-                        if (CheckCollision(shooter.GetPath(), supermanPath, e))
+                        for (int i = 0; i < myLevel.listShooters.Count; i++)
                         {
-                            StopGame();
+                            Shooter shooter = myLevel.listShooters[i];
+                            shooter.Draw(e.Graphics);
+
+                            if (CheckCollision(shooter.GetPath(), supermanPath, e))
+                            {
+                                if (running)
+                                {
+                                    StopGame();
+                                    //     Insert(highScore);
+
+                                }
+                            }
+
                         }
 
-                    }
-                    for (int i = 0; i < myLevel.listBalls.Count; i++)
-                    {
-                        MovingBall ball = myLevel.listBalls[i];
-                        ball.Draw(e.Graphics);
-
-                        if (CheckCollision(ball.GetPath(), supermanPath, e))
-                        {
-                            myLevel.listBalls.RemoveAt(i);
-
-                            StopGame();
-                        }
-                        for (int j = 0; i < myLevel.listObstacle.Count; j++)
+                        for (int i = 0; i < myLevel.listObstacle.Count; i++)
                         {
                             Obstacle obstacle1 = myLevel.listObstacle[i];
-                            obstacle1.Draw(e.Graphics);  //KAN FJERNES
 
-                            if (CheckCollision(obstacle1.GetPath(), ball.GetPath(), e))
+                            obstacle1.Draw(e.Graphics);
+                            if (CheckCollision(obstacle1.GetPath(), supermanPath, e))
                             {
-                                myLevel.listBalls.RemoveAt(i);
+                                highScore--;
                             }
                         }
 
-                        if (myLevel.listBalls[i].x > this.Width || myLevel.listBalls[i].x < 0)
+                        for (int i = 0; i < myLevel.listBalls.Count; i++)
                         {
-                            myLevel.listBalls.RemoveAt(i);
-                            Debug.Print("ball fjernet");
-                        }
-                        if (myLevel.listBalls[i].y > this.Height || myLevel.listBalls[i].y < 0)
-                        {
-                            myLevel.listBalls.RemoveAt(i);
-                            Debug.Print("ball fjernet");
-                        }
-                    }
-                    for (int i = 0; i < myLevel.listObstacle.Count; i++)
-                    {
-                        Obstacle obstacle1 = myLevel.listObstacle[i];
+                            MovingBall ball = myLevel.listBalls[i];
+                            ball.Draw(e.Graphics);
 
-                        obstacle1.Draw(e.Graphics);
-                        if (CheckCollision(obstacle1.GetPath(), supermanPath, e))
-                        {
-                            highScore--;
+                            GraphicsPath myPath = new GraphicsPath();
+                            myPath.StartFigure();
+                            myPath.AddEllipse(ball.x, ball.y, ball.w, ball.h);
+                            myPath.CloseFigure();
+
+
+
+                            for (int j = 0; j < myLevel.listSmileys.Count; j++) //tegn alle smileys
+                            {
+                                Smiley smiley = myLevel.listSmileys[j];
+                                if (CheckCollision(smiley.GetPath(), myPath, e))
+                                {
+                                    myLevel.listBalls.RemoveAt(i);
+
+                                }
+                            }
+
+
+                            for (int j = 0; j < myLevel.listObstacle.Count; j++) //tegn alle smileys
+                            {
+                                Obstacle obstacle = myLevel.listObstacle[j];
+                                if (CheckCollision(obstacle.GetPath(), myPath, e))
+                                {
+                                    myLevel.listBalls.RemoveAt(i);
+                                    
+                                }
+                            }
+
+
+
+
+
+
+                          
+                            if (CheckCollision(myPath, supermanPath, e))
+                            {
+                                //myLevel.listBalls.RemoveAt(i);
+
+                                StopGame();
+                            }
+                            if (ball.x > this.Width || ball.x < 0)
+                            {
+                                myLevel.listBalls.RemoveAt(i);
+                                Debug.Print("ball fjernet");
+                            }
+                            if (ball.y > this.Height || ball.y < 0)
+                            {
+                                myLevel.listBalls.RemoveAt(i);
+                                Debug.Print("ball fjernet");
+                            }
                         }
                     }
-                }
-            }
-        }
+                } //lock
+            }//running
+        } //onPaint
         #endregion
 
 

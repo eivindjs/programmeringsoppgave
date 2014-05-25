@@ -27,6 +27,7 @@ namespace projectcsharp
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            gamePanel.RunGame();
             StartGame();         
         }
         public void StartGame()
@@ -43,26 +44,14 @@ namespace projectcsharp
 
             stopWatch.Enabled = true;
             updateTimer.Enabled = true;
-
-            if (gamePanel.restart)
-            {
-                gamePanel.StartGame();
-            }
-            else if (gamePanel.gameOver)
-            {
-                gamePanel.RestartCurrentGame();
-            }
-            else
-                gamePanel.StartNextLevel();
-
         }
  
-
         private void UpdateTimer_Tick(object sender, EventArgs e)
         {
             if (!gamePanel.running)
             {
                 updateTimer.Enabled = false;
+                stopWatch.Enabled = false;
             }
 
             lblScore.Text = "Score: " + gamePanel.highScore;
@@ -75,6 +64,7 @@ namespace projectcsharp
         {
             if (!gamePanel.running)
             {
+                updateTimer.Enabled = false;
                 stopWatch.Enabled = false;
             }
             else
@@ -84,19 +74,13 @@ namespace projectcsharp
                 {
                     //må kanskje legge inn mer her
                     stopWatch.Enabled = false; //stopper timeren
-                    gamePanel.running = false;
                     // MainForm.levelForm.min
                     lblTime.Text = "Tid Igjen: 00:00";
                     //legge til lagring av highscore
                     // string query = string.Format("INSERT INTO Highscore (username, dato, score, userID) VALUES('{0}', '{1}', '{2}', '{3}')", User.Username, DateTime.Now.ToString("yyyy-MM-dd H:mm:ss"), poengsum, User.Id);
                     // Insert(query);
 
-                    gamePanel.ShowMessageBox();
-
-                    gamePanel.highScore = 0;
-                    gamePanel.seconds = 10;
-                    gamePanel.minutes = 1;
-                    gamePanel.level = 1;
+                    gamePanel.StopGame();
                 }
                 else
                 {
@@ -115,9 +99,7 @@ namespace projectcsharp
                     }
                     else
                         gamePanel.seconds -= 1;
-                    // Display the current values of hours, minutes and seconds in
-                    // the corresponding fields.
-                    //  myPanel1.Insert(myPanel1.highScore);
+                    //myPanel.Insert highscore
                 }
             }
         }

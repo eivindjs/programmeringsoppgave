@@ -17,63 +17,76 @@ namespace projectcsharp
         public int x { get; set; }
         public int y { get; set; }
         private int direction; //variabler for plassering og retning
-        private int h = 7;
-        private int w = 7;
-        private GraphicsPath myPath = new GraphicsPath();
+        public int h { get; set; }
+        public int w { get; set; }
 
+        private int ballSpeed;
+        private GraphicsPath myPath;
+
+        private System.Windows.Forms.Timer moveBallTimer;
 
         public MovingBall()
         {
 
         }
+
         public MovingBall(int x, int y, int direction)
-
         {
+            Difficulty(User.Difficulty_level);
 
+            w = h = 7;
+
+            moveBallTimer = new System.Windows.Forms.Timer();
+            moveBallTimer.Interval = 17;
+            moveBallTimer.Tick += new EventHandler(MoveBallTimer_Tick);
             this.x = x;
             this.y = y;
+            myPath = new GraphicsPath();
             myPath.StartFigure();
             myPath.AddEllipse(x, y, w, h);
             myPath.CloseFigure();
             this.direction = direction;
-            Thread t = new Thread(new ThreadStart(Run));
-            t.IsBackground = true;
-            t.Start(); 
+            moveBallTimer.Start();
+        }
+        public void Difficulty(int grade)
+        {
+            switch (grade)
+            {
+                case 1: ballSpeed = 1;
+                    break;
+                case 2: ballSpeed = 2;
+                    break;
+                case 3: ballSpeed = 3;
+                    break;
+            }
+        }
+        private void MoveBallTimer_Tick(object sender, EventArgs e)
+        {
+            Move();
         }
         /// <summary>
         /// Metode for hvordan ballene skal beveges i forhold til skytterne
         /// </summary>
         public void Move()
-        { 
+        {
             //finner ut sånn at ballene skyter rett
             if (direction == 1)
             {
-                y --;
+                y -= ballSpeed;
             }
             else if (direction == 2)
             {
-                x ++;
+                x += ballSpeed;
             }
             else if (direction == 3)
             {
-                x--;
+                x -= ballSpeed;
             }
             else if (direction == 4)
             {
-                y++;
+                y += ballSpeed;
             }
         }
-        /// <summary>
-        /// beveger ballene
-        /// </summary>
-        public void Run()
-        {
-            while (true)
-            {
-                Move();
-                Thread.Sleep(10); 
-            }
-        } 
         public void Draw(Graphics g)
         {
             SolidBrush brush = new SolidBrush(Color.Black);

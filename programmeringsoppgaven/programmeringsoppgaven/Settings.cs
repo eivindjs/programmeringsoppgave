@@ -28,6 +28,8 @@ namespace projectcsharp
 
         public Settings()
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle; //størelsen på vinduet er absolutt
+
             InitializeComponent();
             tbUsername.Text = User.Username;
             if (User.Difficulty_level > 0)

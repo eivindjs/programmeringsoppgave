@@ -28,6 +28,8 @@ namespace projectcsharp
         public RegisterNewUser()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle; //størelsen på vinduet er absolutt
+
         }
 
         //registrerer ny bruker(legges i database) ved trykk

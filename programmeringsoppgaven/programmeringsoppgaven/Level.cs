@@ -41,7 +41,7 @@ namespace projectcsharp
 
             listBalls.Clear();
         }
-        public void StartTimer()
+        public void StartBallTimer()
         {
             ballTimer.Start();
 
