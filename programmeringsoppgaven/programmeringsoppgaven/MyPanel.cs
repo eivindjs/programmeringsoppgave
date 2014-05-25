@@ -20,18 +20,22 @@ namespace projectcsharp
     {
         #region  Medlemsvariabler
         private ThreadStart ts;
+        private bool blink, blinking;
         private Thread thread;
         private MovingMan movingMan;
         private System.Windows.Forms.Timer timer;
+        private System.Timers.Timer blinkTimer;
         private PictureBox superman;
         private Random random;
         private int manSize;
+        private double countDown = 0.7;
 
         private MovingBall movingBall = new MovingBall();
         private List<Obstacle> listObstacle;
         private List<MovingBall> listBalls = new List<MovingBall>();
         private List<Smiley> listSmileys;
         private List<Shooter> listShooters;
+        private bool runTimer = true;
 
        // private Label lblTime, lblScore, lblLevel;
 
@@ -447,7 +451,14 @@ namespace projectcsharp
                                 seconds = 10;
                                 minutes = 1;                         
                         }
+                      
                         superman.Location = new Point((int)movingMan.X, (int)movingMan.Y);
+
+                        if (blink)
+                        {
+                            superman.Hide();
+                        }
+                        superman.Show();
 
                     }
                     for (int i = 0; i < myLevel.listBalls.Count; i++)
@@ -477,20 +488,26 @@ namespace projectcsharp
                         Obstacle obstacle1 = myLevel.listObstacle[i];
 
                         obstacle1.Draw(e.Graphics);
-
+                        runTimer = true;
                         if (CheckCollision(obstacle1.GetPath(), supermanPath, e))
                         {
-                            running = false;
-                            timer.Enabled = false;
-                            timer.Stop();
+                            if(runTimer)
+                            {
+                                runTimer = false;
+                                Blink();
+                            }
+                            highScore--;
+                            //running = false;
+                            //timer.Enabled = false;
+                            //timer.Stop();
 
-                            myLevel.StopTimer();
+                            //myLevel.StopTimer();
 
-                            Insert(highScore);
+                            //Insert(highScore);
 
-                            ShowMessageBox();
+                            //ShowMessageBox();
                                 
-                            level = 1;                                                    
+                            //level = 1;                                                    
                         }
                       
                        
@@ -499,6 +516,40 @@ namespace projectcsharp
             }
         }
         #endregion
+
+        public void Blink()
+        {
+            blinking = true;
+            blinkTimer = new System.Timers.Timer();
+            countDown = 0.7;
+            blinkTimer.Interval = 100;
+            blinkTimer.Elapsed += CountDown;
+            blinkTimer.Start();
+        }
+
+        /// <summary>
+        /// Kjøres av timer etter at blink har kjørt, intervall på 0.1 sekund
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CountDown(object sender, EventArgs e)
+        {
+            if (countDown > 0)
+            {
+                countDown -= 0.1;
+
+                if (blink)
+                    blink = false;
+                else
+                    blink = true;
+            }
+            else
+            {
+                blinkTimer.Stop();
+                blinking = false;
+                countDown = 0.7;
+            }
+        }
         /// <summary>
         /// Metode for å sette inn data i databasen
         /// </summary>
