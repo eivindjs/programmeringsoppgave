@@ -213,21 +213,26 @@ namespace projectcsharp
             //ordne bare en if for hver level her
             if (level == 1)
             {
-                listBalls.Add(new MovingBall(10, 280, 2));
-                listBalls.Add(new MovingBall(520, 340, 1));
-                listBalls.Add(new MovingBall(parentPanel.Width, 120, 3));
-                listBalls.Add(new MovingBall(340, 100, 4));
+                listBalls.Add(new MovingBall(20, 277, 2));
+                listBalls.Add(new MovingBall(517, 340, 1));
+                listBalls.Add(new MovingBall(730, 117, 3));
+                listBalls.Add(new MovingBall(337, 100, 4));
             }
             else if (level == 2)
             {
-                listBalls.Add(new MovingBall(parentPanel.Width, 120, 3));
-                listBalls.Add(new MovingBall(30, 270, 2));
-                listBalls.Add(new MovingBall(220, 340, 1));
-                listBalls.Add(new MovingBall(160, 55, 1));
-                listBalls.Add(new MovingBall(560, 270, 4));
+                listBalls.Add(new MovingBall(730, 117, 3));
+                listBalls.Add(new MovingBall(30, 276, 2));
+                listBalls.Add(new MovingBall(216, 340, 1));
+                listBalls.Add(new MovingBall(157, 55, 1));
+                listBalls.Add(new MovingBall(556, 270, 4));
             }
             else if (level == 3)
             {
+                listBalls.Add(new MovingBall(730, 117, 3));
+                listBalls.Add(new MovingBall(217, 340, 1));
+                listBalls.Add(new MovingBall(617, 20, 4));
+                listBalls.Add(new MovingBall(617, 290, 1));
+                listBalls.Add(new MovingBall(417, 340, 1));
 
             }
             else if (level == 4)

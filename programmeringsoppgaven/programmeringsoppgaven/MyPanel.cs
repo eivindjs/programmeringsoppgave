@@ -320,7 +320,7 @@ namespace projectcsharp
                                 if (smileysToCatch == 0)
                                 {
                                     level++;
-                                    StopGame();
+                                    StartNextLevel();
                                     restart = false;
                                     gameOver = false;
 
