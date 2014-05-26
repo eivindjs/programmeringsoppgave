@@ -14,7 +14,7 @@ namespace projectcsharp
     {
         /// <summary>
         /// Klasse som viser highscore for alle brukere og sorterer etter
-        /// poeng score. Viser de 10 beste.
+        /// poengsum. Viser de 10 beste.
         /// </summary>
         private DBConnect db = new DBConnect(); //sql klasse for å koble til databasen
         private DataTable dt = new DataTable(); //DataTable for å hente ut verdier fra sql
@@ -22,7 +22,9 @@ namespace projectcsharp
         public Highscore()
         {
             InitializeComponent();
-            string query = String.Format("SELECT username, dato, score FROM Highscore ORDER BY score desc");
+            this.FormBorderStyle = FormBorderStyle.FixedSingle; //størelsen på vinduet er absolutt
+
+            string query = String.Format("SELECT username, dato, score FROM Highscore ORDER BY score desc LIMIT 10");
             dt = db.getAll(query);
 
             if (dt != null)
