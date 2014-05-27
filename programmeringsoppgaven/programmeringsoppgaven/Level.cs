@@ -27,8 +27,11 @@ namespace projectcsharp
             ballTimer.Interval = random.Next(1000, 4000);
             ballTimer.Tick += new EventHandler(ballTimer_Tick);
             parentPanel = _panel;
-            level = parentPanel.level;
+            level = parentPanel.level = 4;
             listBalls = new List<MovingBall>();
+            listObstacle = new List<Obstacle>();
+            listSmileys = new List<Smiley>();
+            listShooters = new List<Shooter>();
 
             listBalls.Clear();
             InsertSmileys();
@@ -75,7 +78,6 @@ namespace projectcsharp
         {
             if (level == 1)
             {
-                listObstacle = new List<Obstacle>();
                 listObstacle.Add(new Obstacle(10, 150, 150, 90, level));
                 listObstacle.Add(new Obstacle(300, 30, 90, 50, level));
                 listObstacle.Add(new Obstacle(500, 50, 65, 50, level));
@@ -83,7 +85,6 @@ namespace projectcsharp
             }
             else if (level == 2)
             {
-                listObstacle = new List<Obstacle>();
                 listObstacle.Add(new Obstacle(90, 90, 120, 60, level));
                 listObstacle.Add(new Obstacle(260, 60, 160, 110, level));
                 listObstacle.Add(new Obstacle(500, 200, 150, 50, level));
@@ -91,7 +92,6 @@ namespace projectcsharp
             }
             else if (level == 3)
             {
-                listObstacle = new List<Obstacle>();
                 listObstacle.Add(new Obstacle(260, 60, 160, 110, level));
                 listObstacle.Add(new Obstacle(560, 150, 120, 70, level));
                 listObstacle.Add(new Obstacle(5, 240, 80, 70, level));
@@ -99,7 +99,12 @@ namespace projectcsharp
             }
             else if (level == 4)
             {
-
+                listObstacle.Add(new Obstacle(350, 260, 200, 30, level));
+                listObstacle.Add(new Obstacle(260, 120, 40, 120, level));
+                listObstacle.Add(new Obstacle(50, 300, 60, 40, level));
+                listObstacle.Add(new Obstacle(630, 60, 160, 70, level));
+                listObstacle.Add(new Obstacle(30, 90, 30, 120, level));
+                listObstacle.Add(new Obstacle(410, 60, 60, 50, level));
             }
             else if (level == 5)
             {
@@ -114,7 +119,6 @@ namespace projectcsharp
         {
             if (level == 1)
             {
-                listSmileys = new List<Smiley>();
                 listSmileys.Add(new Smiley(100, 100, 1));
                 listSmileys.Add(new Smiley(200, 200, 1));
                 listSmileys.Add(new Smiley(700, 50, 1));
@@ -126,7 +130,6 @@ namespace projectcsharp
             else if (level == 2)
             {
 
-                listSmileys = new List<Smiley>();
                 listSmileys.Add(new Smiley(60, 70, 1));
                 listSmileys.Add(new Smiley(160, 340, 1));
                 listSmileys.Add(new Smiley(700, 250, 1));
@@ -139,7 +142,6 @@ namespace projectcsharp
             }
             else if (level == 3)
             {
-                listSmileys = new List<Smiley>();
                 listSmileys.Add(new Smiley(160, 340, 1));
                 listSmileys.Add(new Smiley(40, 120, 3));
                 listSmileys.Add(new Smiley(750, 360, 3));
@@ -150,7 +152,10 @@ namespace projectcsharp
             }
             else if (level == 4)
             {
+                listSmileys.Add(new Smiley(460, 310, 1));
 
+                minutes = 0;
+                seconds = 40;
             }
             else if (level == 5)
             {
@@ -166,7 +171,6 @@ namespace projectcsharp
             if (level == 1)
             {
                 //fire skyttere
-                listShooters = new List<Shooter>();
                 listShooters.Add(new Shooter(new Point[] { new Point(500, parentPanel.Height), new Point(540, parentPanel.Height), new Point(520, 350) }));
                 listShooters.Add(new Shooter(new Point[] { new Point(730, 120), new Point(parentPanel.Width, 100), new Point(parentPanel.Width, 140) }));
                 listShooters.Add(new Shooter(new Point[] { new Point(320, 80), new Point(360, 80), new Point(340, 110) }));
@@ -177,7 +181,6 @@ namespace projectcsharp
             else if (level == 2)
             {
                 //fem skyttere
-                listShooters = new List<Shooter>();
                 listShooters.Add(new Shooter(new Point[] { new Point(30, 280), new Point(0, 260), new Point(0, 300) }));
                 listShooters.Add(new Shooter(new Point[] { new Point(730, 120), new Point(parentPanel.Width, 100), new Point(parentPanel.Width, 140) }));
                 listShooters.Add(new Shooter(new Point[] { new Point(200, parentPanel.Height), new Point(240, parentPanel.Height), new Point(220, 350) }));
@@ -189,7 +192,6 @@ namespace projectcsharp
             else if (level == 3)
             {
                 
-                listShooters = new List<Shooter>();
                 listShooters.Add(new Shooter(new Point[] { new Point(400, parentPanel.Height), new Point(440, parentPanel.Height), new Point(420, 350) }));
                 listShooters.Add(new Shooter(new Point[] { new Point(600, 340), new Point(640, 340), new Point(620, 300) }));
                 listShooters.Add(new Shooter(new Point[] { new Point(730, 120), new Point(parentPanel.Width, 100), new Point(parentPanel.Width, 140) }));
@@ -199,9 +201,13 @@ namespace projectcsharp
             }
             else if (level == 4)
             {
+                listShooters.Add(new Shooter(new Point[] { new Point(130, 290), new Point(160, 320), new Point(165, 280) }));
+                listShooters.Add(new Shooter(new Point[] { new Point(400, parentPanel.Height), new Point(440, parentPanel.Height), new Point(420, 355) }));
+                listShooters.Add(new Shooter(new Point[] { new Point(260, 130), new Point(260, 165), new Point(230, 147) }));
             }
             else if (level == 5)
             {
+
             }
 
         }
@@ -237,7 +243,8 @@ namespace projectcsharp
             }
             else if (level == 4)
             {
-
+                listBalls.Add(new MovingBall(230, 145, 3));
+                listBalls.Add(new MovingBall(165, 280, 5));
             }
             else if (level == 5)
             {

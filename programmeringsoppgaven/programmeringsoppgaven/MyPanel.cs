@@ -70,7 +70,6 @@ namespace projectcsharp
             superman.SizeMode = PictureBoxSizeMode.Zoom;
 
             this.Controls.Add(superman); //legger pictureBox til panelet
-            this.Controls.Add(superman);
 
             this.timer = new System.Windows.Forms.Timer();
             timer.Interval = 17;
@@ -128,7 +127,7 @@ namespace projectcsharp
             // timer.Enabled = false;
             timer.Stop();
             myLevel.StopTimer();
-            //level = 1; // korrekt???
+            level = 1; // korrekt???
 
             myLevel.ClearBalls();
 

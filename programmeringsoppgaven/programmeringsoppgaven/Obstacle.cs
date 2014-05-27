@@ -43,7 +43,7 @@ namespace projectcsharp
                 myPath.AddEllipse(new Rectangle(x, y + 150, width, height));
                 myPath.CloseFigure(); //Lukk! 
             }
-            else
+            else if(level == 3) //level 3
             {
                 myPath.StartFigure(); //Ny figur. 
                 myPath.AddLine(x, y, x + width, y);
@@ -71,6 +71,26 @@ namespace projectcsharp
                 myPath.StartFigure();
                 myPath.AddPolygon(poin);
                 myPath.CloseFigure();
+            }
+            else //level 4 og 5 
+            {
+                myPath.StartFigure(); //Ny figur. 
+                myPath.AddLine(x, y, x + width, y);
+                myPath.AddLine(x + width, y + height, x, y + height);
+                myPath.CloseFigure(); //Lukk! 
+
+
+                Point[] poin = { new Point(x, y), new Point(x + 50, y), new Point(x + 30, y - 30) };
+                myPath.StartFigure();
+                myPath.AddPolygon(poin);
+                myPath.CloseFigure();
+
+                myPath.StartFigure();
+                myPath.AddArc(x + width, y , width, height, 0, 180);
+                myPath.AddLine(x + width, y, x, y - 40);
+                myPath.AddLine(x, y - 40, x + width, y - 30);
+                myPath.CloseFigure();
+
             }
         }
 

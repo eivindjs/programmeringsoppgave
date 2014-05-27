@@ -19,7 +19,6 @@ namespace projectcsharp
         private int direction; //variabler for plassering og retning
         public int h { get; set; }
         public int w { get; set; }
-
         private int ballSpeed;
         private GraphicsPath myPath;
 
@@ -35,7 +34,6 @@ namespace projectcsharp
             Difficulty(User.Difficulty_level);
 
             w = h = 7;
-
             moveBallTimer = new System.Windows.Forms.Timer();
             moveBallTimer.Interval = 17;
             moveBallTimer.Tick += new EventHandler(MoveBallTimer_Tick);
@@ -70,6 +68,7 @@ namespace projectcsharp
         public void Move()
         {
             //finner ut sånn at ballene skyter rett
+
             if (direction == 1)
             {
                 y -= ballSpeed;
@@ -85,6 +84,11 @@ namespace projectcsharp
             else if (direction == 4)
             {
                 y += ballSpeed;
+            }
+            else if (direction == 5)
+            {
+                x -= y;
+                
             }
         }
         public void Draw(Graphics g)
