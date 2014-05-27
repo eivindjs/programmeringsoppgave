@@ -87,7 +87,7 @@ namespace projectcsharp
             }
             else if (direction == 5)
             {
-                x -= y;
+                
                 
             }
         }
