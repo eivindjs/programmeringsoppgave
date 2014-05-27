@@ -38,11 +38,7 @@ namespace projectcsharp
             InsertObstacles();
             InsertShooter(); 
         }
-        private void sound()
-        {
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.collisionSound);
-            player.PlaySync();
-        }
+   
         public void ClearBalls()
         {
 
