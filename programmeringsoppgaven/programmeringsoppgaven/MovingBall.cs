@@ -85,7 +85,7 @@ namespace projectcsharp
             {
                 y += ballSpeed;
             }
-            else if (direction == 5)
+            else if (direction == 5) //få ball t å beveg sæ på skrå! how?
             {
                 
                 

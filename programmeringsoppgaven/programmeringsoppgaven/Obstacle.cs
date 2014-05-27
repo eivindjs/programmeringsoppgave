@@ -92,6 +92,7 @@ namespace projectcsharp
                 myPath.CloseFigure();
 
             }
+          
         }
 
         public GraphicsPath GetPath()
