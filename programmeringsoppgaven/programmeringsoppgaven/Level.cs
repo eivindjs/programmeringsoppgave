@@ -293,5 +293,32 @@ namespace projectcsharp
 
             }
         }
+
+
+
+
+        public void Draw(Graphics g)
+        {
+            for (int i = 0; i < listSmileys.Count; i++) //tegn alle smileys
+            {
+                listSmileys[i].Draw(g);          
+            }
+
+            for (int i = 0; i < listShooters.Count; i++)
+            {
+                listShooters[i].Draw(g);
+            }
+
+            for (int i = 0; i < listObstacle.Count; i++)
+            {
+                listObstacle[i].Draw(g);      
+            }
+
+            for (int i = 0; i < listBalls.Count; i++)
+            {
+
+                listBalls[i].Draw(g);
+            }
+        }
     }
 }

@@ -98,6 +98,10 @@ namespace projectcsharp
         }
         public GraphicsPath GetPath()
         {
+            myPath.Reset();
+            myPath.StartFigure();
+            myPath.AddEllipse(x, y, w, h);
+            myPath.CloseFigure();
             return myPath;
         }
 
