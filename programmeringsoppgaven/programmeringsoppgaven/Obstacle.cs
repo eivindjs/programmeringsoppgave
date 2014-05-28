@@ -10,6 +10,10 @@ namespace projectcsharp
 {
     public class Obstacle
     {
+        /// <summary>
+        /// Tord og Eivind
+        /// Klasse for å lage figurer
+        /// </summary>
         private GraphicsPath myPath = new GraphicsPath(); //vil ha en path for alle hindringer
         private Object mySync = new Object();
         private Random random = new Random();

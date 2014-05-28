@@ -10,6 +10,9 @@ namespace projectcsharp
 {
     public class MovingMan
     {
+        /// <summary>
+        /// Tord og Eivind
+        /// </summary>
         private float speed = 1.3f;
         private int firstKeyPress = 1;
         private int manSize = 30;

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 namespace projectcsharp
 {
     /// <summary>
+    /// Eivind
     /// About.cs
     /// 
     /// En klasse/form som kort og enkelt forteller hva spillet handler om 

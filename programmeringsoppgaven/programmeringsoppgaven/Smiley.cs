@@ -10,6 +10,9 @@ namespace projectcsharp
 {
     public class Smiley
     {
+        /// <summary>
+        /// Tord og Eivind
+        /// </summary>
         private int smileyX { get; set; }
         private int smileyY { get; set; }
         private Rectangle rectangle;

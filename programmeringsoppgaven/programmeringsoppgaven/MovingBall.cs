@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace projectcsharp
 {
     /// <summary>
+    /// Tord og Eivind
     /// En klasse for ballene som skal skytes.
     /// </summary>
     public class MovingBall

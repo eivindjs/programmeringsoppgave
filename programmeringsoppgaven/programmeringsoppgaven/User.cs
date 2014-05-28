@@ -9,8 +9,9 @@ namespace projectcsharp
     static class User
     {
         /// <summary>
+        /// Eivind
         /// Statisk klasse for å ta vare på brukernavn og id, så det blir 
-        /// letter å hente ut info i andre klasser.
+        /// lettere å hente ut info i andre klasser.
         /// </summary>
         private static int id; //Bruker id
         private static string username; //Brukernavn

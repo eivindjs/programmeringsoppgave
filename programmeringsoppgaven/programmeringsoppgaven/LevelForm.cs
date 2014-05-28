@@ -16,7 +16,7 @@ namespace projectcsharp
         private System.Windows.Forms.Timer stopWatch;
         private System.Windows.Forms.Timer updateTimer;
         /// <summary>
-        /// 
+        /// Tord og Eivind
         /// </summary>
         public LevelForm()
         {

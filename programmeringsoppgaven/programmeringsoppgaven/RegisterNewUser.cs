@@ -23,6 +23,7 @@ namespace projectcsharp
         private String query; //sql spørringer
       
         /// <summary>
+        /// Tord og Eivind
         /// Klasse for å registrere ny bruker
         /// </summary>
         public RegisterNewUser()

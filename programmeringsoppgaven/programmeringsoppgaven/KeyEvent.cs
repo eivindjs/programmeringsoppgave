@@ -9,6 +9,7 @@ using System.Windows.Forms;
 namespace projectcsharp
 {
     /// <summary>
+    /// Tord og Eivind
     /// Klasse for når du trykker på piltatastene. Klassen har en struct som har tre egenskaper(Key, isPressed, isToggled). 
     /// Disse eiendommene er satt når GetKeyState blir kalt. Key egenskapen er for selve tasten, hvilken tast som blir trykket.
     /// isPressed er om den er trykket(true/false) og isToggled er om den er av eller på(true/false), men det gjelder mest for capslock, numlock osv. 

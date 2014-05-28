@@ -8,6 +8,7 @@ using System.Data;
 namespace projectcsharp
 {
     /// <summary>
+    /// Tord 
     /// DBConnect.cs
     /// 
     /// Klasse som kobler opp mot databasen og inneholder metoder for

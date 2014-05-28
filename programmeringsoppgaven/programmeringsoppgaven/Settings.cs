@@ -15,6 +15,7 @@ namespace projectcsharp
     {
 
         /// <summary>
+        /// Eivind
         /// Klasse/Form der du kan endre brukernavne ditt, passord og slette poengsummen din
         /// </summary>
         #region Private Medlemsvariabler

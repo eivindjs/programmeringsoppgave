@@ -13,6 +13,7 @@ namespace projectcsharp
     public partial class Highscore : Form
     {
         /// <summary>
+        /// Eivind
         /// Klasse som viser highscore for alle brukere og sorterer etter
         /// poengsum. Viser de 10 beste.
         /// </summary>

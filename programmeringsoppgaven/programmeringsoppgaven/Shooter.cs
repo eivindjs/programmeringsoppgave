@@ -14,6 +14,7 @@ namespace projectcsharp
        private GraphicsPath myPath = new GraphicsPath();
 
        /// <summary>
+       /// Eivind
        /// Klasse for skytterne, tar inn point array som inneholder 3 point objekter for posisjonen den skal stå
        /// </summary>
        /// <param name="_point">punkt/plassering(point[]{new Point(x,y),new Point(x,y),new Point(x,y),};)</param>

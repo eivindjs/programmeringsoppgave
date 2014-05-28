@@ -13,6 +13,9 @@ namespace projectcsharp
 {
     public partial class LoginForm : Form
     {
+        /// <summary>
+        /// Tord og Eivind
+        /// </summary>
         private DBConnect db = new DBConnect();
         private DataTable dt = new DataTable();
         private string username;

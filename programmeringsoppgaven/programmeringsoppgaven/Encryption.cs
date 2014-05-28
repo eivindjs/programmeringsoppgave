@@ -10,6 +10,7 @@ using System.Web;
 namespace projectcsharp
 {
     /// <summary>
+    /// Tord
     /// Her blir passord til nye brukere kryptert.
     /// Ved login sjekkes passord mot database via denne klassen.
     /// </summary>
