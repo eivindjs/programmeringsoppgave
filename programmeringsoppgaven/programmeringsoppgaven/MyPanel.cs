@@ -25,6 +25,8 @@ namespace projectcsharp
         private Thread thread;
         private ThreadStart playSound;
         private Thread soundThread;
+        private Thread gameOverThread;
+        private ThreadStart gameOverTS;
 
         private MovingMan movingMan;
         private System.Windows.Forms.Timer timer;
@@ -136,7 +138,15 @@ namespace projectcsharp
             timer.Stop();
             myLevel.StopTimer();
             level = 1; // korrekt???
-            GameOverSound();
+
+            gameOverTS = new ThreadStart(GameOverSound);
+            gameOverThread = new Thread(gameOverTS);
+            gameOverThread.IsBackground = true;
+            gameOverThread.Start();
+
+            myLevel.StartBallTimer();
+
+            ShowMessageBox();
 
             movingMan.GetPictureBox().Hide();
             myLevel.ClearBalls();
@@ -144,7 +154,6 @@ namespace projectcsharp
             seconds = 10; // korrekt???
             minutes = 1; // korrekt???
 
-            ShowMessageBox();
         }
 
         public void StartNextLevel()
@@ -345,6 +354,11 @@ namespace projectcsharp
                         if (CheckCollision(myLevel.listSmileys[j].GetPath(), myLevel.listBalls[i].GetPath(), e))
                         {
                             myLevel.listBalls.RemoveAt(i);
+                            if (i >= myLevel.listBalls.Count)
+                            {
+                                i = myLevel.listBalls.Count - 1;
+                            }
+                           
                         }
                     }
                 }
@@ -354,13 +368,20 @@ namespace projectcsharp
                 {
                     for (int j = 0; j < myLevel.listObstacle.Count; j++) //tegn alle smileys  
                     {
-                        if (myLevel.listBalls[i] != null)
+
+
+                        if (CheckCollision(myLevel.listObstacle[j].GetPath(), myLevel.listBalls[i].GetPath(), e))
                         {
-                            if (CheckCollision(myLevel.listObstacle[j].GetPath(), myLevel.listBalls[i].GetPath(), e))
+                            
+                            myLevel.listBalls.RemoveAt(i);
+                            if (i >= myLevel.listBalls.Count)
                             {
-                                myLevel.listBalls.RemoveAt(i);
+                                i = myLevel.listBalls.Count - 1;
                             }
                         }
+
+                        
+
                     }
 
                 }
