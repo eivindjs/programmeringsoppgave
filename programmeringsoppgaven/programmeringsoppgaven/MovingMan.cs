@@ -54,16 +54,19 @@ namespace projectcsharp
 
         public void MoveRight()
         {
+         //   superman.Image = projectcsharp.Properties.Resources.superRight;
             this.X += DX;
         }
 
         public void MoveLeft()
         {
+          //  superman.Image = projectcsharp.Properties.Resources.superLeft;
             this.X -= this.DX;
         }
 
         public void MoveUp()
         {
+           // superman.Image = projectcsharp.Properties.Resources.super;
             if(firstKeyPress == 1)
             {
                 speed = 1;
@@ -76,7 +79,7 @@ namespace projectcsharp
 
         public void MoveDown()
         {
-
+           // superman.Image = projectcsharp.Properties.Resources.superDown;
             firstKeyPress = 1;
             speed = speed * 1.03f;
             this.Y += this.DY * speed;

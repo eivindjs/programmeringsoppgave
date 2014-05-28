@@ -165,6 +165,15 @@
   <ItemGroup>
     <Content Include="Oppgavebeskrivelse.html" />
     <Content Include="README.txt" />
+    <None Include="Resources\superRight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\superDown.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\superLeft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\coin.wav" />
     <None Include="Resources\pattern-1s2c.png" />
     <None Include="Resources\background.png" />

@@ -200,8 +200,6 @@ namespace projectcsharp
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            lock (mySync)
-            {
                 var left = KeyEvent.GetKeyState(Keys.Left);
                 var right = KeyEvent.GetKeyState(Keys.Right);
                 var up = KeyEvent.GetKeyState(Keys.Up);
@@ -241,7 +239,7 @@ namespace projectcsharp
                     StopGame();
                     // Insert(highScore);    
                 }
-            }
+            
         }
 
         public void ShowMessageBox()
