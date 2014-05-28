@@ -9,6 +9,9 @@ namespace projectcsharp
 {
     public class Level
     {
+        /// <summary>
+        /// Tord og Eivind
+        /// </summary>
         public int level { get; set; }
         public int minutes { get; set; }
         public int seconds { get; set; }
@@ -28,7 +31,7 @@ namespace projectcsharp
             ballTimer.Interval = random.Next(1000, 4000);
             ballTimer.Tick += new EventHandler(ballTimer_Tick);
             parentPanel = _panel;
-            level = parentPanel.level;
+            level = parentPanel.level = 6;
             listBalls = new List<MovingBall>();
             listObstacle = new List<Obstacle>();
             listSmileys = new List<Smiley>();
@@ -187,7 +190,42 @@ namespace projectcsharp
                 minutes = 0;
                 seconds = 30;
             }
+            else if (level == 6) //Bonus level
+            { //øverst
+                listSmileys.Add(new Smiley(384, 40, 3));
+                listSmileys.Add(new Smiley(384, 360, 3));
+                listSmileys.Add(new Smiley(192, 180, 3));
+                listSmileys.Add(new Smiley(576, 180, 3));
+                listSmileys.Add(new Smiley(205, 140, 2));
+                listSmileys.Add(new Smiley(560, 140, 2));
+                listSmileys.Add(new Smiley(540, 100, 2));
+                listSmileys.Add(new Smiley(510, 70, 2));
+                listSmileys.Add(new Smiley(470, 50, 2));
+                listSmileys.Add(new Smiley(430, 42, 2));
+                listSmileys.Add(new Smiley(340, 45, 2));
+                listSmileys.Add(new Smiley(300, 55, 2));
+                listSmileys.Add(new Smiley(260, 75, 2));
+                listSmileys.Add(new Smiley(230, 100, 2));
 
+                //nederst
+                listSmileys.Add(new Smiley(200, 225, 2));
+                listSmileys.Add(new Smiley(565, 225, 2));
+                listSmileys.Add(new Smiley(540, 260, 2));
+                listSmileys.Add(new Smiley(510, 290, 2));
+                listSmileys.Add(new Smiley(470, 320, 2));
+                listSmileys.Add(new Smiley(430, 342, 2));
+                listSmileys.Add(new Smiley(340, 354, 2));
+                listSmileys.Add(new Smiley(300, 345, 2));
+                listSmileys.Add(new Smiley(260, 325, 2));
+                listSmileys.Add(new Smiley(230, 300, 2));
+                listSmileys.Add(new Smiley(210, 260, 2)); 
+
+                //øyne
+                listSmileys.Add(new Smiley(288, 140, 1));
+                listSmileys.Add(new Smiley(477, 140, 1)); 
+
+                seconds = 7;
+            }
             MyPanel.smileysToCatch = listSmileys.Count();
 
         }
@@ -245,7 +283,7 @@ namespace projectcsharp
             }
 
         }
-        #endregion
+       
 
 
         private void ballTimer_Tick(object sender, EventArgs e)
@@ -294,7 +332,7 @@ namespace projectcsharp
 
             }
         }
-
+        #endregion
 
 
 

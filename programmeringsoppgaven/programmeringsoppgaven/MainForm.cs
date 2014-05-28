@@ -14,13 +14,15 @@ namespace projectcsharp
     public partial class MainForm : Form
     {
         public static LevelForm levelForm;
-
+        /// <summary>
+        /// Tord og Eivind
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle; //størelsen på vinduet er absolutt
         }
-      
+
         private void btnNewGame_Click(object sender, EventArgs e)
         {
             var threadNewGame = new Thread(ThreadNewGame);
@@ -31,12 +33,12 @@ namespace projectcsharp
         {
             levelForm = new LevelForm();
             Application.Run(levelForm);
-            
+
         }
         public static void EndGame()
         {
-            
-           
+
+
         }
 
         public void ShowMainForm()

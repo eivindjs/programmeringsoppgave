@@ -15,6 +15,7 @@ using System.Windows.Forms;
 namespace projectcsharp
 {
     /// <summary>
+    /// Tord og Eivind
     /// Her skjer magien.
     /// </summary>
     public partial class MyPanel : Panel
