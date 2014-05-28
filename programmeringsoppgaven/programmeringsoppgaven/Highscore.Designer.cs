@@ -49,7 +49,7 @@
             this.dtGridviewScore.Location = new System.Drawing.Point(0, 0);
             this.dtGridviewScore.Name = "dtGridviewScore";
             this.dtGridviewScore.ReadOnly = true;
-            this.dtGridviewScore.Size = new System.Drawing.Size(400, 289);
+            this.dtGridviewScore.Size = new System.Drawing.Size(484, 312);
             this.dtGridviewScore.TabIndex = 1;
             // 
             // username
@@ -57,28 +57,28 @@
             this.username.HeaderText = "Brukernavn";
             this.username.Name = "username";
             this.username.ReadOnly = true;
-            this.username.Width = 120;
+            this.username.Width = 145;
             // 
             // dato
             // 
             this.dato.HeaderText = "Dato";
             this.dato.Name = "dato";
             this.dato.ReadOnly = true;
-            this.dato.Width = 118;
+            this.dato.Width = 148;
             // 
             // score
             // 
             this.score.HeaderText = "Poengsum";
             this.score.Name = "score";
             this.score.ReadOnly = true;
-            this.score.Width = 119;
+            this.score.Width = 147;
             // 
             // Highscore
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::projectcsharp.Properties.Resources.backgroundImage;
-            this.ClientSize = new System.Drawing.Size(400, 289);
+            this.ClientSize = new System.Drawing.Size(484, 312);
             this.Controls.Add(this.dtGridviewScore);
             this.Name = "Highscore";
             this.Text = "Highscore";

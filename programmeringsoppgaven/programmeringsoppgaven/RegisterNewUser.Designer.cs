@@ -92,12 +92,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::projectcsharp.Properties.Resources.backgroundImage;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(386, 262);
+            this.ClientSize = new System.Drawing.Size(384, 262);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.tbUsername);
+            this.DoubleBuffered = true;
             this.Name = "RegisterNewUser";
             this.Text = "Registrer ny bruker";
             this.ResumeLayout(false);

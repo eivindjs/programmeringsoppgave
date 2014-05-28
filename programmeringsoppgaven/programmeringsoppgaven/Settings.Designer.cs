@@ -48,7 +48,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(29, 57);
+            this.label1.Location = new System.Drawing.Point(67, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(138, 17);
             this.label1.TabIndex = 0;
@@ -56,7 +56,7 @@
             // 
             // tbUsername
             // 
-            this.tbUsername.Location = new System.Drawing.Point(190, 54);
+            this.tbUsername.Location = new System.Drawing.Point(256, 45);
             this.tbUsername.Name = "tbUsername";
             this.tbUsername.Size = new System.Drawing.Size(132, 20);
             this.tbUsername.TabIndex = 1;
@@ -77,7 +77,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(33, 97);
+            this.label2.Location = new System.Drawing.Point(67, 93);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(134, 17);
             this.label2.TabIndex = 3;
@@ -89,7 +89,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(67, 137);
+            this.label3.Location = new System.Drawing.Point(67, 135);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 17);
             this.label3.TabIndex = 4;
@@ -97,7 +97,7 @@
             // 
             // tbOldPass
             // 
-            this.tbOldPass.Location = new System.Drawing.Point(190, 96);
+            this.tbOldPass.Location = new System.Drawing.Point(256, 92);
             this.tbOldPass.Multiline = true;
             this.tbOldPass.Name = "tbOldPass";
             this.tbOldPass.PasswordChar = '*';
@@ -106,7 +106,7 @@
             // 
             // tbNewPass
             // 
-            this.tbNewPass.Location = new System.Drawing.Point(190, 134);
+            this.tbNewPass.Location = new System.Drawing.Point(256, 134);
             this.tbNewPass.Multiline = true;
             this.tbNewPass.Name = "tbNewPass";
             this.tbNewPass.PasswordChar = '*';
@@ -184,7 +184,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::projectcsharp.Properties.Resources.backgroundImage;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(400, 324);
+            this.ClientSize = new System.Drawing.Size(484, 312);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.rbHard);
             this.Controls.Add(this.rbNormal);
@@ -197,6 +197,7 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tbUsername);
             this.Controls.Add(this.label1);
+            this.DoubleBuffered = true;
             this.Name = "Settings";
             this.Text = "Settings";
             this.ResumeLayout(false);

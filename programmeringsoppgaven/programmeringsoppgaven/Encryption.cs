@@ -6,13 +6,13 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-/**
- *  Her blir passord til nye brukere kryptert.
- *  Ved login sjekkes passord mot database via denne klassen.
- * 
- **/ 
+
 namespace projectcsharp
 {
+    /// <summary>
+    /// Her blir passord til nye brukere kryptert.
+    /// Ved login sjekkes passord mot database via denne klassen.
+    /// </summary>
     public static class Encryption
     { //nøkler som er nødvendig for å hashe
         static readonly string PasswordHash = "P@@Sw0rdH@$h1ng";
