@@ -10,7 +10,8 @@ namespace projectcsharp
     public class Level
     {
         public int level { get; set; }
-        public int minutes, seconds;
+        public int minutes { get; set; }
+        public int seconds { get; set; }
         public List<Obstacle> listObstacle { get; set; }
         public List<MovingBall> listBalls{ get; set; }
         public List<Smiley> listSmileys { get; set; }

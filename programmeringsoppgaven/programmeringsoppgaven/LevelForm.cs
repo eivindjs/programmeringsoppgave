@@ -53,7 +53,7 @@ namespace projectcsharp
             }
 
             lblScore.Text = "Score: " + gamePanel.highScore;
-            lblTime.Text = "Tid Igjen: " + gamePanel.minutes.ToString() + ":" + gamePanel.seconds.ToString();
+            lblTime.Text = "Tid Igjen: " + gamePanel.myLevel.minutes.ToString() + ":" + gamePanel.myLevel.seconds.ToString();
             lblLevel.Text = "Level " + gamePanel.level;
 
         }
@@ -68,7 +68,7 @@ namespace projectcsharp
             else
             {
                 // når tiden er lik null
-                if ((gamePanel.minutes == 0) && (gamePanel.seconds == 0))
+                if ((gamePanel.myLevel.minutes == 0) && (gamePanel.myLevel.seconds == 0))
                 {
                     //må kanskje legge inn mer her
                     stopWatch.Enabled = false; //stopper timeren
@@ -82,21 +82,21 @@ namespace projectcsharp
                 }
                 else
                 {
-                    if (gamePanel.seconds < 1)
+                    if (gamePanel.myLevel.seconds < 1)
                     {
-                        gamePanel.seconds = 59;
-                        if (gamePanel.minutes == 0)
+                        gamePanel.myLevel.seconds = 59;
+                        if (gamePanel.myLevel.minutes == 0)
                         {
-                            gamePanel.minutes = 59;
+                            gamePanel.myLevel.minutes = 59;
 
                         }
                         else
                         {
-                            gamePanel.minutes -= 1;
+                            gamePanel.myLevel.minutes -= 1;
                         }
                     }
                     else
-                        gamePanel.seconds -= 1;
+                        gamePanel.myLevel.seconds -= 1;
                     //myPanel.Insert highscore
                 }
             }
@@ -106,5 +106,7 @@ namespace projectcsharp
         {
             this.Close();
         }
+
+    
     }
 }

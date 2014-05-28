@@ -155,11 +155,13 @@
             // gamePanel
             // 
             this.gamePanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gamePanel.gameOver = false;
             this.gamePanel.highScore = 0;
             this.gamePanel.level = 1;
             this.gamePanel.Location = new System.Drawing.Point(3, 3);
             this.gamePanel.minutes = 0;
             this.gamePanel.Name = "gamePanel";
+            this.gamePanel.restart = true;
             this.gamePanel.running = false;
             this.gamePanel.seconds = 0;
             this.gamePanel.Size = new System.Drawing.Size(768, 387);

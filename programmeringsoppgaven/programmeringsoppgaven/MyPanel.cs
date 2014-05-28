@@ -128,7 +128,7 @@ namespace projectcsharp
             timer.Start();
             startAnimation();
         }
-
+      
         public void StopGame()
         {
             running = false;
@@ -136,7 +136,7 @@ namespace projectcsharp
             timer.Stop();
             myLevel.StopTimer();
             level = 1; // korrekt???
-
+            GameOverSound();
 
             movingMan.GetPictureBox().Hide();
             myLevel.ClearBalls();
@@ -149,31 +149,27 @@ namespace projectcsharp
 
         public void StartNextLevel()
         {
-            movingMan.GetPictureBox().Hide();
+            //movingMan.GetPictureBox().Hide();
             myLevel.ClearBalls();
-
-            seconds = 10; // korrekt???
-            minutes = 1; // korrekt???
-
-            running = true;
-            seconds = 10; // korrekt???
-            minutes = 1; // korrekt???
+            //seconds = 10; // korrekt???
+            //minutes = 1; // korrekt???
             timer.Enabled = true;
             timer.Start();
 
             myLevel = new Level(this);
             smileysToCatch = myLevel.listSmileys.Count;
 
-            movingMan = new MovingMan //setter verdiene til MovingMan tilbake vha properties
-            {
-                X = 10f,
-                Y = 10f,
-                DX = 4f,
-                DY = 3f,
-            };
-            this.Controls.Add(movingMan.GetPictureBox());
+            movingMan.SetLocation();
 
-            startAnimation();
+            //movingMan = new MovingMan //setter verdiene til MovingMan tilbake vha properties
+            //{
+            //    X = 10f,
+            //    Y = 10f,
+            //    DX = 4f,
+            //    DY = 3f,
+            //};
+            //this.Controls.Add(movingMan.GetPictureBox());
+
         }
 
         #region Tråd- og timer-håndtering
@@ -280,7 +276,11 @@ namespace projectcsharp
                 return false;
         }
 
-
+        public void GameOverSound()
+        {
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.gameover);
+            player.PlaySync();
+        }
         public void PlaySound()
         {
             System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.collisionSound);
