@@ -165,6 +165,7 @@
   <ItemGroup>
     <Content Include="Oppgavebeskrivelse.html" />
     <Content Include="README.txt" />
+    <None Include="Resources\gameover.wav" />
     <None Include="Resources\superRight.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
