@@ -23,15 +23,6 @@ namespace projectcsharp
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle; //størelsen på vinduet er absolutt
 
-        }
-
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-            gamePanel.RunGame();
-            StartGame();         
-        }
-        public void StartGame()
-        {
             stopWatch = new System.Windows.Forms.Timer();
             stopWatch.Interval = 1000; //skal "tikke" hvert sekund, for å emulere en stoppeklokke
             stopWatch.Tick += new EventHandler(StopWatch_Tick);
@@ -42,10 +33,17 @@ namespace projectcsharp
             updateTimer.Tick += new EventHandler(UpdateTimer_Tick);
             updateTimer.Enabled = false;
 
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            gamePanel.RunGame();
+
             stopWatch.Enabled = true;
             updateTimer.Enabled = true;
         }
- 
+
+
         private void UpdateTimer_Tick(object sender, EventArgs e)
         {
             if (!gamePanel.running)
@@ -79,7 +77,7 @@ namespace projectcsharp
                     //legge til lagring av highscore
                     // string query = string.Format("INSERT INTO Highscore (username, dato, score, userID) VALUES('{0}', '{1}', '{2}', '{3}')", User.Username, DateTime.Now.ToString("yyyy-MM-dd H:mm:ss"), poengsum, User.Id);
                     // Insert(query);
-
+                    stopWatch.Stop();
                     gamePanel.StopGame();
                 }
                 else
