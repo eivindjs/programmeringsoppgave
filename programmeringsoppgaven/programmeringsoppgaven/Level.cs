@@ -32,7 +32,7 @@ namespace projectcsharp
             ballTimer.Interval = random.Next(1000, 4000);
             ballTimer.Tick += new EventHandler(ballTimer_Tick);
             parentPanel = _panel;
-            level = parentPanel.level = 6;
+            level = parentPanel.level;
             listBalls = new List<MovingBall>();
             listObstacle = new List<Obstacle>();
             listSmileys = new List<Smiley>();
@@ -236,7 +236,7 @@ namespace projectcsharp
 
                 seconds = 7;
             }
-            MyPanel.smileysToCatch = listSmileys.Count();
+           // MyPanel.smileysToCatch = listSmileys.Count();
 
         }
         /// <summary>

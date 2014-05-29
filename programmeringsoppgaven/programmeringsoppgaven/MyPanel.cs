@@ -44,7 +44,6 @@ namespace projectcsharp
         public int highScore { get; set; }
 
         public static Object mySync;
-        public static int smileysToCatch;
         
         #endregion
 
@@ -88,7 +87,7 @@ namespace projectcsharp
             {
                 StartGame();
             }
-            else if (smileysToCatch == 0)
+            else if (myLevel.listSmileys.Count == 0)
             {
                 StartNextLevel();
             }
@@ -99,9 +98,9 @@ namespace projectcsharp
         public void StartGame()
         {
             myLevel = new Level(this);
-            seconds = 10; // korrekt???
-            minutes = 1; // korrekt???
-            smileysToCatch = myLevel.listSmileys.Count;
+            //seconds = 10; // korrekt???
+            //minutes = 1; // korrekt???
+            //smileysToCatch = myLevel.listSmileys.Count;
 
             movingMan = new MovingMan //setter verdiene til MovingMan tilbake vha properties
             {
@@ -125,7 +124,7 @@ namespace projectcsharp
             myLevel = new Level(this);
             seconds = 10; // korrekt???
             minutes = 1; // korrekt???
-            smileysToCatch = myLevel.listSmileys.Count;
+            //smileysToCatch = myLevel.listSmileys.Count;
 
             running = true;
             timer.Start();
@@ -152,8 +151,8 @@ namespace projectcsharp
             movingMan.GetPictureBox().Hide();
             myLevel.ClearBalls();
 
-            seconds = 10; // korrekt???
-            minutes = 1; // korrekt???
+            //seconds = 10; // korrekt???
+            //minutes = 1; // korrekt???
 
         }
 
@@ -167,7 +166,7 @@ namespace projectcsharp
             timer.Start();
 
             myLevel = new Level(this);
-            smileysToCatch = myLevel.listSmileys.Count;
+            //smileysToCatch = myLevel.listSmileys.Count;
 
             movingMan.SetLocation();
 
@@ -252,7 +251,7 @@ namespace projectcsharp
         {
             lock (mySync)
             {
-                if (smileysToCatch == 0)
+                if (myLevel.listSmileys.Count == 0)
                 {
                     MessageBox.Show("Du klarte det! Trykk start for neste brett.");
                     myLevel.ClearBalls();
@@ -310,14 +309,13 @@ namespace projectcsharp
                     if (CheckCollision(myLevel.listSmileys[i].GetPath(), movingMan.GetPath(), e))
                     {
                         myLevel.AddScore(i);
-                        smileysToCatch--;
 
                         playSound = new ThreadStart(PlaySound);
                         soundThread = new Thread(playSound);
                         soundThread.IsBackground = true;
                         soundThread.Start();
 
-                        if (smileysToCatch == 0)
+                        if (myLevel.listSmileys.Count == 0)
                         {
                             level++;
                             StartNextLevel();
@@ -379,12 +377,8 @@ namespace projectcsharp
                             {
                                 i = myLevel.listBalls.Count - 1;
                             }
-                        }
-
-                        
-
+                        }           
                     }
-
                 }
 
                 for (int i = 0; i < myLevel.listBalls.Count; i++)
@@ -395,7 +389,6 @@ namespace projectcsharp
 
                         StopGame();
                     }
-
                 }
 
                 for (int i = 0; i < myLevel.listBalls.Count; i++)

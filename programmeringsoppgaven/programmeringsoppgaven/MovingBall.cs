@@ -105,6 +105,5 @@ namespace projectcsharp
             myPath.CloseFigure();
             return myPath;
         }
-
     }
 }
