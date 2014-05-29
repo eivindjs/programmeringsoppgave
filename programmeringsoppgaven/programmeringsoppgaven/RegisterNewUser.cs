@@ -24,7 +24,7 @@ namespace projectcsharp
       
         /// <summary>
         /// Tord og Eivind
-        /// Klasse for å registrere ny bruker
+        /// Klasse for å registrere en ny bruker
         /// </summary>
         public RegisterNewUser()
         {
@@ -41,14 +41,21 @@ namespace projectcsharp
             password = Encryption.Encrypt(passwordIn);
             query = "SELECT username FROM User";
             table = db.getAll(query);
-
-            for (int i = 0; i < table.Rows.Count; i++)
+            if (table != null)
             {
-                checkUsername.Add(table.Rows[i]["username"].ToString());
-            }
-            if (checkUsername.Contains(username))
-            {
-                MessageBox.Show("Brukernavnet eksisterer fra før, velg et annet!");
+                for (int i = 0; i < table.Rows.Count; i++)
+                {
+                    checkUsername.Add(table.Rows[i]["username"].ToString());
+                }
+                if (checkUsername.Contains(username))
+                {
+                    MessageBox.Show("Brukernavnet eksisterer fra før, velg et annet!");
+                }
+                else
+                {
+                    query = String.Format("INSERT INTO User (username, password) VALUES('{0}', '{1}')", username, password);
+                    Insert(query);
+                }
             }
             else
             {
