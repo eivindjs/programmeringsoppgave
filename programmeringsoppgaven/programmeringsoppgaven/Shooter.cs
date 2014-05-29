@@ -11,11 +11,12 @@ namespace projectcsharp
    public class Shooter 
    {
        private Point[] point; //Punkt
-       private GraphicsPath myPath = new GraphicsPath();
+       private GraphicsPath myPath = new GraphicsPath(); //path for kollisjonsdeteksjon
 
        /// <summary>
        /// Eivind
-       /// Klasse for skytterne, tar inn point array som inneholder 3 point objekter for posisjonen den skal stå
+       /// Klasse for skytterne, tar inn point array som inneholder 3 point objekter for posisjonen den skal stå. Inneholder også en
+       /// draw metode for å tegne skytterene
        /// </summary>
        /// <param name="_point">punkt/plassering(point[]{new Point(x,y),new Point(x,y),new Point(x,y),};)</param>
        public Shooter(Point[] _point)

@@ -14,7 +14,7 @@ namespace projectcsharp
         /// Tord og Eivind
         /// Klasse for å lage figurer
         /// </summary>
-        private GraphicsPath myPath = new GraphicsPath(); //vil ha en path for alle hindringer
+        private GraphicsPath myPath = new GraphicsPath(); //vil ha en path for alle hindringer(Sjekke kollisjon)
         private Object mySync = new Object();
         private Random random = new Random();
         private Color obstacleColor;

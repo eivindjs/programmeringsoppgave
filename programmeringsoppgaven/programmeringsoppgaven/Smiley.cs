@@ -12,6 +12,8 @@ namespace projectcsharp
     {
         /// <summary>
         /// Tord og Eivind
+        /// Klasse for å lage smileys, tar inn x og y posisjon samt en int for å velge hvilken farge smileyen skal ha
+        /// Inneholder også en draw metode for å tegne smileyen.
         /// </summary>
         private int smileyX { get; set; }
         private int smileyY { get; set; }

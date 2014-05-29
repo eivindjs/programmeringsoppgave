@@ -11,6 +11,8 @@ namespace projectcsharp
     {
         /// <summary>
         /// Tord og Eivind
+        /// 
+        /// 
         /// </summary>
         public int level { get; set; }
         public int minutes { get; set; }
@@ -22,7 +24,6 @@ namespace projectcsharp
         private MyPanel parentPanel;
         public System.Windows.Forms.Timer ballTimer;
         private Random random;
-       // public int highScore { get; set; } 
 
         public Level(MyPanel _panel)
         {
@@ -78,6 +79,9 @@ namespace projectcsharp
         }
 
         #region Insert Objects
+        /// <summary>
+        /// Metode for å sette inn figurerer med absolutte x,y,w,h verdier
+        /// </summary>
         public void InsertObstacles()
         {
             if (level == 1)
@@ -120,11 +124,10 @@ namespace projectcsharp
                 listObstacle.Add(new Obstacle(0, 150, 40, 30, level));
                 listObstacle.Add(new Obstacle(420, 130, 20, 40, level));
             }
-
-
-
-
         }
+        /// <summary>
+        /// Metode for å sette inn smileys med x,y og en int for valg av farge på smiley
+        /// </summary>
         public void InsertSmileys()
         {
             if (level == 1)
@@ -192,10 +195,10 @@ namespace projectcsharp
             }
             else if (level == 6) //Bonus level
             { //øverst
-                listSmileys.Add(new Smiley(384, 40, 3));
-                listSmileys.Add(new Smiley(384, 360, 3));
-                listSmileys.Add(new Smiley(192, 180, 3));
-                listSmileys.Add(new Smiley(576, 180, 3));
+                listSmileys.Add(new Smiley(384, 40, 2));
+                listSmileys.Add(new Smiley(384, 360, 2));
+                listSmileys.Add(new Smiley(192, 180, 2));
+                listSmileys.Add(new Smiley(576, 180, 2));
                 listSmileys.Add(new Smiley(205, 140, 2));
                 listSmileys.Add(new Smiley(560, 140, 2));
                 listSmileys.Add(new Smiley(540, 100, 2));
@@ -224,12 +227,21 @@ namespace projectcsharp
                 listSmileys.Add(new Smiley(288, 140, 1));
                 listSmileys.Add(new Smiley(477, 140, 1)); 
 
+                //munn
+                listSmileys.Add(new Smiley(420, 252, 3));
+                listSmileys.Add(new Smiley(340, 258, 3));
+                listSmileys.Add(new Smiley(300, 245, 3));
+                listSmileys.Add(new Smiley(460, 235, 3));
+                listSmileys.Add(new Smiley(380, 255, 3));
+
                 seconds = 7;
             }
             MyPanel.smileysToCatch = listSmileys.Count();
 
         }
-
+        /// <summary>
+        /// Metode for å sette inn skyttere
+        /// </summary>
         public void InsertShooter()
         {
             if (level == 1)
@@ -285,10 +297,15 @@ namespace projectcsharp
         }
        
 
-
+        /// <summary>
+        /// Timer tick metode for å sette inn baller som skal skytes fra en viss posisjon.
+        /// Timeren ordner for når den skal skyte
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ballTimer_Tick(object sender, EventArgs e)
         {
-            //ordne bare en if for hver level her
+
             if (level == 1)
             {
                 listBalls.Add(new MovingBall(20, 277, 2));
@@ -335,10 +352,13 @@ namespace projectcsharp
         #endregion
 
 
-
+        /// <summary>
+        /// Metode som tegner aller figurer,smileys, skyttere og baller
+        /// </summary>
+        /// <param name="g"></param>
         public void Draw(Graphics g)
         {
-            for (int i = 0; i < listSmileys.Count; i++) //tegn alle smileys
+            for (int i = 0; i < listSmileys.Count; i++) 
             {
                 listSmileys[i].Draw(g);          
             }
