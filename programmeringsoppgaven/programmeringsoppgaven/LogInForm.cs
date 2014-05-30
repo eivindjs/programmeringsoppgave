@@ -65,7 +65,6 @@ namespace projectcsharp
             threadRegisterNew.Start();
             //lukker registrering om LoginFrom lukkes
             threadRegisterNew.IsBackground = true;
-
         }
         /// <summary>
         /// Logger inn. Viser en progressbar ved innlogging om oppgitt passord stemmer overens
@@ -77,7 +76,7 @@ namespace projectcsharp
         private void timerLogin_Tick(object sender, EventArgs e)
         {
             username = tbUsername.Text;
-            password = tbPassword.Text;
+            password = tbPassword.Text.Trim();
             passwordIn = Encryption.Encrypt(password);
 
             string query = String.Format("SELECT userID, password FROM User WHERE username = '{0}'", username);
@@ -128,6 +127,15 @@ namespace projectcsharp
                 progressBarLogin.Value = 0;
                 MessageBox.Show("Feil brukernavn og/eller passord.");
             }
+        }
+        /// <summary>
+        /// Logger deg inn om du trykker enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tbPassword_Enter(object sender, EventArgs e)
+        {
+            ActiveForm.AcceptButton = btnLogin;
         }
     }
 }

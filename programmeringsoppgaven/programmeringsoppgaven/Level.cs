@@ -55,7 +55,7 @@ namespace projectcsharp
 
         }
 
-        public void StopTimer()
+        public void StopBallTimer()
         {
             ballTimer.Stop();
 
@@ -89,21 +89,18 @@ namespace projectcsharp
                 listObstacle.Add(new Obstacle(10, 150, 150, 90, level));
                 listObstacle.Add(new Obstacle(300, 30, 90, 50, level));
                 listObstacle.Add(new Obstacle(500, 50, 65, 50, level));
-
             }
             else if (level == 2)
             {
                 listObstacle.Add(new Obstacle(90, 90, 120, 60, level));
                 listObstacle.Add(new Obstacle(260, 60, 160, 110, level));
                 listObstacle.Add(new Obstacle(500, 200, 150, 50, level));
-
             }
             else if (level == 3)
             {
                 listObstacle.Add(new Obstacle(260, 60, 160, 110, level));
                 listObstacle.Add(new Obstacle(560, 150, 120, 70, level));
-                listObstacle.Add(new Obstacle(5, 240, 80, 70, level));
-               
+                listObstacle.Add(new Obstacle(5, 240, 80, 70, level));              
             }
             else if (level == 4)
             {
@@ -138,11 +135,9 @@ namespace projectcsharp
                 listSmileys.Add(new Smiley(600, 300, 2));
                 minutes = 1;
                 seconds = 10;
-
             }
             else if (level == 2)
             {
-
                 listSmileys.Add(new Smiley(60, 70, 1));
                 listSmileys.Add(new Smiley(160, 340, 1));
                 listSmileys.Add(new Smiley(700, 250, 1));
@@ -232,10 +227,10 @@ namespace projectcsharp
                 listSmileys.Add(new Smiley(460, 235, 3));
                 listSmileys.Add(new Smiley(380, 255, 3));
 
-                seconds = 7;
+                seconds = 9;
             }
-
         }
+
         /// <summary>
         /// Metode for å sette inn skyttere
         /// </summary>
@@ -259,18 +254,15 @@ namespace projectcsharp
                 listShooters.Add(new Shooter(new Point[] { new Point(540, 250), new Point(580, 250), new Point(560, 280) }));             
             }
             else if (level == 3)
-            {
-                
+            {           
                 listShooters.Add(new Shooter(new Point[] { new Point(400, parentPanel.Height), new Point(440, parentPanel.Height), new Point(420, 350) }));
                 listShooters.Add(new Shooter(new Point[] { new Point(600, 340), new Point(640, 340), new Point(620, 300) }));
                 listShooters.Add(new Shooter(new Point[] { new Point(730, 120), new Point(parentPanel.Width, 100), new Point(parentPanel.Width, 140) }));
                 listShooters.Add(new Shooter(new Point[] { new Point(200, parentPanel.Height), new Point(240, parentPanel.Height), new Point(220, 350) }));
                 listShooters.Add(new Shooter(new Point[] { new Point(600, 0), new Point(640, 0), new Point(620, 30) }));
-
             }
             else if (level == 4)
             {
-                listShooters.Add(new Shooter(new Point[] { new Point(130, 290), new Point(160, 320), new Point(165, 280) }));
                 listShooters.Add(new Shooter(new Point[] { new Point(400, parentPanel.Height), new Point(440, parentPanel.Height), new Point(420, 355) }));
                 listShooters.Add(new Shooter(new Point[] { new Point(260, 130), new Point(260, 165), new Point(230, 147) }));
                 listShooters.Add(new Shooter(new Point[] { new Point(640, 130), new Point(680, 130), new Point(660, 155) }));
@@ -286,7 +278,6 @@ namespace projectcsharp
             }
         }
        
-
         /// <summary>
         /// Timer tick metode for å sette inn baller som skal skytes fra en viss posisjon.
         /// Timeren ordner for når den skal skyte
@@ -321,7 +312,6 @@ namespace projectcsharp
             else if (level == 4)
             {
                 listBalls.Add(new MovingBall(230, 145, 3));
-                listBalls.Add(new MovingBall(165, 280, 5));
                 listBalls.Add(new MovingBall(417, 355, 1));
                 listBalls.Add(new MovingBall(437, 140, 4));
                 listBalls.Add(new MovingBall(657, 155, 4));

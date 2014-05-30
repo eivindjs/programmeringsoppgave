@@ -64,6 +64,7 @@ namespace projectcsharp
             timer.Interval = 17;
             timer.Tick += new EventHandler(Timer_Tick);
         }
+        #region Game controller
         /// <summary>
         /// Kalles fra LevelForm. Her avgjøres det om spillet skal fortsette eller starte på nytt.
         /// </summary>
@@ -110,6 +111,7 @@ namespace projectcsharp
             myLevel = new Level(this);
             running = true;
             timer.Start();
+            myLevel.StartBallTimer();
             startAnimation();
         }
         /// <summary>
@@ -120,15 +122,15 @@ namespace projectcsharp
         {
             running = false;
             timer.Stop();
-            myLevel.StopTimer();
+            myLevel.StopBallTimer();
             gameOverTS = new ThreadStart(GameOverSound);
             gameOverThread = new Thread(gameOverTS);
             gameOverThread.IsBackground = true;
             gameOverThread.Start();
-            myLevel.StartBallTimer();
+            ShowMessageBox();
+
             movingMan.GetPictureBox().Hide();
             myLevel.ClearBalls();
-            ShowMessageBox();
             level = 1;
         }
 
@@ -140,8 +142,9 @@ namespace projectcsharp
             myLevel.StartBallTimer();
             movingMan.SetLocation();
         }
+        #endregion
 
-        #region Tråd- og timer-håndtering
+        #region Thread & timer 
 
         public void UpdateGraphics()
         {
@@ -217,7 +220,7 @@ namespace projectcsharp
                     MessageBox.Show("Du klarte det! Trykk start for neste brett.");
                     myLevel.ClearBalls();
                 }
-                else if (level == 6)
+                else if (myLevel.level == 6)
                 {
                     MessageBox.Show("Gratulerer! Du har fullført spillet! Sjekk din highscore i hovedmenyen!");
 
@@ -230,6 +233,7 @@ namespace projectcsharp
         }
         #endregion
 
+        #region Collision detection
         /// <summary>
         /// Sjekker kollisjon for alle typer graphicsPath. GraphicsPath a og b danner hver sin Region. Har de kontakt med hverandre, vil metoden returnere true. Ellers false.
         /// </summary>
@@ -272,13 +276,17 @@ namespace projectcsharp
                 {
                     if (CheckCollision(myLevel.listSmileys[i].GetPath(), movingMan.GetPath(), e))
                     {
-                        myLevel.AddScore(i);
-
-                        playSound = new ThreadStart(PlaySound);
-                        soundThread = new Thread(playSound);
-                        soundThread.IsBackground = true;
-                        soundThread.Start();
-
+                        lock (mySync)
+                        {
+                            myLevel.AddScore(i);
+                        }
+                        if (myLevel.level != 6)
+                        {
+                            playSound = new ThreadStart(PlaySound);
+                            soundThread = new Thread(playSound);
+                            soundThread.IsBackground = true;
+                            soundThread.Start();
+                        }
                         if (myLevel.listSmileys.Count == 0)
                         {
                             level++;
@@ -307,39 +315,43 @@ namespace projectcsharp
                         highScore--;
                     }
                 }
-
-                for (int i = 0; i < myLevel.listBalls.Count; i++)
+                lock (mySync) //hindrer at flere baller fjernes mens løkkene kjører
                 {
-                    for (int j = 0; j < myLevel.listSmileys.Count; j++) //tegn alle smileys
+                    for (int i = 0; i < myLevel.listBalls.Count; i++)
                     {
-                        if (CheckCollision(myLevel.listSmileys[j].GetPath(), myLevel.listBalls[i].GetPath(), e))
+                        for (int j = 0; j < myLevel.listSmileys.Count; j++) //tegn alle smileys
                         {
-                            myLevel.listBalls.RemoveAt(i);
-                            if (i >= myLevel.listBalls.Count)
+                            if (CheckCollision(myLevel.listSmileys[j].GetPath(), myLevel.listBalls[i].GetPath(), e))
                             {
-                                i = myLevel.listBalls.Count - 1;
+                                myLevel.listBalls.RemoveAt(i);
+
+                                if (i >= myLevel.listBalls.Count)
+                                {
+                                    i = myLevel.listBalls.Count - 1;
+                                }
                             }
-                           
                         }
                     }
                 }
 
-
-                for (int i = 0; i < myLevel.listBalls.Count; i++)
+                lock (mySync)
                 {
-                    for (int j = 0; j < myLevel.listObstacle.Count; j++) //tegn alle smileys  
+                    for (int i = 0; i < myLevel.listBalls.Count; i++)
                     {
-
-
-                        if (CheckCollision(myLevel.listObstacle[j].GetPath(), myLevel.listBalls[i].GetPath(), e))
+                        for (int j = 0; j < myLevel.listObstacle.Count; j++) //tegn alle smileys  
                         {
-                            
-                            myLevel.listBalls.RemoveAt(i);
-                            if (i >= myLevel.listBalls.Count)
+                            if (CheckCollision(myLevel.listObstacle[j].GetPath(), myLevel.listBalls[i].GetPath(), e))
                             {
-                                i = myLevel.listBalls.Count - 1;
+                                myLevel.listBalls.RemoveAt(i);
+                                for (int k = 0; k < 5; k++)
+                                {
+                                    if (i >= myLevel.listBalls.Count)
+                                    {
+                                        i = myLevel.listBalls.Count - 1;
+                                    }
+                                }
                             }
-                        }           
+                        }
                     }
                 }
 
@@ -350,21 +362,23 @@ namespace projectcsharp
                         StopGame();
                     }
                 }
-
-                for (int i = 0; i < myLevel.listBalls.Count; i++)
+                lock (mySync)
                 {
-                    if (myLevel.listBalls[i].x > this.Width || myLevel.listBalls[i].x < 0)
+                    for (int i = 0; i < myLevel.listBalls.Count; i++)
                     {
-                        myLevel.listBalls.RemoveAt(i);
-                    }
-                    if (myLevel.listBalls[i].y > this.Height || myLevel.listBalls[i].y < 0)
-                    {
-                        myLevel.listBalls.RemoveAt(i);
+                        if (myLevel.listBalls[i].x > this.Width || myLevel.listBalls[i].x < 0)
+                        {
+                            myLevel.listBalls.RemoveAt(i);
+                        }
+                        if (myLevel.listBalls[i].y > this.Height || myLevel.listBalls[i].y < 0)
+                        {
+                            myLevel.listBalls.RemoveAt(i);
+                        }
                     }
                 }
         }
+        #endregion
 
-        #region OnPaint
         /// <summary>
         /// Kjøres ved this.Invalidate();
         /// Viktigste klassen i programmet mtp. kollisjonsdeteksjon. MovingMan sin picture box blir lagt til en GraphicsPath,
@@ -378,8 +392,6 @@ namespace projectcsharp
         {
             if (running)
             {
-                lock (mySync)
-                {
                     if (this.movingMan != null)
                     {
                         base.OnPaint(e);
@@ -388,14 +400,10 @@ namespace projectcsharp
 
                         movingMan.SetLocation();
                         myLevel.Draw(e.Graphics);
-                        UpdateMovement(e);
-
-                    }
-                } //lock
+                        UpdateMovement(e);             
+                    } 
             }//running
         } //onPaint
-        #endregion
-
 
         /// <summary>
         /// Metode for å sette inn data i databasen
