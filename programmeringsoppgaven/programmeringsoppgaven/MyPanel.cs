@@ -102,6 +102,8 @@ namespace projectcsharp
             //minutes = 1; // korrekt???
             //smileysToCatch = myLevel.listSmileys.Count;
 
+
+
             movingMan = new MovingMan //setter verdiene til MovingMan tilbake vha properties
             {
                 X = 10f,

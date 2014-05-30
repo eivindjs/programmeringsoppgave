@@ -11,6 +11,7 @@ namespace projectcsharp
 {
     /// <summary>
     /// Tord
+    /// Encryption.cs 
     /// Her blir passord til nye brukere kryptert.
     /// Ved login sjekkes passord mot database via denne klassen.
     /// </summary>
