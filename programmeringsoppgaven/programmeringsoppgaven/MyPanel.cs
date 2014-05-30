@@ -315,46 +315,7 @@ namespace projectcsharp
                         highScore--;
                     }
                 }
-                lock (mySync) //hindrer at flere baller fjernes mens løkkene kjører
-                {
-                    for (int i = 0; i < myLevel.listBalls.Count; i++)
-                    {
-                        for (int j = 0; j < myLevel.listSmileys.Count; j++) //tegn alle smileys
-                        {
-                            if (CheckCollision(myLevel.listSmileys[j].GetPath(), myLevel.listBalls[i].GetPath(), e))
-                            {
-                                myLevel.listBalls.RemoveAt(i);
-
-                                if (i >= myLevel.listBalls.Count)
-                                {
-                                    i = myLevel.listBalls.Count - 1;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                lock (mySync)
-                {
-                    for (int i = 0; i < myLevel.listBalls.Count; i++)
-                    {
-                        for (int j = 0; j < myLevel.listObstacle.Count; j++) //tegn alle smileys  
-                        {
-                            if (CheckCollision(myLevel.listObstacle[j].GetPath(), myLevel.listBalls[i].GetPath(), e))
-                            {
-                                myLevel.listBalls.RemoveAt(i);
-                                for (int k = 0; k < 5; k++)
-                                {
-                                    if (i >= myLevel.listBalls.Count)
-                                    {
-                                        i = myLevel.listBalls.Count - 1;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
+                
                 for (int i = 0; i < myLevel.listBalls.Count; i++)
                 {
                     if (CheckCollision(myLevel.listBalls[i].GetPath(), movingMan.GetPath(), e))
