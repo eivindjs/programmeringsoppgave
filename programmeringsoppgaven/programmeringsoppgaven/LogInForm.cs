@@ -21,7 +21,6 @@ namespace projectcsharp
         private string username;
         private string password;
         private string passwordIn;
-        System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.mainmenu);
 
         public LoginForm()
         {
@@ -105,7 +104,6 @@ namespace projectcsharp
                         threadNewGame.Start();
                       
                         this.Close();
-                       // player.PlaySync();
                     }
                 }
                 else
