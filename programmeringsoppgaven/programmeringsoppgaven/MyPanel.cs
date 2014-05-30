@@ -164,7 +164,6 @@ namespace projectcsharp
             //minutes = 1; // korrekt???
             timer.Enabled = true;
             timer.Start();
-
             myLevel = new Level(this);
             //smileysToCatch = myLevel.listSmileys.Count;
 
@@ -321,8 +320,7 @@ namespace projectcsharp
                             StartNextLevel();
                             restart = false;
                             gameOver = false;
-
-                        }
+                          }
                     }
                 }
 

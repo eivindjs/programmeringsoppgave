@@ -47,7 +47,7 @@ namespace projectcsharp
                 {
                     checkUsername.Add(table.Rows[i]["username"].ToString());
                 }
-                if (checkUsername.Contains(username))
+                if (checkUsername.Contains(username)) //sjekk av brukernavn
                 {
                     MessageBox.Show("Brukernavnet eksisterer fra før, velg et annet!");
                 }

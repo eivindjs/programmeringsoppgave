@@ -21,7 +21,7 @@ namespace projectcsharp
         public int h { get; set; }
         public int w { get; set; }
         private int ballSpeed;
-        private GraphicsPath myPath;
+        private GraphicsPath myPath; //path for kollisjonsdeteksjon
 
         private System.Windows.Forms.Timer moveBallTimer;
 
