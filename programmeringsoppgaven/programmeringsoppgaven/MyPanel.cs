@@ -16,7 +16,7 @@ namespace projectcsharp
 {
     /// <summary>
     /// Tord og Eivind
-    /// Her skjer magien.
+    /// Her skjer magien. Klassen tar seg av selve spillbrettet. En egen tråd tar seg av tegning.
     /// </summary>
     public partial class MyPanel : Panel
     {
@@ -64,7 +64,9 @@ namespace projectcsharp
             timer.Interval = 17;
             timer.Tick += new EventHandler(Timer_Tick);
         }
-
+        /// <summary>
+        /// Kalles fra LevelForm. Her avgjøres det om spillet skal fortsette eller starte på nytt.
+        /// </summary>
         public void RunGame()
         {
             highScore = 0;
@@ -110,13 +112,15 @@ namespace projectcsharp
             timer.Start();
             startAnimation();
         }
-      
+        /// <summary>
+        /// Kalles alltid ved "game over": Når du treffer bakken, en skytter eller dens baller. 
+        /// Kalles også når spilletiden går ut.
+        /// </summary>
         public void StopGame()
         {
             running = false;
             timer.Stop();
             myLevel.StopTimer();
-            level = 1;
             gameOverTS = new ThreadStart(GameOverSound);
             gameOverThread = new Thread(gameOverTS);
             gameOverThread.IsBackground = true;
@@ -125,7 +129,7 @@ namespace projectcsharp
             movingMan.GetPictureBox().Hide();
             myLevel.ClearBalls();
             ShowMessageBox();
-
+            level = 1;
         }
 
         public void StartNextLevel()
@@ -144,7 +148,7 @@ namespace projectcsharp
             while (running)
             {
                 Thread.Sleep(17); //å la tråden sove i 17 ms er optimalt for å oppnå en framerate på ca 60 FPS
-                this.Invalidate(); //kaller på OnPaint()
+                this.Invalidate(); //kaller bl.a. på OnPaint()
             }
         }
 
@@ -156,7 +160,11 @@ namespace projectcsharp
             thread.Start();
             myLevel.StartBallTimer();
         }
-
+        /// <summary>
+        /// Avgjør hvordan spillfiguren skal bevege seg, avhengig av tastetrykk.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Timer_Tick(object sender, EventArgs e)
         {
                 var left = KeyEvent.GetKeyState(Keys.Left);
@@ -348,12 +356,10 @@ namespace projectcsharp
                     if (myLevel.listBalls[i].x > this.Width || myLevel.listBalls[i].x < 0)
                     {
                         myLevel.listBalls.RemoveAt(i);
-                        Debug.Print("ball fjernet");
                     }
                     if (myLevel.listBalls[i].y > this.Height || myLevel.listBalls[i].y < 0)
                     {
                         myLevel.listBalls.RemoveAt(i);
-                        Debug.Print("ball fjernet");
                     }
                 }
         }

@@ -23,7 +23,6 @@ namespace projectcsharp
        {
            point = _point;
            myPath.AddPolygon(point);
-
        }
        public GraphicsPath GetPath()
        {

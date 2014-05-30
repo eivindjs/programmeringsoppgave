@@ -6,7 +6,6 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-
 namespace projectcsharp
 {
     /// <summary>
@@ -16,13 +15,12 @@ namespace projectcsharp
     /// Ved login sjekkes passord mot database via denne klassen.
     /// </summary>
     public static class Encryption
-    { //nøkler som er nødvendig for å hashe
+    {   //nøkler som er nødvendig for å hashe
         static readonly string PasswordHash = "P@@Sw0rdH@$h1ng";
         static readonly string SaltKey = "$@LT&K3Y";
         static readonly string VIKey = "@1B2c3D4e5F6g7H8";
 
-        //"dekrypterer"
-        public static bool Decrypt(string userpass, string databasepass)
+        public static bool Decrypt(string userpass, string databasepass) //"dekrypterer"
         {
             string decryption = Encrypt(userpass);
             if (decryption == databasepass)
@@ -32,6 +30,12 @@ namespace projectcsharp
             else
                 return false;
         }
+
+        /// <summary>
+        /// Metoden krypterer innsendt passord og returnerer det.
+        /// </summary>
+        /// <param name="plainText"></param>
+        /// <returns></returns>
         public static string Encrypt(string plainText)
         {
             byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);

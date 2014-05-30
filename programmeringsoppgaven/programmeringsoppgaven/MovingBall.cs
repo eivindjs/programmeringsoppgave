@@ -11,6 +11,7 @@ namespace projectcsharp
 {
     /// <summary>
     /// Tord og Eivind
+    /// MovingBall.cs
     /// En klasse for ballene som skal skytes.
     /// </summary>
     public class MovingBall

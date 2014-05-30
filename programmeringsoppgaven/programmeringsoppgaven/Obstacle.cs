@@ -12,6 +12,7 @@ namespace projectcsharp
     {
         /// <summary>
         /// Tord og Eivind
+        /// Obstacle.cs
         /// Klasse for å lage hindringer
         /// </summary>
         private GraphicsPath myPath = new GraphicsPath(); //vil ha en path for alle hindringer(Sjekke kollisjon)
@@ -24,9 +25,6 @@ namespace projectcsharp
         private int height { get; set; }
         private int level;
 
-        public Obstacle()
-        {           
-        }
         public Obstacle(int _x, int _y, int _width, int _height, int _level)
         {
             x = _x;
@@ -42,7 +40,6 @@ namespace projectcsharp
                 myPath.AddLine(x + width, y + height, x, y + height);
                 myPath.CloseFigure(); //Lukk! 
               
-
                 myPath.StartFigure(); //Ny figur. 
                 myPath.AddEllipse(new Rectangle(x, y + 150, width, height));
                 myPath.CloseFigure(); //Lukk! 
@@ -57,7 +54,6 @@ namespace projectcsharp
                 Point[] points = { new Point(60, 80),
                     new Point(70, 90),
                     new Point(50, 110)};
-
          
                 myPath.StartFigure(); //Fancy figur
                 myPath.AddArc(175, 50, 50, 50, 0, -180);
@@ -83,7 +79,6 @@ namespace projectcsharp
                 myPath.AddLine(x + width, y + height, x, y + height);
                 myPath.CloseFigure(); //Lukk! 
 
-
                 Point[] poin = { new Point(x, y), new Point(x + 50, y), new Point(x + 30, y - 30) };
                 myPath.StartFigure();
                 myPath.AddPolygon(poin);
@@ -94,9 +89,7 @@ namespace projectcsharp
                 myPath.AddLine(x + width, y, x, y - 40);
                 myPath.AddLine(x, y - 40, x + width, y - 30);
                 myPath.CloseFigure();
-
-            }
-          
+            }         
         }
 
         public GraphicsPath GetPath()
@@ -109,6 +102,5 @@ namespace projectcsharp
             SolidBrush brush = new SolidBrush(obstacleColor);
             g.FillPath(brush, myPath);
         }
-
     }
 }

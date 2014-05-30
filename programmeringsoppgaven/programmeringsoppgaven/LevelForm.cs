@@ -17,6 +17,10 @@ namespace projectcsharp
         private System.Windows.Forms.Timer updateTimer;
         /// <summary>
         /// Tord og Eivind
+        /// LevelForm.cs
+        /// Her er rammen til spillbrettet (MyPanel). Inneholder en timer for å oppdatere tiden som gjenstår.
+        /// LevelForm er delt inn i paneler. 2 rader og 1 kolonne. Øverste rad inneholder MyPanel. Nederste rad 
+        /// inneholder et nytt panel med 4 kolonner som holder på knapper og labels.
         /// </summary>
         public LevelForm()
         {
@@ -32,7 +36,6 @@ namespace projectcsharp
             updateTimer.Interval = 17;
             updateTimer.Tick += new EventHandler(UpdateTimer_Tick);
             updateTimer.Enabled = false;
-
         }
 
         private void btnStart_Click(object sender, EventArgs e)

@@ -16,6 +16,9 @@ namespace projectcsharp
         public static LevelForm levelForm;
         /// <summary>
         /// Tord og Eivind
+        /// MainForm.cs
+        /// Hovedmenyen du kommer til når du har logget inn. Her kan du starte nytt spill, sjekke highscore,
+        /// endre innstillinger og logge ut.
         /// </summary>
         public MainForm()
         {
@@ -35,21 +38,18 @@ namespace projectcsharp
             Application.Run(levelForm);
 
         }
-        public static void EndGame()
-        {
-
-
-        }
 
         public void ShowMainForm()
         {
             levelForm.Close();
         }
+
         private void btnAbout_Click(object sender, EventArgs e)
         {
             var threadAbout = new Thread(ThreadAbout);
             threadAbout.Start();
         }
+
         private void ThreadAbout()
         {
             About about = new About();
@@ -61,17 +61,19 @@ namespace projectcsharp
             var threadScore = new Thread(ThreadHighScore);
             threadScore.Start();
         }
+
         private void ThreadHighScore()
         {
             Highscore highScore = new Highscore();
             Application.Run(highScore);
         }
+
         private void btnSettings_Click(object sender, EventArgs e)
         {
             var threadSettings = new Thread(ThreadSettings);
             threadSettings.Start();
-
         }
+
         private void ThreadSettings()
         {
             Settings settings = new Settings();
@@ -81,11 +83,6 @@ namespace projectcsharp
         private void lukkToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void instillingerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void omToolStripMenuItem_Click(object sender, EventArgs e)

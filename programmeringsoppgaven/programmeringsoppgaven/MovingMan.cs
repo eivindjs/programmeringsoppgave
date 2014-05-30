@@ -12,6 +12,9 @@ namespace projectcsharp
     {
         /// <summary>
         /// Tord og Eivind
+        /// MovingMan.cs
+        /// Lager spillfiguren med tilhørende variabler. Spillfiguren er et bilde av en legosupermann som 
+        /// flyttes rundt på spillbrettet.
         /// </summary>
         private float speed = 1.3f;
         private int firstKeyPress = 1;
@@ -21,11 +24,12 @@ namespace projectcsharp
         public float Y { get; set; }
         public float DX { get; set; }
         public float DY { get; set; }
-
         private PictureBox superman;
         private GraphicsPath supermanPath;
 
-
+        /// <summary>
+        /// Oppretter bildet. Koordinater blir satt vha get og set.
+        /// </summary>
         public MovingMan()
         {
             superman = new PictureBox();
@@ -35,6 +39,7 @@ namespace projectcsharp
             superman.Location = new Point((int)X, (int)Y);
             supermanPath = new GraphicsPath();
         }
+      
         public PictureBox GetPictureBox()
         {
             return superman;
@@ -45,6 +50,10 @@ namespace projectcsharp
             superman.Location = new Point((int)X, (int)Y);
         }
 
+        /// <summary>
+        /// Bruker GraphicsPath for å kunne sjekke kollisjon. Kollisjonsdeteksjon skjer i MyPanel.
+        /// </summary>
+        /// <returns></returns>
         public GraphicsPath GetPath()
         {
             supermanPath.Reset();
@@ -57,19 +66,18 @@ namespace projectcsharp
 
         public void MoveRight()
         {
-         //   superman.Image = projectcsharp.Properties.Resources.superRight;
             this.X += DX;
         }
 
         public void MoveLeft()
         {
-          //  superman.Image = projectcsharp.Properties.Resources.superLeft;
             this.X -= this.DX;
         }
-
+        /// <summary>
+        /// Øver farta jo lenger du holder inne opp eller er i fritt fall(metoden under).
+        /// </summary>
         public void MoveUp()
         {
-           // superman.Image = projectcsharp.Properties.Resources.super;
             if(firstKeyPress == 1)
             {
                 speed = 1;
@@ -82,7 +90,6 @@ namespace projectcsharp
 
         public void MoveDown()
         {
-           // superman.Image = projectcsharp.Properties.Resources.superDown;
             firstKeyPress = 1;
             speed = speed * 1.03f;
             this.Y += this.DY * speed;
@@ -93,6 +100,5 @@ namespace projectcsharp
         {
             MoveDown();
         }
-
     }
 }

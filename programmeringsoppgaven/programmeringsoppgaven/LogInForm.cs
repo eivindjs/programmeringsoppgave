@@ -15,6 +15,11 @@ namespace projectcsharp
     {
         /// <summary>
         /// Tord og Eivind
+        /// LoginForm.cs
+        /// 
+        /// Dette er første vindu du møter på når applikasjonen startes. Her kan du velge å logge inn
+        /// eller registrere ny bruker.
+        /// Kontakt med database skjer gjennom klassen DBConnect().
         /// </summary>
         private DBConnect db = new DBConnect();
         private DataTable dt = new DataTable();
