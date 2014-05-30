@@ -16,7 +16,7 @@ namespace projectcsharp
 
         /// <summary>
         /// Eivind
-        /// Klasse/Form der du kan endre brukernavne ditt, passord og slette poengsummen din
+        /// Klasse/Form der du kan endre brukernavne ditt, passord og slette poengsummen din, endre hastighet på ball ved lett, middels og vanskelig
         /// </summary>
         #region Private Medlemsvariabler
         private DBConnect db = new DBConnect(); //Oppkobling mot database

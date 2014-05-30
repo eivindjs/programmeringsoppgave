@@ -14,7 +14,6 @@ namespace projectcsharp
     /// Disse eiendommene er satt når GetKeyState blir kalt. Key egenskapen er for selve tasten, hvilken tast som blir trykket.
     /// isPressed er om den er trykket(true/false) og isToggled er om den er av eller på(true/false), men det gjelder mest for capslock, numlock osv. 
     /// Det spørs om du skal bruke caps lock eller ikke.
-    /// http://sanity-free.org/17/obtaining_key_state_info_in_dotnet_csharp_getkeystate_implementation.html
     /// </summary>
     public class KeyEvent
     {
