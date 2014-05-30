@@ -70,13 +70,8 @@ namespace projectcsharp
                 // når tiden er lik null
                 if ((gamePanel.myLevel.minutes == 0) && (gamePanel.myLevel.seconds == 0))
                 {
-                    //må kanskje legge inn mer her
                     stopWatch.Enabled = false; //stopper timeren
-                    // MainForm.levelForm.min
-                    lblTime.Text = "Tid Igjen: 00:00";
-                    //legge til lagring av highscore
-                    // string query = string.Format("INSERT INTO Highscore (username, dato, score, userID) VALUES('{0}', '{1}', '{2}', '{3}')", User.Username, DateTime.Now.ToString("yyyy-MM-dd H:mm:ss"), poengsum, User.Id);
-                    // Insert(query);
+                    lblTime.Text = "Tid Igjen: 00:00";               
                     stopWatch.Stop();
                     gamePanel.StopGame();
                 }
@@ -97,7 +92,6 @@ namespace projectcsharp
                     }
                     else
                         gamePanel.myLevel.seconds -= 1;
-                    //myPanel.Insert highscore
                 }
             }
         }
@@ -105,8 +99,6 @@ namespace projectcsharp
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-    
+        }  
     }
 }

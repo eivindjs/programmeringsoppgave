@@ -161,7 +161,6 @@
             this.gamePanel.Location = new System.Drawing.Point(3, 3);
             this.gamePanel.minutes = 0;
             this.gamePanel.Name = "gamePanel";
-            this.gamePanel.restart = true;
             this.gamePanel.running = false;
             this.gamePanel.seconds = 0;
             this.gamePanel.Size = new System.Drawing.Size(768, 387);

@@ -77,5 +77,34 @@ namespace projectcsharp
             Settings settings = new Settings();
             Application.Run(settings);
         }
+
+        private void lukkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void instillingerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void omToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var threadAbout = new Thread(ThreadAbout);
+            threadAbout.Start();
+        }
+
+        private void loggUtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var threadLogOut = new Thread(ThreadLogOut);
+            threadLogOut.Start();
+            this.Close();
+        }
+
+        private void ThreadLogOut()
+        {
+            LoginForm loginForm = new LoginForm();
+            Application.Run(loginForm);
+        }
     }
 }

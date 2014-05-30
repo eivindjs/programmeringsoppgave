@@ -28,21 +28,17 @@ namespace projectcsharp
         private Thread soundThread;
         private Thread gameOverThread;
         private ThreadStart gameOverTS;
-
         private MovingMan movingMan;
         private System.Windows.Forms.Timer timer;
         private Random random;
         private DBConnect db;
         public bool gameOver { get; set; }
-        public bool restart { get; set; }
-
         public Level myLevel;
         public int level { get; set; }
         public int seconds { get; set; }
         public int minutes { get; set; }
         public bool running { get; set; }
         public int highScore { get; set; }
-
         public static Object mySync;
         
         #endregion
@@ -53,28 +49,21 @@ namespace projectcsharp
         public MyPanel()
         {
             this.SetStyle(ControlStyles.DoubleBuffer |
-       ControlStyles.UserPaint |
-       ControlStyles.AllPaintingInWmPaint,
-       true);
+                ControlStyles.UserPaint |
+                ControlStyles.AllPaintingInWmPaint,
+                true);
             this.UpdateStyles();
+
             db = new DBConnect();
             mySync = new Object();
-            restart = true;
 
             level = 1;
             random = new Random();
-          
-
 
             this.timer = new System.Windows.Forms.Timer();
             timer.Interval = 17;
             timer.Tick += new EventHandler(Timer_Tick);
-
-
-
-
         }
-
 
         public void RunGame()
         {
@@ -98,11 +87,6 @@ namespace projectcsharp
         public void StartGame()
         {
             myLevel = new Level(this);
-            //seconds = 10; // korrekt???
-            //minutes = 1; // korrekt???
-            //smileysToCatch = myLevel.listSmileys.Count;
-
-
 
             movingMan = new MovingMan //setter verdiene til MovingMan tilbake vha properties
             {
@@ -114,7 +98,6 @@ namespace projectcsharp
 
             this.Controls.Add(movingMan.GetPictureBox()); //legger pictureBox til panelet
 
-
             running = true;
             timer.Start();
             startAnimation();
@@ -122,12 +105,7 @@ namespace projectcsharp
 
         public void RestartCurrentGame()
         {
-
             myLevel = new Level(this);
-            seconds = 10; // korrekt???
-            minutes = 1; // korrekt???
-            //smileysToCatch = myLevel.listSmileys.Count;
-
             running = true;
             timer.Start();
             startAnimation();
@@ -136,50 +114,27 @@ namespace projectcsharp
         public void StopGame()
         {
             running = false;
-            // timer.Enabled = false;
             timer.Stop();
             myLevel.StopTimer();
-            level = 1; // korrekt???
-
+            level = 1;
             gameOverTS = new ThreadStart(GameOverSound);
             gameOverThread = new Thread(gameOverTS);
             gameOverThread.IsBackground = true;
             gameOverThread.Start();
-
             myLevel.StartBallTimer();
-
-            ShowMessageBox();
-
             movingMan.GetPictureBox().Hide();
             myLevel.ClearBalls();
-
-            //seconds = 10; // korrekt???
-            //minutes = 1; // korrekt???
+            ShowMessageBox();
 
         }
 
         public void StartNextLevel()
-        {
-            //movingMan.GetPictureBox().Hide();
-            myLevel.ClearBalls();
-            //seconds = 10; // korrekt???
-            //minutes = 1; // korrekt???
+        {            
             timer.Enabled = true;
             timer.Start();
             myLevel = new Level(this);
-            //smileysToCatch = myLevel.listSmileys.Count;
-
+            myLevel.StartBallTimer();
             movingMan.SetLocation();
-
-            //movingMan = new MovingMan //setter verdiene til MovingMan tilbake vha properties
-            //{
-            //    X = 10f,
-            //    Y = 10f,
-            //    DX = 4f,
-            //    DY = 3f,
-            //};
-            //this.Controls.Add(movingMan.GetPictureBox());
-
         }
 
         #region Tråd- og timer-håndtering
@@ -190,7 +145,6 @@ namespace projectcsharp
             {
                 Thread.Sleep(17); //å la tråden sove i 17 ms er optimalt for å oppnå en framerate på ca 60 FPS
                 this.Invalidate(); //kaller på OnPaint()
-
             }
         }
 
@@ -201,7 +155,6 @@ namespace projectcsharp
             thread.IsBackground = true;
             thread.Start();
             myLevel.StartBallTimer();
-
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -243,9 +196,8 @@ namespace projectcsharp
                 else
                 {
                     StopGame();
-                    // Insert(highScore);    
-                }
-            
+                     Insert(highScore);    
+                }         
         }
 
         public void ShowMessageBox()
@@ -256,6 +208,11 @@ namespace projectcsharp
                 {
                     MessageBox.Show("Du klarte det! Trykk start for neste brett.");
                     myLevel.ClearBalls();
+                }
+                else if (level == 6)
+                {
+                    MessageBox.Show("Gratulerer! Du har fullført spillet! Sjekk din highscore i hovedmenyen!");
+
                 }
                 else
                 {
@@ -303,8 +260,6 @@ namespace projectcsharp
         /// <param name="e"></param>
         public void UpdateMovement(PaintEventArgs e)
         {
-            //try
-            //{
                 for (int i = 0; i < myLevel.listSmileys.Count; i++) //tegn alle smileys
                 {
                     if (CheckCollision(myLevel.listSmileys[i].GetPath(), movingMan.GetPath(), e))
@@ -320,7 +275,6 @@ namespace projectcsharp
                         {
                             level++;
                             StartNextLevel();
-                            restart = false;
                             gameOver = false;
                           }
                     }
@@ -332,8 +286,8 @@ namespace projectcsharp
                     {
                         if (running)
                         {
-                            StopGame();
-                            //     Insert(highScore);
+                            StopGame();   
+                            Insert(highScore);
                         }
                     }
                 }
@@ -385,8 +339,6 @@ namespace projectcsharp
                 {
                     if (CheckCollision(myLevel.listBalls[i].GetPath(), movingMan.GetPath(), e))
                     {
-                        //myLevel.listBalls.RemoveAt(i);
-
                         StopGame();
                     }
                 }
@@ -403,15 +355,7 @@ namespace projectcsharp
                         myLevel.listBalls.RemoveAt(i);
                         Debug.Print("ball fjernet");
                     }
-
                 }
-            //}
-       
-            //catch (Exception ex) //tar hånd om alle andre exceptions som eventuelt kan oppstå
-            //{
-            //    StopGame();
-            //    MessageBox.Show("Feilmelding: " + ex);
-            //}
         }
 
         #region OnPaint
@@ -432,12 +376,11 @@ namespace projectcsharp
                 {
                     if (this.movingMan != null)
                     {
-                        //base.OnPaint(e);
+                        base.OnPaint(e);
                         e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
                         e.Graphics.DrawLine(new Pen(Color.Green), new Point(0, 40), new Point(40, 40)); //plattformen ved start
 
                         movingMan.SetLocation();
-
                         myLevel.Draw(e.Graphics);
                         UpdateMovement(e);
 

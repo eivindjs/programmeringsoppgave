@@ -22,13 +22,7 @@ namespace projectcsharp
         public int w { get; set; }
         private int ballSpeed;
         private GraphicsPath myPath; //path for kollisjonsdeteksjon
-
         private System.Windows.Forms.Timer moveBallTimer;
-
-        public MovingBall()
-        {
-
-        }
 
         public MovingBall(int x, int y, int direction)
         {
@@ -47,15 +41,16 @@ namespace projectcsharp
             this.direction = direction;
             moveBallTimer.Start();
         }
+
         public void Difficulty(int grade)
         {
             switch (grade)
             {
-                case 1: ballSpeed = 1;
+                case 1: ballSpeed = 2;
                     break;
-                case 2: ballSpeed = 2;
+                case 2: ballSpeed = 4;
                     break;
-                case 3: ballSpeed = 3;
+                case 3: ballSpeed = 6;
                     break;
             }
         }
@@ -68,8 +63,7 @@ namespace projectcsharp
         /// </summary>
         public void Move()
         {
-            //finner ut sånn at ballene skyter rett
-
+            //finner ut sånn at ballene skyter i riktig retning
             if (direction == 1)
             {
                 y -= ballSpeed;
@@ -85,11 +79,6 @@ namespace projectcsharp
             else if (direction == 4)
             {
                 y += ballSpeed;
-            }
-            else if (direction == 5) //få ball t å beveg sæ på skrå! how?
-            {
-                
-                
             }
         }
         public void Draw(Graphics g)

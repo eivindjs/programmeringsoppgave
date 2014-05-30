@@ -84,7 +84,6 @@
             this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(100, 20);
             this.tbPassword.TabIndex = 4;
-            this.tbPassword.Text = "test";
             // 
             // tbUsername
             // 
@@ -93,7 +92,6 @@
             this.tbUsername.Name = "tbUsername";
             this.tbUsername.Size = new System.Drawing.Size(100, 22);
             this.tbUsername.TabIndex = 3;
-            this.tbUsername.Text = "eivinds";
             // 
             // lblHeadline
             // 
