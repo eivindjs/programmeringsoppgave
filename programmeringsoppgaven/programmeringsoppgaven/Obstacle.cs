@@ -12,7 +12,7 @@ namespace projectcsharp
     {
         /// <summary>
         /// Tord og Eivind
-        /// Klasse for å lage figurer
+        /// Klasse for å lage hindringer
         /// </summary>
         private GraphicsPath myPath = new GraphicsPath(); //vil ha en path for alle hindringer(Sjekke kollisjon)
         private Object mySync = new Object();
